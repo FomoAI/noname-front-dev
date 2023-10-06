@@ -1,0 +1,29 @@
+.body{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+ 
+}
+.title{
+    margin: 10px 0 0 10px;
+}
+.subTitle{
+    margin: 10px 0 0 10px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ff3a6b;
+}
+.projects{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+.projectsRow{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  
+}

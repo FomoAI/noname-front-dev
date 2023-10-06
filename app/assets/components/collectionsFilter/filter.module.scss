@@ -1,0 +1,105 @@
+.body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  @media (max-width: 850px) {
+    gap: 10px;
+  }
+  @media (max-width: 580px) {
+    flex-direction: column;
+  }
+
+  @media (max-width:450px) {
+    display: none;
+  }
+}
+.mobileBody{
+  display: none;
+  @media (max-width:450px) {
+    display: block;
+    position: relative;
+  }
+}
+.filter {
+  width: 120px;
+  height: 35px;
+  background: rgba(115, 128, 148, 0.05);
+  border-radius: 8px;
+  color: rgba(115, 128, 148, 0.5);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+
+  transition: all 0.2s ease;
+  @media (max-width: 850px) {
+    width: 105px;
+    height: 28px;
+    font-size: 14px;
+  }
+  @media (max-width: 580px) {
+    width: 85vw;
+    height: 50px;
+    font-size: 17px;
+  }
+
+  @media (max-width:450px) {
+    width: 100%;
+  }
+}
+.filter.selected {
+  background: #ffe5ec;
+  color: #ff507d;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 96px;
+  height: 35px;
+  border-radius: 8px;
+  background: rgba(255, 80, 125, 0.1);
+  color: #ff507d;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  svg {
+    fill: #ff507d;
+    transition: all 0.3s ease;
+  }
+  &:hover {
+    background: #ff507d;
+    color: white;
+  }
+  &:hover svg {
+    fill: white;
+  }
+}
+
+.mobileFilters{
+  max-width: 140px;
+  width: 140px;
+  position: absolute;
+  top: 37px;
+  left: 0;
+  z-index: 10;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px;
+  border-radius: 8px;
+  border: 1px solid rgba(83, 98, 124, 0.07);
+  background: #FFF;
+}
+
+.visible{
+  opacity: 1;
+  visibility: visible;
+}

@@ -1,0 +1,67 @@
+.body {
+  max-width: 438px;
+  width: 100%;
+  max-height: 229px;
+  padding: 16px;
+  border: 2px solid #f5f9fd;
+  border-radius: 16px;
+  @media (max-width: 769px) {
+    max-width: 336px;
+  }
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  span {
+    font-family: "Gilroy SemiBold";
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #0d0f2b;
+  }
+}
+.valueBlock {
+  max-width: fit-content;
+  margin: 10px auto 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2px;
+}
+.key {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #738094;
+}
+.value {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+  text-align: center;
+  color: #0d0f2b;
+}
+.btns {
+  display: flex;
+  gap: 10px;
+}
+.stakeLabel {
+  margin-top: 7px;
+  color: #738094;
+  font-size: 14px;
+  font-weight: 400;
+  @media (max-width:450px) {
+    max-width: 120px;
+  }
+}
+.valueInput {
+  max-width: 90px;
+  margin: 0 auto;
+  color: #0d0f2b;
+  text-align: center;
+  font-family: Raleway;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}

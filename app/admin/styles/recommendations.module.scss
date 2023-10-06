@@ -1,0 +1,46 @@
+.body{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  
+}
+.item{
+    max-width: 280px;
+    max-height: 500px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.295);
+    @media (max-width:645px) {
+        max-width: 90vw;
+    }
+}
+.info{
+    padding: 5px;
+}
+.title{
+    font-size: 20px;
+    font-weight: 700
+}
+.date{
+    margin-bottom: 10px;
+}
+.img{
+    img{
+        object-fit: cover;
+        @media (max-width:645px) {
+            width: 90vw;
+            height: auto;
+        }
+    }
+}
+.remove{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 6px;
+    button{
+        border-bottom: 1px solid rgba(0, 0, 0, 0.347);
+        border-radius: 5px;
+    }
+}

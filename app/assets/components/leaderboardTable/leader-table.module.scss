@@ -1,0 +1,111 @@
+.table {
+    max-width: 900px;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #f5f9fd;
+    box-shadow: 4px 4px 10px #eeeeee;
+    border-radius: 16px;
+    max-height: 430px;
+    @media (max-width:880px) {
+      max-width: 95vw;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+     /* Track */
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #eaf2fb;
+      border-radius: 99px;
+      border: 5px solid transparent;
+      background-clip: content-box;
+    }
+  
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #d9e9fc;
+      border-radius: 99px;
+      border: 4px solid transparent;
+      background-clip: content-box;
+    }
+  }
+  .date {
+    display: block;
+    @media (max-width: 460px) {
+      display: none;
+    }
+  }
+  .mobileDates {
+    display: none;
+    @media (max-width: 460px) {
+      display: block;
+      max-width: fit-content;
+      margin-right: 25px;
+    }
+  }
+  .amount {
+    @media (max-width: 460px) {
+      max-width: 48px;
+      margin-left: 20px;
+    }
+  }
+  .head {
+    display: grid;
+    grid-template-columns: 0.9fr 1fr 1fr;
+    background: #f5f9fd;
+    max-height: 36px;
+    border-radius: 16px 16px 0px 0px;
+    padding: 11px 16px 11px 70px;
+    
+    span {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      color: #738094;
+    }
+    @media (max-width: 460px) {
+      grid-template-columns: 0.5fr 1fr 1fr;
+      padding: 11px 16px 11px 32px;
+    }
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+    max-height: 280px;
+    overflow-y: auto;
+    width: 100%;
+    &::-webkit-scrollbar {
+      width: 14px;
+    }
+  
+    & > div{
+      max-width: 100%;
+      width: 100%;
+    }
+    @media (max-width:880px) {
+      
+    }
+  
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #eaf2fb;
+      border-radius: 99px;
+      border: 5px solid transparent;
+      background-clip: content-box;
+    }
+  
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #d9e9fc;
+      border-radius: 99px;
+      border: 4px solid transparent;
+      background-clip: content-box;
+    }
+  }

@@ -1,0 +1,31 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 300px;
+  width: 100%;
+  @media (max-width: 730px) {
+    max-width: 100%;
+  }
+  label {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: #738094;
+    margin-left: 4px;
+  }
+  input {
+    width: 100%;
+    border-bottom: 2px solid rgb(181, 193, 207);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    &:focus{
+      border-bottom: 2px solid rgb(112, 128, 145);
+
+    }
+    &:hover{
+      border-bottom: 2px solid rgb(112, 128, 145);
+    }
+  }
+}

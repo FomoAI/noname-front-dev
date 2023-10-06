@@ -1,0 +1,158 @@
+@import "./vars.scss";
+.rows {
+  background: $backBg;
+  padding: 0 10px;
+}
+.row {
+  max-width: 1398px;
+  margin: 0 auto; 
+  display: flex;
+  justify-content: space-between;
+}
+.row:first-child {
+  padding: 6px 0px;
+  font-size: 14px;
+}
+.rowItem {
+  display: flex;
+  gap: 10px;
+}
+.textLight {
+  color: $whiteOpacity;
+}
+.textWhite {
+  font-style: normal;
+  color: white;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: right;
+  @media (max-width:541px) {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+.banner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 24px;
+  background: #FFE5EC;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: all 0.5s ease;
+  @media (max-width:660px) {
+    padding: 4px 12px;
+  }
+  @media (max-width:590px) {
+    padding: 4px 8px;
+  }
+  @media (max-width:400px) {
+    justify-content: center;
+    gap: 5px;
+  }
+}
+.timer{
+  display: flex;
+  gap: 6px;
+  @media (max-width:660px) {
+    font-size: 14px;
+  }
+  @media (max-width:460px) {
+    font-size: 12px;
+    align-items: center;
+  }
+  @media (max-width:390px) {
+    font-size: 11px;
+    gap:5px;
+    align-items: center;
+  }
+}
+.message{
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FF507D;
+  @media (max-width:660px) {
+    font-size: 14px;
+  }
+  @media (max-width:590px) {
+    font-size: 11px;
+  }
+  @media (max-width:500px) {
+    display: none;
+  }
+}
+.time{
+  display: flex;
+  gap: 4px;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #0D0F2B;
+  @media (max-width:660px) {
+    font-size: 14px;
+  }
+
+  @media (max-width:590px) {
+    justify-content: center;
+    font-size: 13px;
+  }
+  @media (max-width:410px) {
+    gap:2px;
+  }
+  @media (max-width:401px) {
+    gap: 1.5px;
+    font-size: 12px;
+  }
+}
+.linkBody{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  button{
+    padding: 0;
+    display: flex;
+  }
+}
+.projectLink{
+  border: 1px solid #FF507D;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: right;
+  color: #FF507D;
+  transition: all 0.3s ease;
+  padding: 6px 12px !important;
+  &:hover{
+    background: #FF507D;
+    color: #FFE5EC;
+  }
+  @media (max-width:660px) {
+    font-size: 13px;
+  }
+  @media (max-width:590px) {
+    padding: 2px 10px;
+    font-size: 12px;
+    text-align: center;
+  }
+  @media (max-width:420px) {
+    padding: 2px 7px !important;
+  }
+  @media (max-width:385px) {
+    font-size: 11px;
+    padding: 2px 5px !important;
+  }
+}
+.info{
+  @media (max-width:392px) {
+    font-size: 11px;
+  }
+  @media (max-width:371px) {
+    display: none;
+  }
+}

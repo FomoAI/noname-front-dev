@@ -1,0 +1,46 @@
+.body{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    @media (max-width: 595px) {
+        justify-content: center;
+    }
+}
+.item{
+    display:flex;
+    gap: 10px;
+    align-items: center;
+    label{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border: 1px solid rgba(0, 0, 0, 0.434);
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    @media (max-width: 595px) {
+        width: 80vw;
+        input{
+            max-width: 100%;
+           width: 70vw;
+        }
+    }
+}
+.selected{
+    background: #FF507D;
+    color: white;
+}
+
+.link{
+    background: rgba(234, 242, 251, 0.5);
+    font-size: 15px;
+    border-radius: 10px;
+    max-width: 150px;
+    padding: 7px;
+}
+.hide{
+    display: none;
+}

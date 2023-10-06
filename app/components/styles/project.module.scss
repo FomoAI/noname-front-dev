@@ -1,0 +1,204 @@
+.project {
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 12px;
+  max-width: 289px;
+  width: 100%;
+  box-shadow: 4px 4px 10px #eeeeee;
+  border-radius: 16px;
+  @media (max-width: 780px) {
+    max-width: 45vw;
+    width: 100%;
+  }
+  @media (max-width: 720px) {
+    max-width: 70vw;
+  }
+  @media (max-width: 540px) {
+    max-width: 90vw;
+  }
+  transition: all 0.3s ease;
+  &:hover{
+    box-shadow: 6px 6px 12px #dadada;
+  }
+}
+.project.loading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.line {
+  border: none;
+  border-radius: 16px;
+  width: 100%;
+  height: 1px;
+  background: rgba(83, 98, 124, 0.14);
+}
+.row {
+  display: flex;
+  width: 100%;
+}
+.rowLast{
+  display: flex;
+  justify-content: center;
+}
+.rows {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+}
+.colums {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+.colum{
+  position: relative;
+  width: fit-content;
+  img{
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+}
+.colum.infoColumn{
+  @media (max-width:780px) {
+    width: 100%; 
+  }
+}
+.dates {
+  display: flex;
+  gap: 3px;
+  span {
+    font-family: "Gilroy SemiBold";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(7, 11, 53, 0.5);
+  }
+}
+.titleBox{
+  position:relative;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #0d0f2b;
+  display: flex;
+  align-items: flex-end;
+  @media (max-width:780px) {
+    
+  }
+}
+.title {
+  display: flex;
+  max-width: 165px;
+  word-break: break-all;
+  max-height: 28px;
+  overflow: hidden;
+}
+.dotes{
+  position: absolute;
+  right: 10%;
+}
+.description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #738094;
+}
+.key {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 14px;
+  align-items: center;
+  color: #738094;
+}
+.value {
+  color: black;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: "Gilroy SemiBold";
+}
+
+.textBlue {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  color: #277ad2;
+}
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background: rgba(39, 122, 210, 0.1);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.progressValue {
+  height: 6px;
+  background: linear-gradient(270deg, #277ad2 0%, #81bcfb 100%);
+  border-radius: 8px;
+}
+.starts {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  background: linear-gradient(270deg, #277ad2 0%, #81bcfb 100%), #0d0f2b;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.investments{
+  max-width: fit-content;
+  margin: 0 auto;
+}
+
+.projectWrapper{
+  position: relative;
+  max-width: 289px;
+  width: 100%;
+}
+.hidden{
+  max-width: 289px;
+  width: 100%;
+  filter: blur(3px);
+}
+.hiddenImg{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 1;
+}
+.info{
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+  @media (max-width:780px) {
+    justify-content: space-between;
+  }
+}
+.rating{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  img{
+    width: 12px;
+    height: auto;
+  }
+}
+
+.waitingListBtn{
+  cursor: pointer;
+  position: absolute;
+  background: white;
+  padding: 0px;
+  top: 3px;
+  right: 0;
+  img{
+    max-width: 21px;
+  }
+}

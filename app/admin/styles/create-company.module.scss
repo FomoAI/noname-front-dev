@@ -1,0 +1,33 @@
+.inputs{
+    margin: 50px 0 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 25px;
+}
+.subtitle{
+    margin: 15px 0;
+}
+.socialmedia{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 10px;
+  }
+  .socialmediaItem{
+    max-width: 290px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 4px;
+    border-bottom: 1px solid;
+    padding: 3px;
+    border-radius: 5px;
+    input{
+      width: 100%;
+    }
+    @media (max-width:450px) {
+        max-width: 95vw;
+        width: 100%;
+    }
+  }

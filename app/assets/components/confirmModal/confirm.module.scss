@@ -1,0 +1,51 @@
+.modalCloses {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 16px;
+  }
+  .modalKey {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #738094;
+  }
+  .modalBlueText {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+
+    background: linear-gradient(270deg, #277ad2 0%, #81bcfb 100%), #0d0f2b;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .modalTitle {
+    font-family: "Gilroy Bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #070b35;
+  }
+  .modalBody {
+    background: #f5f9fd;
+    border: 2px solid #f5f9fd;
+    border-radius: 8px;
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  .modalBody img{
+      max-width: 32px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 5px;
+      overflow: hidden;
+  }

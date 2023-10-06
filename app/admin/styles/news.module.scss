@@ -1,0 +1,47 @@
+.body{
+  width: 100%;
+  @media (max-width:420px) {
+    padding: 0 10px;
+  }
+}
+.news {
+  margin: 30px 10px 10px 10px;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 40px;
+  @media (max-width:730px) {
+    justify-content: center;
+    margin: 0;
+  }
+}
+.title {
+  margin: 10px 0 0 10px;
+  @media (max-width:730px) {
+    margin: 0;
+  }
+}
+.head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width:730px) {
+    max-width: 380px;
+    margin: 20px auto;
+  }
+}
+.add {
+  margin-top: 12px;
+  margin-right: 80px;
+  @media (max-width:730px) {
+    margin: 0;
+  }
+}
+.confirmDelete{
+  max-width: 300px;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}

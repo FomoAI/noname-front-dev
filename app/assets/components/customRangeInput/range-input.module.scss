@@ -1,0 +1,11 @@
+.body{
+    position: relative;
+}
+.fakeBar {
+  background: linear-gradient(270deg, #277ad2 0%, #81bcfb 100%);
+  border-radius: 8px;
+  height: 8px;
+  position: absolute;
+  top: 35%;
+  z-index: 0;
+}

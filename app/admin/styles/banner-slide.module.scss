@@ -1,0 +1,33 @@
+.body{
+    position: relative;
+    &:hover{
+        .edit{
+            display: flex;
+        }
+    }
+    @media (max-width:780px) {
+        max-width: 540px;
+    }
+    @media (max-width:730px) {
+        max-width: 90vw;
+    }
+}
+.index{
+    font-size: 22px;
+    font-weight: 700;
+    margin: 10px 10px 10px;
+}
+.edit{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.377);
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+}

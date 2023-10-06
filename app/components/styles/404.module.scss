@@ -1,0 +1,26 @@
+.body{
+    max-width: 35%;
+    margin: 6% auto 0;
+    max-height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (max-width:550px) {
+        max-width: 60%;
+        margin: 50% auto 0;
+    }
+}
+
+.btn{
+    max-width: 220px;
+    margin: 10px auto;
+    font-size: 48px;
+    color: #FF507D;
+    text-align: center;
+
+    transition: color 0.3s ease;
+    
+    &:hover{
+        color: #d71f4d;
+    }
+}

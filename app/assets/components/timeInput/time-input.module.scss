@@ -1,0 +1,39 @@
+.body {
+  max-width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
+  input {
+    font-family: inherit;
+    margin-left: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 24px;
+    background: #f8f8f9;
+    &::placeholder {
+      color: rgba(115, 128, 148, 0.5);
+      font-size: 14px;
+      @media (max-width:440px) {
+        font-size: 13px;
+      }
+    }
+    @media (max-width:440px) {
+      padding: 2px 5px;
+      margin-left: 0px;
+      min-width: 25px;
+      width: 100%;
+    }
+  }
+  width: 100%;
+  padding: 7px;
+  height: 35px;
+  border-radius: 8px;
+  background: #f8f8f9;
+
+  span{
+    @media (max-width:440px) {
+    }
+  }
+}

@@ -1,0 +1,73 @@
+.body {
+  margin-top: 16px;
+  max-width: 330px;
+}
+.row {
+  display: flex;
+  gap: 20px;
+}
+.key {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #738094;
+}
+.value {
+  font-family: "Gilroy SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #0d0f2b;
+}
+.input {
+  margin: 10px 0 20px;
+  input {
+    width: 100%;
+    margin: 0px;
+  }
+}
+.maxBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  margin-bottom: 8px;
+  background: rgba(234, 242, 251, 0.5);
+  border-radius: 8px;
+
+  font-family: "Gilroy SemiBold";
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  input{
+    background: transparent;
+    width: 100%;
+  }
+}
+.maxValue {
+  color: #738094;
+}
+.max {
+  color: #ff507d;
+}
+.wallet {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+.rowLast {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 17px;
+}
+.info {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #738094;
+  margin-bottom: 10px;
+}

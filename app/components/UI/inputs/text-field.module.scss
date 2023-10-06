@@ -1,0 +1,28 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #eaf2fb80;
+    border-radius: 99px;
+    padding: 0px 35px 0px 12px;
+    max-width: 460px;
+    width: 100%;
+}
+.input{
+    padding: 8px 0;
+    background: transparent;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+.input::placeholder{
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(115, 128, 148, 0.502);
+}

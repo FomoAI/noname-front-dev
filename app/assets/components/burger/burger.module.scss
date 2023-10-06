@@ -1,0 +1,17 @@
+.burger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  span {
+    display: block;
+    width: 22px;
+    height: 3px;
+    background: #738094;
+  }
+
+  @media (max-width: 1220px) {
+    display: flex;
+  }
+}

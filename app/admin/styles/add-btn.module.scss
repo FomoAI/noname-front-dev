@@ -1,0 +1,13 @@
+.add{
+    height: 160px;
+    max-width: 280px;
+    width: 100%;
+    color: #ff3a6b;
+    font-size: 52px;
+    box-shadow: 0px 0px 2px 1px #ff7497ab;
+    border-radius: 20px;
+    transition: background 0.3s ease;
+    &:hover{
+        background: #57565620;
+    }
+}

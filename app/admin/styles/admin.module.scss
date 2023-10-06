@@ -1,0 +1,36 @@
+.body{
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+    border-radius: 10px; 
+    padding: 10px 15px;
+    box-shadow: 0px 0px 1px 1px #ff3a6b;
+    margin: 10px 0;
+    @media (max-width:720px) {
+        justify-content: space-between;
+        max-width: 90vw;
+    }
+}
+.username{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.btns{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-left: 100px;
+    @media (max-width:720px) {
+        max-width: 60px;
+        margin-left: 0px;
+        button{
+            max-width: 60px !important;
+        }
+    }
+}
+.key{
+    font-size: 15px;
+    font-weight: 400;
+    color: gray;
+}

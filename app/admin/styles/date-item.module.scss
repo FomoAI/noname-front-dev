@@ -1,0 +1,116 @@
+.body {
+  padding: 20px;
+  border-radius: 30px;
+  border: 2px solid #ff3a6b62;
+}
+.label {
+  margin: 10px 0px 5px 15px;
+  font-size: 15px;
+  color: gray;
+}
+.projectsWrapper {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  @media (max-width: 730px) {
+    justify-content: center;
+    align-items: center;
+  }
+}
+.add {
+  button {
+    max-width: 160px;
+    max-height: 160px;
+  }
+}
+.projects {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  max-height: 800px;
+  overflow: auto;
+  @media (max-width: 730px) {
+    justify-content: center;
+    align-items: center;
+  }
+}
+.project {
+  position: relative;
+  cursor: pointer;
+  background: rgba(234, 242, 251, 0.804);
+  border-radius: 20px;
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  max-width: 170px;
+  width: 100%;
+  @media (max-width: 420px) {
+    max-width: 320px;
+  }
+}
+.selected {
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.539);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.prTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+.infoRow {
+  margin-top: 4px;
+  font-size: 15px;
+}
+.key {
+  font-weight: 700;
+}
+.head {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 390px) {
+    margin: 15px auto;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+}
+.btns {
+  display: flex;
+  gap: 15px;
+  @media (max-width: 390px) {
+    button {
+      width: 130px;
+    }
+  }
+}
+.index {
+  font-weight: 700;
+}
+.calendar {
+  @media (max-width: 390px) {
+    button:first-child {
+      width: 85vw;
+      justify-content: center;
+    }
+  }
+}
+.img {
+  img {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+}

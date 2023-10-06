@@ -1,0 +1,23 @@
+.main {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  color: #ff507d;
+  background: rgba(255, 80, 125, 0.15);
+  border-radius: 99px;
+  padding: 12px 39px;
+  transition: all 0.3s ease;
+  max-width: 250px;
+  width: 100%;
+  @media (max-width:430px) {
+    max-width: 80vw;
+  }
+}
+.main:hover {
+  color: #fdf3f5;
+  background: rgba(244, 69, 113, 0.95);
+  cursor: pointer;
+}

@@ -1,0 +1,125 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  max-width: 580px;
+  min-width: 100%;
+  background: #f5f9fd;
+  border: 2px solid #f5f9fd;
+  border-radius: 16px;
+  padding: 16px;
+  @media (max-width: 630px) {
+  }
+}
+.number {
+  font-family: "Gilroy Extra Bold";
+  font-size: 18px;
+  line-height: 22px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transform: translate(-32px, -32px);
+  width: 36px;
+  height: 36px;
+  background: #ff507d;
+  border-radius: 50%;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #070b35;
+}
+.dates {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #738094;
+  margin-bottom: 16px;
+}
+
+.bodyDisabled {
+  padding: 16px;
+  max-width: 580px;
+  min-width: 100%;
+  background: #ffffff;
+  border: 2px solid #f5f9fd;
+  border-radius: 16px;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+.disabledNumber {
+  color: rgba(115, 128, 148, 0.5);
+  background: white;
+  border: 2px solid #f5f9fd;
+}
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.modalCloses {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 16px;
+}
+.modalInfo {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.modalCloses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modalKey {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #738094;
+}
+.modalBlueText {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+
+  background: linear-gradient(270deg, #277ad2 0%, #81bcfb 100%), #0d0f2b;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.modalTitle {
+  font-family: "Gilroy Bold";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #070b35;
+}
+.error {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #738094;
+  margin-bottom: 8px;
+}

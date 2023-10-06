@@ -1,0 +1,126 @@
+.body {
+  position: relative;
+  opacity: 0;
+  visibility: hidden;
+  max-width: 440px;
+  width: 100%;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #f5f9fd;
+  border-radius: 16px;
+  box-shadow: 6px 6px 12px 2px rgba(0, 0, 0, 0.258);
+  transition: all 0.3s ease;
+  z-index: 20;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease;
+  @media (max-width: 441px) {
+    max-width: 97vw;
+    width: 97vw;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.title {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #070b35;
+}
+.wallets {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wallet {
+  padding: 20px 24px 20px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f5f9fd;
+  border: 1px solid #f5f9fd;
+  border-radius: 18px;
+  height: 64px;
+  cursor: pointer;
+}
+.close {
+  button {
+    cursor: pointer;
+  }
+}
+.wlImg {
+  img {
+    max-width: 24px;
+    object-fit: cover;
+  }
+}
+.wlclose {
+  cursor: pointer;
+}
+.wlArrow {
+  margin-left: auto;
+}
+.wlTitle {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #070b35;
+  padding-bottom: 3px;
+}
+
+.description {
+  margin-top: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #738094;
+}
+.wlModal {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 15, 43, 0.5);
+  transition: all 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -10;
+}
+.visible {
+  opacity: 1;
+  visibility: visible;
+  z-index: 100;
+  transition: all 0.2s ease;
+}
+.confirmText {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  color: #738094;
+  span{
+    text-decoration: underline;
+    color: #070b35;
+    cursor: pointer;
+  }
+}
+.confirm{
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.wallet.disabled{
+  cursor:not-allowed;
+}

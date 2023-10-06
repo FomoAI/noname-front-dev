@@ -1,0 +1,115 @@
+.body {
+  max-width: 899px;
+  margin: 0 auto 82px;
+  @media (max-width: 920px) {
+    padding: 0px 47px;
+  }
+
+  @media (max-width: 660px) {
+    padding: 0px;
+    max-width: 95vw;
+    margin: 0 auto 80px;
+  }
+}
+.statusList {
+  margin: 8px 0 24px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #0d0f2b;
+}
+.stages {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 660px) {
+    width: 90vw;
+    margin: 0 auto;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    &::-webkit-scrollbar {
+        height: 11px;
+      }
+      &::-webkit-scrollbar-track {
+        background: #ff507c00;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #ff507d;
+        border-radius: 99px;
+        border: 3px solid transparent;
+        background-clip: content-box;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: #ff507d;
+        border-radius: 99px;
+        border: 3px solid transparent;
+        background-clip: content-box;
+      }
+  }
+
+}
+.done {
+  width: 6px;
+  height: 6px;
+  background: #05c9a1;
+  border-radius: 50%;
+  margin: 0 5px 0 3px;
+}
+.inworkWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(249, 163, 83, 0.25);
+  margin: 0 5px 0 0;
+}
+.inwork {
+  width: 6px;
+  min-width:6px;
+  height: 6px;
+  background: #f9a353;
+  border-radius: 50%;
+}
+.upcoming {
+  width: 6px;
+  min-width:6px;
+  height: 6px;
+  background: #b9c0ca;
+  border-radius: 50%;
+  margin: 0 5px 0 3px;
+}
+.item {
+  display: flex;
+  align-items: center;
+}
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #0d0f2b;
+  margin-bottom: 8px;
+}
+.list {
+  max-width:330px;
+  @media (max-width: 660px) {
+    min-width: fit-content;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  li {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #0d0f2b;
+  }
+}

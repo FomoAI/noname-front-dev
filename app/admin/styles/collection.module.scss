@@ -1,0 +1,273 @@
+.collection {
+  position: relative;
+  margin-top: 20px;
+  max-width: 87%;
+  width: 100%;
+  box-shadow: 0px 0px 2px 1px rgba(255, 116, 151, 0.6705882353);
+  border-radius: 20px;
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 730px) {
+    max-width: 100%;
+  }
+}
+.collectionDetails {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  @media (max-width: 650px) {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 25px;
+  }
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.key {
+  font-size: 16px;
+  color: rgb(101, 99, 99);
+}
+
+.value {
+  font-size: 18px;
+  font-weight: 600;
+}
+.collectionsNfts > div {
+  margin-bottom: 10px;
+}
+
+.projectInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  img {
+    max-width: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+}
+.infoRow {
+  margin: 12px 0 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+
+  @media (max-width: 1130px) {
+    margin-top: 30px;
+  }
+
+  @media (max-width: 730px) {
+    margin-top: 50px;
+  }
+}
+.projectDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.projectTitle {
+  font-weight: 600;
+}
+
+.pinBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.notPin {
+  opacity: 0.5;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 5px;
+  right: 60px;
+  @media (max-width: 730px) {
+    top: 8px;
+  }
+}
+
+.editBtn {
+  position: absolute;
+  top: 5px;
+  right: 120px;
+  @media (max-width: 730px) {
+    top: 8px;
+  }
+}
+
+.title {
+  font-size: 21px;
+  font-weight: 600;
+  @media (max-width: 730px) {
+  }
+}
+
+.create {
+  max-width: 88%;
+
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 2px 1px rgba(255, 116, 151, 0.6705882353);
+  border-radius: 20px;
+  transition: background 0.3s ease;
+  padding: 25px 10px;
+
+  @media (max-width: 450px) {
+    max-width: 100%;
+    margin: 25px auto;
+  }
+}
+.btns {
+  margin-top: 24px;
+  display: flex;
+  gap: 15px;
+}
+.inputs {
+  display: flex;
+  gap: 15px;
+  margin: 0px 0px 15px;
+  @media (max-width: 740px) {
+    flex-direction: column;
+  }
+}
+.rotate {
+  transform: rotate(180deg);
+}
+.selectBtn {
+  width: 140px;
+  height: 40px;
+  margin: 7px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 6px 10px;
+  background: rgba(128, 128, 128, 0.158);
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.selectWrapper {
+  max-width: fit-content;
+  position: relative;
+}
+
+.types {
+  width: 140px;
+  position: absolute;
+  top: 42px;
+  background: white;
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.171);
+
+  button {
+    font-size: 16px;
+    &:hover {
+      opacity: 0.65;
+    }
+  }
+}
+
+.selectedProject {
+  width: 170px;
+  height: 40px;
+  margin: 7px 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: rgba(128, 128, 128, 0.158);
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.initialSelectProjectState {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+.projectsWrapper {
+  position: relative;
+}
+
+.projectsList {
+  position: absolute;
+  top: 70px;
+  background: white;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.171);
+  border-radius: 4px;
+}
+
+.projectSearch {
+  font-family: inherit;
+  font-size: 15px;
+  padding: 8px 16px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.selectedProjectBody {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  img {
+    width: 25px;
+    border-radius: 50%;
+  }
+}
+.editActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.editActions {
+  position: absolute;
+  right: 15px;
+
+  @media (max-width: 740px) {
+    bottom: 15px;
+    left: 15px;
+  }
+}
+.editRow {
+  margin-top: 25px;
+
+  @media (max-width: 740px) {
+    margin-top: 45px;
+    margin-bottom: 80px;
+    flex-direction: column;
+    gap: 0px;
+  }
+}
+
+.editDetails {
+  @media (max-width: 740px) {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.editItem {
+  @media (max-width: 740px) {
+    max-width: 100%;
+    width: 100%;
+  }
+}

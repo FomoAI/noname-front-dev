@@ -1,0 +1,130 @@
+.items {
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.itemWrapper {
+  position: relative;
+}
+.item {
+  display: flex;
+  align-items: center;
+
+  border-radius: 8px;
+  border: 1px solid rgba(83, 98, 124, 0.07);
+  background: #fff;
+  box-shadow: 4px 4px 0px 0px #eee;
+
+  padding: 16px 12px 16px 16px;
+
+  max-width: 328px;
+  height: 64px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: 2px 2px 3px 3px #dfdfdf;
+  }
+  @media (max-width:420px) {
+    max-width: 100%;
+  }
+}
+.itemImg {
+  max-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.03);
+}
+
+.itemInfo {
+  margin-left: 10px;
+  margin-right: auto;
+}
+.title {
+  color: #0d0f2b;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+}
+.description {
+  color: #738094;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.itemPrice {
+  color: #0d0f2b;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-right: 27px;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 52%;
+  right: 8px;
+  transform: translateY(-50%);
+  svg {
+    fill: #ff5858;
+    transition: fill 0.3s ease;
+    &:hover {
+      fill: #ef2d2d;
+    }
+  }
+}
+
+.line {
+  border: none;
+  height: 2px;
+  background: #f8f8f9;
+}
+.payInfo {
+  margin-bottom: 24px;
+}
+.payDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.key {
+  color: #738094;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.payValue {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.value {
+  color: #0d0f2b;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+}
+.usdPay {
+  color: #738094;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: right;
+}
+.empty {
+  margin: 0 0 20px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.btn{
+    button{
+        @media (max-width:420px) {
+            max-width: 100% !important;
+        }
+    }
+}

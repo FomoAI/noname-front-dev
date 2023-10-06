@@ -1,0 +1,74 @@
+.body{
+    display: flex;
+    padding: 20px 30px;
+    background: linear-gradient(88.02deg, #ff7497ab 0.64%, #f9a353af 100%);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom: 2px solid #ff0040;
+    border-left: 2px solid #ff0040;
+    border-right: 2px solid #ff0040;
+    border-top: 2px solid #f9a353af;
+    @media (max-width:530px) {
+        padding: 20px 10px;
+    }
+}
+.info{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.title{
+    font-size: 26px;
+    font-weight: 700;
+    @media (max-width:530px) {
+        display: none;
+
+    }
+ 
+}
+.userBlock{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 20px;
+}
+.logOut{
+    width: 30px;
+    height: 30px;
+    button{
+       font-size: 29px;
+       line-height: 0 ;
+       padding: 0;
+    }
+}
+.img{
+    img{
+        border-radius: 10px;
+        overflow: hidden;
+        @media (max-width:530px) {
+            max-width: 100px;
+        }
+    }
+}
+.user{
+    @media (max-width:530px) {
+        font-size: 18px;
+    }
+}
+.navBtn{
+    display: none;
+    span{
+      background: black !important;
+    }
+    @media (max-width:730px) {
+        display: block;
+    }
+  }

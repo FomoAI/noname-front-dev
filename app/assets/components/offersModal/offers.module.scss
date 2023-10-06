@@ -1,0 +1,71 @@
+.body {
+  max-width: 560px;
+  width: 100%;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #070b35;
+  text-align: center;
+  @media (max-width: 420px) {
+    font-size: 22px;
+    text-align: left;
+  }
+}
+.inputs {
+  display: flex;
+  gap: 35px;
+  @media (max-width: 420px) {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+.info {
+  max-width: 472px;
+  padding-right: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #0d0f2b;
+
+  margin: 15px 0px;
+}
+.inputWrapper {
+  max-width: 235px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  @media (max-width: 420px) {
+    max-width: 90vw;
+  }
+  input {
+    max-width: 235px;
+    width: 100%;
+    @media (max-width: 420px) {
+      max-width: 90vw;
+    }
+  }
+}
+.label {
+  font-family: "Gilroy Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #738094;
+}
+.bottom {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #0d0f2b;
+  margin: 15px 0 20px;
+}

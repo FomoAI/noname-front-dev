@@ -1,0 +1,19 @@
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 20px 0;
+}
+.head{
+    margin-top: 10px;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+}
+.value{
+    margin-top: 5px;
+    font-weight: 600;
+    font-size: 14px;
+}

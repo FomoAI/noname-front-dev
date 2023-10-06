@@ -1,0 +1,51 @@
+.body{
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 15px;
+     @media (max-width:720px) {
+        max-width: 90vw;
+    }
+}
+.list{
+    max-width: 300px;
+    width: 100%;
+    @media (max-width:720px) {
+        max-width: 100%;
+        width: 90vw;
+    }
+}
+.newAdmin{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.save{
+    max-width: fit-content;
+    font-size: 17px;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+.add{
+    button{
+        max-width: 300px;
+        height: 65px;
+        border-radius: 10px;
+        @media (max-width:720px) {
+            max-width: 100%;
+        }
+    }
+}
+.confirm{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    span{
+        font-size: 20px;
+        font-weight: 700;
+    }
+}

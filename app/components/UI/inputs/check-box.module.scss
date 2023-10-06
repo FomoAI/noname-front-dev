@@ -1,0 +1,40 @@
+.checkBox {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: -2px;
+  left: -3px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.fakeCheckBox {
+  position: absolute;
+  border: 1px solid #ff507d;
+  border-radius: 4px;
+  display: flex;
+  width: 18px;
+  height: 18px;
+  top: 0;
+  left: 0;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+.fakeCheckBox.checked{
+    background: #ff507d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fakeCheckBox.checked::after {
+    content: url('../../../assets/icons/check.svg');
+    color: white;
+    fill: white;
+    margin-top: 5px;
+}
+
+.body {
+  width: 16px;
+  height: 16px;
+  position: relative;
+}

@@ -1,0 +1,223 @@
+.nftImage {
+  width: 290px;
+  max-height: 160px;
+  object-fit: cover;
+  object-position: top;
+  border-top-left-radius: 16px;
+  cursor: pointer;
+  border-top-right-radius: 16px;
+  @media (max-width: 450px) {
+    max-width: 100%;
+    width: 100%;
+    max-height: 240px;
+  }
+  @media (max-width: 385px) {
+    max-width: 307.5px;
+  }
+}
+.body {
+  position: relative;
+  max-width: 290px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 4px 4px 10px 0px #eee;
+
+  @media (max-width: 450px) {
+    box-shadow:4px -6px 10px 0px #eee;
+    max-width: 85vw;
+    width: 100%;
+    margin: 0 auto;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  @media (max-width: 385px) {
+    max-width: 350px;
+  }
+}
+.label {
+  font-family: "Gilroy Semibold";
+  position: absolute;
+  top: 11px;
+  right: 9px;
+  color: #8a53ff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 25px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.id {
+  position: absolute;
+  top: 128px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.724);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.164);
+  color: black;
+
+  @media (max-width: 450px) {
+    top: 200px;
+  }
+}
+.info {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.key {
+  color: #738094;
+  font-size: 12px;
+}
+.value {
+  color: #0d0f2b;
+  font-weight: 600;
+  font-size: 14px;
+}
+.btn {
+  max-width: 265px;
+  width: 100%;
+  padding: 6px 10px;
+  background: #ffe5ec;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+  cursor: pointer;
+  color: #ff507d;
+
+  transition: all 0.3s ease;
+  &:hover {
+    color: #ffffff;
+    background: #fd2f66;
+  }
+  height: 35px;
+  @media (max-width:450px) {
+    max-width: 92%;
+    height: 45px;
+  }
+}
+.btnRed {
+  width: 100%;
+  padding: 5px 10px;
+  background: #ff507d;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+  cursor: pointer;
+  color: #ffffff;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #ffffff;
+    background: #fe1b53;
+  }
+
+  &:disabled {
+    background: #ff507ca0;
+    cursor: default;
+  }
+  height: 35px;
+
+
+}
+
+.actions {
+  display: flex;
+  gap: 9px;
+  button {
+    width: 128px;
+    height: 35px;
+    @media (max-width:450px) {
+      width: 135px;
+      height: 45px;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 290px;
+  position: absolute;
+  top: 220px;
+  left: 0;
+  right: 0px;
+  z-index: 0;
+  height: 0px;
+  overflow: hidden;
+  background: white;
+  opacity: 0;
+  transition: height 0.4s ease;
+  @media (max-width: 450px) {
+    max-width: 100%;
+    width: 100%;
+    top: 300px;
+    opacity: 1;
+    height: 70px;
+    background: #fff;
+    box-shadow: 4px 8px 10px -1px #eee;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+  @media (max-width: 385px) {
+    width: 307px;
+  }
+}
+.body:hover .buttons {
+  top: 218.4px;
+  height: 70px;
+  background: white;
+  border-radius: 16px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  background: #fff;
+  box-shadow: 4px 8px 10px -1px #eee;
+  opacity: 1;
+  z-index: 0;
+  transition: all 0.4s ease;
+
+  @media (max-width: 450px) {
+    max-width: 100%;
+    width: 100%;
+    top: 300px;
+    opacity: 1;
+    height: 70px;
+    background: #fff;
+    transition: height 0.4s ease;
+  }
+  @media (max-width: 385px) {
+    width: 307px;
+  }
+}

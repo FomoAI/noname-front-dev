@@ -1,0 +1,22 @@
+.body{
+    width: 580px;
+    margin: 40px auto 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    flex: 1 1 auto;
+    @media (max-width:630px) {
+        max-width: 480px;
+        width: 100%;
+    }
+    @media (max-width:530px) {
+        max-width: 85vw;
+        width: 100%;
+    }
+}
+.endedProject{
+    display: flex;
+    max-width: 502px;
+    margin: 70px auto 0;
+    flex: 1 1 auto;
+}

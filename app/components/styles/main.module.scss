@@ -1,0 +1,56 @@
+.main{
+    margin-top: 84px;
+    @media (max-width:450px) {
+        margin-top: 64px;
+    }
+}
+.pageInfo{
+    max-width: 1206px;
+    margin: 80px auto 16px;
+}
+.pageInfoTitle{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    text-align: center;
+    color: #0D0F2B;
+}
+.pageInfoBody{
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+    @media (max-width:1230px) {
+        padding: 0px 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    div{
+        max-width: 594px;
+        align-items: flex-start;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        color: #0D0F2B;
+    }
+    p{
+        margin-top: 0px;
+    }
+    ul{
+        margin-bottom: 16px;
+    }
+    li{
+        display: flex;
+        align-items: flex-start;
+    }
+    li::before{
+        content: '';
+        display: block;
+        margin:10px 10px 0 10px;
+        min-width: 4px;
+        min-height: 4px;
+        background: black;
+        border-radius: 50%  ;
+    }
+}

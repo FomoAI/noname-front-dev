@@ -1,0 +1,40 @@
+.body{
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+}
+.description{
+    margin-top: 8px;
+    display: flex;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #0D0F2B;
+}
+.input{
+    margin: 12px 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.key{
+    font-family: 'Gilroy Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #738094;   
+}
+.value{
+    font-family: 'Gilroy Bold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #0D0F2B;
+}
+.info{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 15px;
+}

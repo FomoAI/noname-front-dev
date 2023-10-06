@@ -1,0 +1,26 @@
+.body {
+  border: 2px dotted #ff7497;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  label {
+    padding: 10px 30px;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    color: #ff507d;
+    font-weight: 700;
+    @media (max-width: 595px) {
+      width: 90vw;
+    }
+  }
+  input {
+    display: none;
+  }
+  @media (max-width: 595px) {
+    width: 80vw;
+  }
+}

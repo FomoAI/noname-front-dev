@@ -1,0 +1,137 @@
+.joinUs {
+  max-width: 594px;
+  margin: 16px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo img {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.nav {
+  margin: 12px 0px 60px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  @media (max-width:620px) {
+    margin: 12px 0px 40px;
+  }
+}
+.nav a {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #0d0f2b;
+
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.ventures img{
+  @media (max-width:620px) {
+    max-width: 230px;
+    max-height: 78px;;
+  }
+}
+.text {
+  margin: 24px 0 20px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #0d0f2b;
+  text-align: center;
+  @media (max-width:620px) {
+    padding: 0px 12px;
+  }
+}
+.about {
+  margin: 100px 0;
+  @media (max-width: 620px) {
+    margin: 64px 0;
+    padding: 0px 24px;
+  }
+  @media (max-width:620px) {
+    padding: 0px 12px;
+  }
+}
+.aboutText {
+  max-width: 594px;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+.aboutText li {
+  display: flex;
+  align-items: center;
+  margin: 3px 0;
+}
+
+.aboutText li::before {
+  content: "";
+  display: block;
+  background: black;
+  width: 2.8px;
+  height: 3.2px;
+  margin: 0px 10px;
+  border-radius: 100%;
+}
+.features {
+  margin-top: 100px;
+  @media (max-width: 620px) {
+    margin: 64px 0;
+    padding: 0px 4px;
+  }
+}
+.featuresColums {
+  max-width: 820px;
+  margin: 24px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+  @media (max-width: 835px) {
+    gap: 15px;
+  }
+}
+.featuresColum {
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    margin: 8px 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #0d0f2b;
+  }
+  b {
+    font-size: 18px;
+  }
+}
+
+.partners {
+  margin: 108px 0;
+  @media (max-width:620px) {
+    margin: 64px 0;
+  }
+}
+.risks {
+  margin: 100px 0;
+  @media (max-width:620px) {
+    margin: 64px 0;
+  }
+}
+.aboutInfo{
+  h4{
+    margin-bottom: 12px;
+  }
+}

@@ -1,0 +1,107 @@
+.head {
+  margin: 20px 0;
+  width: 99%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.body {
+  width: 100%;
+}
+.description {
+  margin-top: 20px;
+}
+.itemsTitle {
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.item {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  border: 2px solid #baddff;
+  padding: 20px;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.removeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 6px;
+  border: 1px solid black;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+.itemDescription {
+  margin-top: 20px;
+}
+.imgWrapper {
+  img {
+    width: 290px;
+    height: 233px;
+    object-fit: cover;
+  }
+}
+.itemImg {
+  margin: 15px 0;
+}
+.addBtn {
+  max-width: 600px;
+  width: 100%;
+  button {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+.features{
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: rgba(91, 91, 91, 0.073);
+  padding: 12px;
+  border-radius: 20px;
+}
+.addItemBtn{
+  margin-top: 20px;
+  button{
+    height: 42px;
+    font-size: 28px;
+  }
+}
+.featureWrapper{
+  max-width: 360px;
+  position: relative;
+}
+.removeBtn{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+.removeFeature{
+  position: absolute;
+  top: 32px;
+  right: 0;
+}
+.addCourseBtn{
+  max-width: 600px;
+  width: 100%;
+  button{
+    max-width: 600px;
+    height: 800px;
+  }
+}

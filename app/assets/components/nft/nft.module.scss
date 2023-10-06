@@ -1,0 +1,159 @@
+.nft {
+  position: relative;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nftTitle {
+  color: #738094;
+  font-size: 16px;
+}
+.nftBody {
+  display: flex;
+  gap: 10px;
+}
+.nftStakedInfo{
+  position: absolute;
+  top: 3px;
+  right: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap:8px;
+}
+.nftColum {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.nftRow {
+  display: flex;
+  align-items: center;
+  gap: 126px;
+  @media (max-width: 540px) {
+    gap: 15px;
+  }
+}
+.nftValue {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #070b35;
+  @media (max-width: 540px) {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+.nftText {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #738094;
+  @media (max-width: 540px) {
+    font-size: 12px;
+  }
+}
+.nftImg img {
+  max-width: 48px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.nftBtn {
+  margin-left: auto;
+  max-height: 35px;
+  max-width: 84px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  color: #ff507d;
+  line-height: 100%;
+  padding: 6px 8px;
+  box-shadow: 0px 0px 1px 1px #ff507d;
+  border-radius: 8px;
+
+  transition: all 0.2s ease;
+  &:hover {
+    color: #ff0040;
+    box-shadow: 0px 0px 2px 1.5px #ff507d;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+}
+.modal {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+.modalTitle {
+  font-family: "Gilroy Bold";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #070b35;
+}
+.modalBody {
+  margin-top: 12px;
+  background: #f5f9fd;
+  border: 2px solid #f5f9fd;
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+.modalBody img {
+  max-width: 32px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+.unstake {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  color: #ff507d;
+  width: 136px;
+}
+.nftsInput {
+  max-width: 248px;
+  padding-bottom: 5px;
+  color: #070b35;
+  font-family: Raleway;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.dates {
+  margin-top: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #738094;
+  margin-bottom: 16px;
+}

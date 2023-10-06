@@ -1,0 +1,46 @@
+.calendarPage {
+  max-width: 1206px;
+  width: 100%;
+  margin: 36px auto 97px;
+  flex: 1 1 auto;
+  @media (max-width: 420px) {
+    margin: 36px auto 64px;
+  }    
+}
+.calendar {
+  max-width: fit-content;
+  @media (max-width: 1198px) {
+    padding: 0px 40px;
+  }
+  @media (max-width: 420px) {
+    padding: 0px 12px;
+  }
+}
+.error{
+  h1{
+    font-size: 44px;
+    @media (max-width: 1198px) {
+      font-size: 36px;
+    }
+    @media (max-width:420px) {
+      font-size: 32px;
+    }
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  height: 50vh;
+  @media (max-width:420px) {
+    height: 45vh;
+  }
+}
+.empty{
+  max-width: 90vw;
+  width: 100%;
+  margin: 100px auto 97px;
+  flex: 1 1 auto;
+  h1{
+    font-size: 55px;
+  }
+}

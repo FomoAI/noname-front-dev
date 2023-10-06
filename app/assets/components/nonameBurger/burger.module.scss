@@ -1,0 +1,42 @@
+.body {
+  padding: 0;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap:5px   ;
+  transition: all 0.4s ease;
+
+  div {
+    background: #0d0f2b;
+    height: 5px;
+  }
+}
+
+.line1 {
+  width: 100px;
+  transition: all 0.4s ease;
+}
+
+.line2 {
+  width: 75px;
+  transition: all 0.4s ease;
+}
+.line3 {
+  width: 50px;
+  transition: all 0.4s ease;
+}
+
+.body:hover {
+  .line1 {
+    width: 50px;
+  }
+  .line2 {
+    width: 50px;
+  }
+}
+
+.body:active {
+  opacity: 0.6;
+}

@@ -1,0 +1,14 @@
+.banner{
+    max-width: 594px;
+    margin: 0 auto;
+    @media (max-width: 720px) {
+        max-width:90vw;
+    }
+}
+.swipper{
+    margin-top: 24px;
+    margin-bottom: 120px;
+    @media (max-width:420px) {
+        margin-bottom: 64px;
+    }
+}

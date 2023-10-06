@@ -1,0 +1,16 @@
+.body{
+    max-width: 900px;
+    margin: 80px auto 0
+}
+.cards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 24px;
+}
+.table{
+    margin-top: 24px;
+    margin-bottom: 34px;
+}

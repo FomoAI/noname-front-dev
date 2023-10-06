@@ -1,0 +1,143 @@
+.body{
+    margin: 30px 0px 0px 13px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    
+}
+.table{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 87vw;
+    overflow: auto;
+    max-height: 800px;
+    @media (max-width:880px) {
+        max-width: 100vw;
+    }
+}
+.user{
+    width: 1800px;
+    display: grid;
+    grid-template-columns: 0.35fr 0.35fr 0.8fr 0.3fr 1.3fr 0.7fr 0.5fr 0.4fr 1.3fr;
+    align-items: center;
+}
+.item{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.key{
+    font-weight: 700;
+}
+.wallets{
+    max-width: 400px;
+    overflow: auto;
+    display: flex;
+    gap: 12px;
+}
+
+.line{
+    width: 1800px;
+    border: 0.5px solid #FF507D;
+}
+
+.walletData{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.walletValue{
+    color: rgb(53, 53, 53);
+    font-size: 14px;
+}
+.wallets{
+    /* Track */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-track-piece{
+
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #FF507D;
+    border-radius: 99px;
+    border: 5px solid transparent;
+    background-clip: content-box;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #ff4170;
+    border-radius: 99px;
+    border: 4px solid transparent;
+    background-clip: content-box;
+  }
+}
+.red{
+    color: rgb(255, 57, 57);
+}
+.green{
+    color: green;
+}
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width:1500px) {
+        max-width: 80vw;
+    }
+    @media (max-width:930px) {
+        max-width: 75vw;
+    }
+    @media (max-width:730px) {
+        max-width: 95vw;
+        margin-bottom: 20px;
+    }
+}
+.download{
+    font-size: 28px;
+}
+.filter{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.selectModalBtn{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    border: 1px solid #ff4170;
+    padding: 3px 6px;
+    border-radius: 10px;
+}
+.select{
+    position: relative;
+}
+.selectList{
+    top: 32px;
+    left: -12px;
+    position: absolute;
+    display: flex;
+    background: white;
+    padding: 12px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.091);
+    button{
+        font-size: 16px;
+        transition: all 0.3s ease;
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+}
+.filter{
+    @media (max-width:730px) {
+        display: flex;
+        max-width: 95vw;
+        flex-direction: column;
+    }
+}

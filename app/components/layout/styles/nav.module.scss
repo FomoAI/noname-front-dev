@@ -1,0 +1,189 @@
+@import "./vars.scss";
+
+.row {
+  position: relative;
+  max-width: 98.5%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  padding: 0px 10px;
+  margin-top: 8px;
+  @media (max-width: 1480px) {
+    max-width: 100%;
+    padding: 0px 5px;
+  }
+  @media (max-width: 780px) {
+    padding: 0px 16px;
+  }
+  @media (max-width: 540px) {
+    padding: 0px 12px;
+  }
+}
+.infoLink {
+  margin-left: 12px;
+  a {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    color: #0d0f2b;
+    transition: all 0.3s ease;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+.logo {
+  img {
+    border-radius: 10px;
+    overflow: hidden;
+    @media (max-width: 540px) {
+      max-width: 120px;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+}
+.input {
+  display: flex;
+  align-items: center;
+  max-width: 320px;
+  width: 100%;
+  margin: 0px 22px 0px 19px;
+
+  @media (max-width: 1460px) {
+    max-width: 280px;
+  }
+  @media (max-width: 1410px) {
+    max-width: 265px;
+  }
+  @media (max-width: 1320px) {
+    max-width: 200px;
+    margin: 0px 14px 0px 10px;
+  }
+  @media (max-width: 1220px) {
+    max-width: 300px;
+  }
+  @media (max-width: 780px) {
+    margin: 0px 2px 0px 19px;
+  }
+  @media (max-width: 540px) {
+    margin: 0px 15px 0px 13px;
+  }
+}
+.links {
+  display: flex;
+  gap: 18px;
+  font-weight: 400;
+  @media (max-width: 1500px) {
+    gap: 18px;
+  }
+  @media (max-width: 1400px) {
+    gap: 14px;
+  }
+  @media (max-width: 1300px) {
+    gap: 12px;
+  }
+  @media (max-width: 1220px) {
+    display: none;
+  }
+}
+.link {
+  font-size: 16px;
+  line-height: 19px;
+  color: $backNav;
+  opacity: 1;
+  transition: all 0.22s ease;
+  @media (max-width: 1400px) {
+    font-size: 14px;
+  }
+}
+.link:hover {
+  opacity: 0.7;
+}
+.btn {
+  display: flex;
+  margin-left: 18px;
+  @media (max-width: 1400px) {
+    text-align: center;
+    min-width: 151px;
+  }
+  @media (max-width: 1220px) {
+  }
+  @media (max-width: 540px) {
+    display: none;
+  }
+}
+
+.investsBtn {
+  transform: translateY(-1.3px);
+  button {
+    position: relative;
+    display: flex;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 19px;
+    text-align: right;
+    color: #0d0f2b;
+    transition: all 0.3s ease;
+    &:hover {
+      opacity: 0.7;
+    }
+    &::after {
+      content: url("../../../assets/icons/arrow-rotate.svg");
+      margin: 0px 0px 0px 5px;
+      position: absolute;
+      top: -1.4px;
+      right: -7px;
+    }
+    @media (max-width: 1400px) {
+      font-size: 14px;
+      transform: translateY(1px);
+    }
+  }
+  @media (max-width: 1400px) {
+    margin-right: 5px;
+  }
+}
+.rotate {
+  &::after {
+    transform: rotate(-180deg) !important;
+    top: 3.4px !important;
+  }
+}
+
+.cartBtn {
+  position: relative;
+
+  @media (max-width: 1220px) {
+    margin: 0px 20px 0px 12px;
+  }
+
+  @media (max-width: 420px) {
+    display: none;
+  }
+}
+
+.cartCount {
+  position: absolute;
+  bottom: -2px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background: #0d0f2b;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}

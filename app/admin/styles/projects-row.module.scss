@@ -1,0 +1,47 @@
+.subTitle{
+    margin: 10px 0 0 10px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ff3a6b;
+    @media (max-width:720px) {
+        margin: 15px 0 10px 60px;
+    }
+    @media (max-width:595px) {
+        margin: 15px 0 10px 20px;
+
+    }
+}
+.projects{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    @media (max-width:720px) {
+        padding: 10px;
+    }
+}
+.projectsRow{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    @media (max-width:720px) {
+        justify-content: center;
+    }
+}
+.confirmDelete{
+    max-width: 300px;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.addBtn{
+    max-width: 280px;
+    width: 100%;
+    @media (max-width:595px) {
+        max-width: 90vw;
+        button{
+            max-width: 90vw;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.title{
+    margin-bottom: 25px;
+}
+.news{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    @media (max-width:1400px) {
+    }
+}
+.newsItem{
+    position: relative;
+    max-width: 386px;
+}
+.selected{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.447);
+}
+.newsItem:hover{
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+.newsTitle{
+    margin: 15px 0;
+    font-size: 22px;
+    font-weight: 600;
+}

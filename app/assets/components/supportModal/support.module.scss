@@ -1,0 +1,132 @@
+.body {
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.description {
+  margin-top: 8px;
+  display: flex;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #0d0f2b;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.key {
+  font-family: "Gilroy Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #738094;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.selectProject {
+  position: relative;
+  max-width: 360px;
+  height: 35px;
+  width: 100%;
+  background: rgba(234, 242, 251, 0.5);
+  border-radius: 8px;
+  padding: 9px 12px;
+  img {
+    position: absolute;
+    right: 10px;
+  }
+}
+.projectList {
+  position: relative;
+}
+.projectItems {
+  max-width: 360px;
+  width: 100%;
+  position: absolute;
+  top: 65px;
+  z-index: 100;
+  background: white;
+  max-height:240px;
+  overflow: auto;
+  border-radius: 20px;
+}
+.projectBlock {
+  position: relative;
+  margin-top: 4px;
+}
+.selectedProject {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+}
+.selectProjectBody {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.projectTitle {
+  font-weight: 600;
+}
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  textarea {
+    font-family: "Gilroy Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    max-width: 360px;
+    background: rgba(234, 242, 251, 0.5);
+    border-radius: 8px;
+    padding: 9px 12px;
+    border: none;
+    outline: none;
+    height: 105px;
+  }
+}
+.fileInput{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.file {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fakeInput {
+  z-index: 10;
+}
+.fileDescription {
+  max-width: 185px;
+  font-family: "Gilroy Regular";
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #738094;
+}
+
+.fake {
+  font-family: "Raleway";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  cursor: pointer;
+  color: #ff507d;
+}
+.fakeInput {
+  input {
+    display: none;
+  }
+}

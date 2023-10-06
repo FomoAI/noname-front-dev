@@ -1,0 +1,45 @@
+.container {
+  padding: 0px 12px;
+  @media (max-width: 550px) {
+    padding: 0px;
+  }
+}
+.body {
+  max-width: 585px;
+  margin: 40px auto 64px;
+  @media (max-width: 550px) {
+    margin: 30px auto 64px;
+  }
+}
+.filtersInfo {
+  max-width: 1204px;
+  margin: 0px auto 80px;
+  @media (max-width: 550px) {
+    margin: 0 auto 64px;
+  }
+}
+.links {
+  max-width: fit-content;
+  margin: 0 auto 93px;
+  @media (max-width: 550px) {
+    margin: 0 auto 64px;
+  }
+}
+.successBtn{
+  margin-top: 15px;
+  max-width: 100%;
+}
+.about{
+  margin-bottom: 120px;
+}
+.risks{
+  margin: 100px 0;
+  @media (max-width:450px) {
+    margin: 64px 0;
+  }
+}
+.faq{
+  @media (max-width:374px) {
+    margin-top: 200px;
+  }
+}

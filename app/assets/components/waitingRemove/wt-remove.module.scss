@@ -1,0 +1,20 @@
+.body{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.img{
+    img{
+        max-width: 64px;
+        height: auto;
+        object-fit: contain;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+}
+.title{
+    font-size: 22px;
+    font-weight: 700;
+    max-width: 200px;
+}

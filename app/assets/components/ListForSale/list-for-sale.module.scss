@@ -1,0 +1,293 @@
+.body {
+  margin-top: 21px;
+  margin-bottom: 17px;
+  @media (max-height: 635px) {
+    margin-top: 13px;
+    margin-bottom: 13px;
+  }
+}
+.label {
+  font-size: 14px;
+  color: #738094;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.input {
+  max-width: 328px;
+  width: 100%;
+  padding: 7px;
+  height: 35px;
+  border-radius: 8px;
+  background: #f8f8f9;
+  font-family: inherit;
+  &::placeholder {
+    color: rgba(115, 128, 148, 0.5);
+    font-size: 14px;
+  }
+}
+
+.selectedNft {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  margin-top: 16px;
+  margin-bottom: 10px;
+
+  color: #000;
+  font-size: 14px;
+}
+.selectedNftTitle {
+  font-weight: 600;
+}
+.key {
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+}
+.price {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.floorPriceLabel {
+  color: #000;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 500;
+}
+.floorPrice {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.yourPrice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.yourPrice .inputWrapper {
+  width: 275px;
+}
+.currencyWrapper {
+  position: relative;
+}
+.currencyList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 48px;
+  left: -8px;
+  opacity: 0;
+  border-radius: 8px;
+  border: 1px solid rgba(83, 98, 124, 0.07);
+  background: #fff;
+  transition: all 0.3s ease;
+  padding: 3px 0;
+}
+.selectedCurrency {
+  margin-top: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.duration {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  @media (max-height: 635px) {
+    margin-top: 10px;
+  }
+}
+.date {
+  max-width: 111px;
+  font-family: "Gilroy Regular";
+}
+.durationInputs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.time {
+  max-width: 52px;
+}
+
+.durationWrapper {
+  position: relative;
+}
+.durationList {
+  position: absolute;
+  top: 37px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  border: 1px solid rgba(83, 98, 124, 0.07);
+  background: #fff;
+  box-shadow: 4px 4px 10px 0px #eeeeee38;
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.timeBtn {
+  margin-top: 0px;
+  width: 48px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #f8f8f9;
+}
+
+.results {
+  margin-top: 15px;
+
+  @media (max-height: 635px) {
+    margin-top: 10px;
+  }
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.currencyBtn {
+  transition: color 0.3s ease;
+}
+.currencyBtn:hover {
+  color: #ff507d;
+}
+.rotate {
+  transform: rotate(180deg);
+}
+.approveNft {
+  display: flex;
+}
+.approveNftImg {
+  border-radius: 24px;
+}
+
+.approveNft {
+  margin: 25px 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.approveNftWrapper {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background: rgba(245, 249, 253, 0.5);
+  padding: 34px;
+}
+.approveNftTitle {
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.searchWrapper {
+  position: relative;
+}
+
+.searchResult {
+  position: absolute;
+  z-index: 1;
+  top: 63px;
+  max-width: 320px;
+  width: 100%;
+  border-radius: 4px;
+
+  max-height: 202px;
+  overflow-y: auto;
+  background: white;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.208);
+
+  display: flex;
+  flex-direction: column;
+}
+.resultWrapper {
+  width: 100%;
+}
+.searchItemImg {
+  max-width: 50px;
+  border-radius: 50%;
+}
+.searchItem {
+  padding: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  cursor: pointer;
+  background: white;
+
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: rgba(128, 128, 128, 0.283);
+  }
+}
+
+.searchItemBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.searchItemTitle {
+  font-size: 17px;
+  font-weight: 600;
+}
+.searchItemDesc {
+  font-size: 14px;
+}
+
+.selectedCollection {
+  margin-top: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  max-width: 328px;
+  width: 100%;
+  padding: 7px;
+  border-radius: 8px;
+  background: #f8f8f9;
+}
+
+.removeCollection {
+  position: absolute;
+  right: 15px;
+
+  button {
+    padding: 6px 12px;
+  }
+}
+
+.approveNftImg {
+  max-width: 60px;
+}

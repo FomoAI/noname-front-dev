@@ -1,0 +1,113 @@
+.body {
+  position: relative;
+  margin-top: 30px;
+}
+.downloadJson {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  svg {
+    width: 30px;
+    height: auto;
+  }
+}
+.table {
+  max-height: 600px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+.inviter {
+  display: flex;
+  gap: 4px;
+}
+.referrals {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.refItemWrapper {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.tableItem {
+  position: relative;
+  padding: 12px;
+  border: 1px solid #ff507d;
+  border-radius: 12px;
+}
+.number {
+  font-size: 14px;
+}
+.key {
+  font-weight: 600;
+}
+.referralsTitle {
+  font-weight: 600;
+}
+.tableBtn {
+  height: 80px;
+  button {
+    height: 80px;
+  }
+}
+.newRef {
+  position: relative;
+  padding: 12px;
+  border: 1px solid #ff507d;
+  border-radius: 12px;
+}
+.newRefItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.newRefItem {
+  max-width: 300px;
+  position: relative;
+  input {
+    margin-top: 10px;
+  }
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+.newRefItems {
+  margin-top: 12px;
+}
+.newRefItemLabel {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #738094;
+  margin-left: 4px;
+}
+.newRefAddBtn {
+  margin-top: 20px;
+}
+.saveBtn {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.deleteItemBtn{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  svg{
+    width: 20px;
+    height: auto;
+  }
+}

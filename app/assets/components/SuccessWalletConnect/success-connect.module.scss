@@ -1,0 +1,71 @@
+.body {
+  margin: 20px 0 30px;
+  max-width: 400px;
+  height: 270px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #f5f9fd;
+  border: 1px solid #05c9a1;
+  border-radius: 18px;
+}
+.subTitle {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #070b35;
+  margin-bottom: 2px;
+}
+.wallet {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  color: rgba(119, 119, 119, 0.91);
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.discord {
+  margin-bottom: 15px;
+}
+.discordBody {
+  margin: 20px 0 30px;
+  max-width: 400px;
+  height: 270px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #f5f9fd;
+  border-radius: 18px;
+}
+.nftAlert{
+  border: 1px solid #FF507D;
+
+}
+.nftText {
+  max-width: 342px;
+  margin: 15px auto 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+
+  color: #070b35;
+}
+.buttons{
+  display: flex;
+  gap: 24px;
+}
+.discordBody.success{
+  border: 1px solid #05C9A1;
+}

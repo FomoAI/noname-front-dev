@@ -1,0 +1,121 @@
+.body{
+    margin: 5px 20px 0px 0px;
+    width: 100%;
+    @media (max-width:730px) {
+        padding: 0px 10px;
+        margin: 5px 0px 0px 0px;
+    }
+}
+.title{
+    margin: 0px 0px 0px 10px;
+    @media (max-width:440px) {
+        font-size: 14px;
+        margin:0px;
+    }
+}
+.head{
+    @media (max-width:440px) {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+}
+.inputs{
+    display: flex;
+    gap: 35px;
+    margin: 20px;
+    @media (max-width:730px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0px;
+    }
+}
+.calendar{
+    @media (max-width:595px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        button:first-child{
+            width: 80vw;
+            justify-content: center;
+        }
+       
+    }
+}
+.subTitle{
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: #738094;
+    @media (max-width:730px) {
+        align-self: flex-start;
+        margin-bottom: 10px;
+    }
+}
+.dateSubTitle{
+    margin-left: 26px;
+}
+.head{
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.create{
+    max-width: 200px;
+    width: 100%;
+    margin-top: 10px;
+}
+.editor{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.recommendations{
+    margin: 30px 0;
+    @media (max-width:730px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.recTitle{
+    margin-bottom: 15px;
+}
+.recItems{
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    gap: 20px;
+    @media (max-width:730px) {
+        width: 90vw;
+        button{
+            max-width: 90vw;
+        }
+    }
+}
+.successBtn{
+    margin-top: 20px;
+}
+.textEditor{
+    max-width: 1320px;
+    @media (max-width:1400px) {
+      max-width: 1000px;
+    }
+    @media (max-width:1190px) {
+      max-width: 900px;
+    }
+    @media (max-width:1090px) {
+      max-width: 800px;
+    }
+    @media (max-width:1000px) {
+      max-width: 700px;
+    }
+    @media (max-width:950px) {
+      max-width: 600px;
+    }
+}

@@ -1,0 +1,15 @@
+.news {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  max-width: 1206px;
+  margin: 65px auto 120px;
+  flex: 1 1 auto;
+  @media (max-width:1200px) {
+    justify-content: center;
+  }
+  @media (max-width: 420px) {
+    margin: 8px auto 64px;
+    padding: 0 12px;
+  }
+}

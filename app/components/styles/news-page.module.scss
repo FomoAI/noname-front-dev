@@ -1,0 +1,81 @@
+.news {
+  max-width: 580px;
+  margin: 42px auto 100px;
+  @media (max-width: 420px) {
+    margin: 16px auto 64px;
+    padding: 0 12px;
+  }
+}
+.img {
+  margin: 24px 0;
+  max-width: 580px;
+  max-height: 342px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.title {
+  max-width: 460px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #0d0f2b;
+  @media (max-width: 625px) {
+    padding: 0 15px;
+  }
+  @media (max-width: 420px) {
+    padding: 0 0px;
+  }
+}
+.dateInfo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Gilroy SemiBold";
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: rgba(7, 11, 53, 0.5);
+  margin-bottom: 8px;
+  @media (max-width: 625px) {
+    padding: 0 15px;
+  }
+  @media (max-width: 420px) {
+    padding: 0 0px;
+  }
+}
+.dote {
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: #83859a;
+  border-radius: 50%;
+}
+.description {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: justify;
+  color: #070b35;
+  @media (max-width: 625px) {
+    padding: 0 15px;
+  }
+  @media (max-width: 420px) {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 0 0px;
+  }
+  h4 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    
+    color: #070b35;
+    @media (max-width: 420px) {
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+}

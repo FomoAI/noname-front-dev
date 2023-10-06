@@ -1,0 +1,89 @@
+.body{
+    max-width: 100%;
+    width: 100%;
+   
+}
+.title{
+    margin: 15px;
+    @media (max-width:595px) {
+        margin: 0;
+    }
+}
+.create{
+    max-width: 120px;
+    width: 100%;
+    margin: 15px 100px 0 0;
+    @media (max-width:595px) {
+        margin: 0;
+    }
+}
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    width: 100%;
+    @media (max-width:595px) {
+        max-width: 90vw;
+        margin: 20px auto;
+    }
+}
+.inputsWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    @media (max-width:730px) {
+        padding: 0px 10px;
+    }
+    @media (max-width:595px) {
+        margin-top: 25px;
+        flex-direction: column-reverse;
+    }
+}
+.inputs{
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    @media (max-width:595px) {
+        margin-top: 10px;
+    }
+}
+.customInputs{
+    width: 100%;
+    display: flex;
+    gap: 25px;
+    @media (max-width:595px) {
+        align-items: center;
+        flex-direction: column;
+    }
+}
+.customInput{
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    @media (max-width:595px) {
+        width: 100%;
+        align-items:center;
+    }
+}
+.label{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: #738094;
+    margin-left: 4px;
+}
+.successBtn{
+    margin-top: 20px;
+}
+.calendar{
+    @media (max-width:595px) {
+        button:first-child{
+            width: 80vw;
+            justify-content: center;
+        }
+    }
+}

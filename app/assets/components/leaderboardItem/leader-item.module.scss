@@ -1,0 +1,67 @@
+.line {
+  border: none;
+  width: 100%;
+  min-height: 2px;
+  background: #f5f9fd;
+  margin: 16px 0px 16px;
+}
+.mobileDates {
+  display: none;
+}
+
+.body {
+  position: relative;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 0.9fr 1fr 1fr;
+  padding-left: 72px;
+  @media (max-width: 880px) {
+    span {
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+  @media (max-width: 460px) {
+    grid-template-columns: 0.5fr 1fr 1fr;
+    padding-left: 32px;
+  }
+  color: #070b35;
+  span {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+.rect {
+  padding: 8px 10px;
+  position: absolute;
+  right: -5px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: right;
+  background: rgba(5, 201, 161, 0.1);
+  border-radius: 8px;
+  color: #05c9a1;
+  transition: all 0.3s ease;
+  &:hover {
+    background: rgba(2, 166, 133, 0.548);
+    color: white;
+  }
+  @media (max-width: 880px) {
+    right: -14px;
+  }
+}
+.value {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #070b35;
+}
+.bold {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #070b35;
+}

@@ -1,0 +1,25 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.items {
+    @media (max-width: 595px) {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+    }
+  button {
+    padding: 8px;
+    color: #ff507d;
+    border-radius: 5px;
+    @media (max-width: 595px) {
+        padding: 10px 28px;
+    }
+  }
+}
+.selected {
+  background: #ff507d;
+  border-radius: 8px;
+  color: white !important;
+}

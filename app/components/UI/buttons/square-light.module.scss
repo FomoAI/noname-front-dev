@@ -1,0 +1,48 @@
+.btn {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  cursor: pointer;
+  color: #ff507d;
+  background: #ffe5ec;
+
+  transition: all 0.3s ease;
+  &:hover {
+    color: #ffffff;
+    background: #fd2f66;
+  }
+  &:disabled{
+    color: #ff507d;
+    background: #ffe5ec;
+    cursor:not-allowed;
+  }
+}
+.btnRed {
+  width: 100%;
+  padding: 12px 16px;
+  background: #FF507D;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  cursor: pointer;
+  color: #FFFFFF;
+
+  transition: background 0.3s ease;
+
+  &:hover {
+    color: #ffffff;
+    background: #fe1b53;
+  }
+  
+  &:disabled{
+    background: #ff507ca0;
+    cursor:not-allowed
+  }
+
+}
