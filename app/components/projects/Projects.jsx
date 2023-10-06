@@ -86,11 +86,15 @@ export default function Projects({type,allProjects}) {
                 return pr.status?.toLowerCase() === currentFilter.toLowerCase()
             })
 
-            const {sum} = await getNoNameNFTBalance(window.ethereum.selectedAddress)
-            const {projects} = await getProjectsSmartData(filteredProjects?.reverse() || [])
+            if(window?.ethereum?.selectedAddress){
+                const {sum} = await getNoNameNFTBalance(window.ethereum.selectedAddress)
+                const {projects} = await getProjectsSmartData(filteredProjects?.reverse() || [])
 
-            setIsNftAccess(Number(sum) > 0)
-            setProjects(projects)
+                setIsNftAccess(Number(sum) > 0)
+                setProjects(projects)
+            }else{
+                setProjects(filteredProjects?.reverse())
+            }
 
             setLoading(false)
         }
@@ -98,9 +102,9 @@ export default function Projects({type,allProjects}) {
         initialProjectsPage()
     }, []);
 
-    // if(loading){
-    //     return <LoaderCustom/>
-    // }
+    if(loading){
+        return <LoaderCustom/>
+    }
 
   return (
     <div className={styles.projects}>
