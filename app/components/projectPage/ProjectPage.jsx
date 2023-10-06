@@ -48,7 +48,6 @@ const filtersInitialState = [
   },
 ]
 
-
 async function get_allowance_sum() {
   const address_nft= '0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4';
   const abi_nft = [    {        "constant": true,        "inputs": [],        "name": "name",        "outputs": [            {                "name": "",                "type": "string"            }        ],        "payable": false,        "stateMutability": "view",        "type": "function"    },    {        "constant": false,        "inputs": [            {                "name": "_spender",                "type": "address"            },            {                "name": "_value",                "type": "uint256"            }        ],        "name": "approve",        "outputs": [            {                "name": "",                "type": "bool"            }        ],        "payable": false,        "stateMutability": "nonpayable",        "type": "function"    },    {        "constant": true,        "inputs": [],        "name": "totalSupply",        "outputs": [            {                "name": "",                "type": "uint256"            }        ],        "payable": false,        "stateMutability": "view",        "type": "function"    },    {        "constant": false,        "inputs": [            {                "name": "_from",                "type": "address"            },            {                "name": "_to",                "type": "address"            },            {                "name": "_value",                "type": "uint256"            }        ],        "name": "transferFrom",        "outputs": [            {                "name": "",                "type": "bool"            }        ],        "payable": false,        "stateMutability": "nonpayable",        "type": "function"    },    {        "constant": true,        "inputs": [],        "name": "decimals",        "outputs": [            {                "name": "",                "type": "uint8"            }        ],        "payable": false,        "stateMutability": "view",        "type": "function"    },    {        "constant": true,        "inputs": [            {                "name": "_owner",                "type": "address"            }        ],        "name": "balanceOf",        "outputs": [            {                "name": "balance",                "type": "uint256"            }        ],        "payable": false,        "stateMutability": "view",        "type": "function"    },    {        "constant": true,        "inputs": [],        "name": "symbol",        "outputs": [            {                "name": "",                "type": "string"            }        ],        "payable": false,        "stateMutability": "view",        "type": "function"    },    {        "constant": false,        "inputs": [            {                "name": "_to",                "type": "address"            },            {                "name": "_value",                "type": "uint256"            }        ],        "name": "transfer",        "outputs": [            {                "name": "",                "type": "bool"            }        ],        "payable": false,        "stateMutability": "nonpayable",        "type": "function"    },    {        "constant": true,        "inputs": [            {                "name": "_owner",                "type": "address"            },            {                "name": "_spender",                "type": "address"            }        ],        "name": "allowance",        "outputs": [            {                "name": "",                "type": "uint256"            }        ],        "payable": false,        "stateMutability": "view",        "type": "function"    },    {        "payable": true,        "stateMutability": "payable",        "type": "fallback"    },    {        "anonymous": false,        "inputs": [            {                "indexed": true,                "name": "owner",                "type": "address"            },            {                "indexed": true,                "name": "spender",                "type": "address"            },            {                "indexed": false,                "name": "value",                "type": "uint256"            }        ],        "name": "Approval",        "type": "event"    },    {        "anonymous": false,        "inputs": [            {                "indexed": true,                "name": "from",                "type": "address"            },            {                "indexed": true,                "name": "to",                "type": "address"            },            {                "indexed": false,                "name": "value",                "type": "uint256"            }        ],        "name": "Transfer",        "type": "event"    }]
@@ -58,7 +57,6 @@ async function get_allowance_sum() {
   let ds = ethers.utils.formatUnits(allowance_sum,6)
   return ds
 }
-
 
 async function get_allowance_state(price) {
  let allowance_sum = await get_allowance_sum()
@@ -72,8 +70,6 @@ async function get_allowance_state(price) {
   }
  return false
 }
-
-
 
 async function changeNetwork(){
 
@@ -164,7 +160,6 @@ async function set_allowance_for_mint(sum,quantity) {
     }}
   return true
 }
-
 
 async function provide_for_mint(sum,quantity) {
   const address_nft= '0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4';
@@ -316,15 +311,18 @@ export default function ProjectPage({project}) {
   //  }
   //  }) 
   
-  useLayoutEffect(() => {
+  useEffect(() => {
     const initialProjectPage = async () => {
       setLoader(true)
 
-      const {response} = await getPoolInfo(project.poolId)
-      const {data} = await getMeInPool(project.poolId,window.ethereum.selectedAddress)
+      const {response} = await getPoolInfo(project?.poolId)
 
       setIsClaimed(!!checkIsClaim(project._id))
-      setMyInvest(data.invest)
+
+      if(window.ethereum.selectedAddress){
+        const {data} = await getMeInPool(project?.poolId,window.ethereum.selectedAddress)
+        setMyInvest(data.invest)
+      }
 
       if(response?.isClaim){
         setSteps(participateSteps.map((step) => {
