@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Claim } from "../../../smart/initialSmartMain";
+import Modal from '../../../assets/components/modal/Modal'
 import updateUser from '../../../services/updateUser'
 import setIsClaim from "../../../utils/setIsClaim";
 import getTime from "../../../utils/getTime";
@@ -57,10 +58,15 @@ export default function ClaimData({ project,card,claimValue,resetCard}) {
     {
       loading
       ?
+      <Modal
+      isVisible={loading}
+      handler={() => setLoading(false)}
+      >
       <LoadingModal
       title={'Confirm claim!'}
       subTitle={'Confirming...'}
       />
+      </Modal>
       :
       <></>
     }

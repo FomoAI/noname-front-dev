@@ -66,7 +66,11 @@ export default function Projects({type,allProjects}) {
     
             })  
    
-            if(!availableFilters?.length) return
+            if(!availableFilters?.length){
+                setLoading(false)
+                
+                return
+            }
     
             const currentFilter = availableFilters[0].title
     
