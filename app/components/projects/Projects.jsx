@@ -68,7 +68,7 @@ export default function Projects({type,allProjects}) {
    
             if(!availableFilters?.length){
                 setLoading(false)
-                
+
                 return
             }
     
@@ -98,9 +98,9 @@ export default function Projects({type,allProjects}) {
         initialProjectsPage()
     }, []);
 
-    if(loading){
-        return <LoaderCustom/>
-    }
+    // if(loading){
+    //     return <LoaderCustom/>
+    // }
 
   return (
     <div className={styles.projects}>
