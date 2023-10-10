@@ -65,12 +65,12 @@ export const participantsItemsInitial = [
   
 export const inputs = [
     {
-      label:'Name:',
+      label:'Name: (*)',
       name:'title', 
       placeholder:'SharkRace Cd...',
     },
     {
-      label:'Short Description:',
+      label:'Short Description: (*)',
       name:'description', 
       placeholder:'Short Description...',
     },
@@ -80,28 +80,28 @@ export const inputs = [
       placeholder:'Field name...',
     },
     {
-      label:'Funding Goal:',
+      label:'Funding Goal: (*)',
       name:'goal', 
       placeholder:'$1,8M',
     },
     {
-      label:'Type:',
+      label:'Type: (*)',
       name:'type', 
       placeholder:'Seed',
     },
     {
-      label:'Banner',
+      label:'Banner (*)',
       name:'banner',
       placeholder:'SharkRace Club will hold a...'
     },
     {
-      label:'Min.investment:',
+      label:'Min.investment: (*)',
       name:'minInvest',
       type:'number',
       placeholder:'$100.00'
     },
     {
-      label:'Max.investment:',
+      label:'Max.investment: (*)',
       name:'maxInvest',
       type:'number',
       placeholder:'$1000.00'
@@ -162,67 +162,67 @@ export const inputs = [
       placeholder:'0.5%'
     },
     {
-      label:'Participants in the green zone:',
+      label:'Participants in the green zone: (*)',
       name:'greenZone',
       type:'number',
       placeholder:'10'
     },
     {
-      label:'Participants in the yellow zone:',
+      label:'Participants in the yellow zone: (*)',
       name:'yellowZone',
       type:'number',
       placeholder:'10',
     },
     {
-      label:'Nft stake need:',
+      label:'Nft stake need: (*)',
       name:'nftStakeNeed',
       type:'number',
       placeholder:'1'
     },
     {
-      label:'Comission %:',
+      label:'Comission %: (*)',
       name:'comission',
       type:'number',
       placeholder:'0'
     },
     {
-      label:'Media comission %:',
+      label:'Media comission %: (*)',
       name:'mediaComission',
       type:'number',
       placeholder:'0'
     },
     {
-      label:'Staking NFT time start:',
+      label:'Staking NFT time start: (*)',
       name:'timeStart', 
       placeholder:'24:00',
     },
     {
-      label:'Staking NFT time end:',
+      label:'Staking NFT time end: (*)',
       name:'timeEnd', 
       placeholder:'24:00',
     },
     {
-      label:'Purchase time start:',
+      label:'Purchase time start: (*)',
       name:'purchaseTimeStart', 
       placeholder:'24:00',
     },
     {
-      label:'Purchase time end:',
+      label:'Purchase time end: (*)',
       name:'purchaseTimeEnd', 
       placeholder:'24:00',
     },
     {
-      label:'Claim time start:',
+      label:'Claim time start: (*)',
       name:'claimTimeStart', 
       placeholder:'24:00',
     },
     {
-      label:'Green time start:',
+      label:'Green time start: (*)',
       name:'greenTimeStart', 
       placeholder:'24:00',
     },
     {
-      label:'Yellow time start:',
+      label:'Yellow time start: (*)',
       name:'yellowTimeStart', 
       placeholder:'24:00',
     },
@@ -271,8 +271,8 @@ export const getInitialData = (status,type) => {
         greenZone:0,
         yellowZone:0,
         nftStakeNeed:1,
-        comission:0,
-        mediaComission:0,
+        comission:2,
+        mediaComission:2,
         minInvest:0,
         maxInvest:0,
         totalRaise:0,

@@ -38,7 +38,7 @@ export default function ParticipateCard({
         card,index,
         resetCard
     }) {
-
+        
     const router = useRouter()
     const dates = getCurrentDate(index,project)
 

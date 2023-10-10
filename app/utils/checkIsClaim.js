@@ -1,9 +1,14 @@
+import getUserById from "../services/getUserById";
+import getUserData from "./getUserData";
 
-
-export default (projectId) => {
+export default async (projectId) => {
     let isClaim;
    
-    const claimedProjects = JSON.parse(localStorage.getItem('isClaimed'))
+    const userId = getUserData()?._id
+
+    const {user} = await getUserById(userId) 
+
+    const claimedProjects = user?.claims
     
     if(claimedProjects?.length){
         isClaim = claimedProjects.find((pr) => {

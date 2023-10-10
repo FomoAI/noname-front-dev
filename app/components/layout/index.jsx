@@ -6,6 +6,7 @@ import Footer from "./Footer"
 import CookieAlert from "../../assets/components/cookieAlert/CookieAlert"
 import { closeModal ,closeModalWithoutBlock,openModal} from "../../store/slices/modalsSlice"
 import { setDiscord , setOpenSea} from "../../store/slices/communitySlice"
+import getTotalInvestments from '../../services/getTotalInvestments'
 import getHeader from '../../admin/services/headerServices/getHeader'
 import getFooter from '../../admin/services/footerServices/getFooter'
 import styles from './styles/index.module.scss'
@@ -23,36 +24,9 @@ export default function index({children}) {
       socialmedia:[]
     }
   })
+  const [totalInvestments,setInvestments] = useState(0)
   const dispatch = useDispatch()
   const modals = useSelector((state) => state.modals)
-
-  useEffect(() => {
-    if(JSON.parse(localStorage.getItem('headerAndFooter'))){
-      setData(JSON.parse(localStorage.getItem('headerAndFooter')))
-    }
-    const getData = async () => {
-      try{
-        const {header} = await getHeader()
-        const {footer} = await getFooter()
-        const layoutData = JSON.stringify({header:header[0],footer:footer[0]})
-        if(layoutData !== localStorage.getItem('headerAndFooter')){
-          localStorage.setItem('headerAndFooter',JSON.stringify({header:header[0],footer:footer[0]}))
-          setData({header:header[0],footer:footer[0]})
-        }
-        dispatch(setDiscord(footer[0].discordLink))
-        dispatch(setOpenSea(header[0].link))
-      }catch(error){
-        console.log(error)
-      }
-    }
-    const checkCookie = () => {
-      if(CookieTools.get('nonameVisit') !== 'true'){
-        dispatch(openModal('cookie'))
-      }
-    }
-    checkCookie()
-    getData()
-  },[])
 
   const modalsHandler = (event) => {
     const id = event?.target?.id
@@ -79,11 +53,45 @@ export default function index({children}) {
       dispatch(closeModalWithoutBlock('waitingListFilter'))
     }
   }
+
+  useEffect(() => {
+    if(JSON.parse(localStorage.getItem('headerAndFooter'))){
+      setData(JSON.parse(localStorage.getItem('headerAndFooter')))
+    }
+    const getData = async () => {
+      try{
+        const {success,investments} = await getTotalInvestments()
+   
+        setInvestments(investments)
+
+        const {header} = await getHeader()
+        const {footer} = await getFooter()
+        const layoutData = JSON.stringify({header:header[0],footer:footer[0]})
+        if(layoutData !== localStorage.getItem('headerAndFooter')){
+          localStorage.setItem('headerAndFooter',JSON.stringify({header:header[0],footer:footer[0]}))
+          setData({header:header[0],footer:footer[0]})
+        }
+        dispatch(setDiscord(footer[0].discordLink))
+        dispatch(setOpenSea(header[0].link))
+
+      }catch(error){
+        console.log(error)
+      }
+    }
+    const checkCookie = () => {
+      if(CookieTools.get('nonameVisit') !== 'true'){
+        dispatch(openModal('cookie'))
+      }
+    }
+    checkCookie()
+    getData()
+  },[])
+
   
   return (
     <div className={styles.body} onClick={modalsHandler}>
       <CookieAlert/>
-      <Header headerData={data.header}/>
+      <Header investments={totalInvestments} headerData={data.header}/>
       {children}
       <Footer footerData={data.footer}/>
     </div>

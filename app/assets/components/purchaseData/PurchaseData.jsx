@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { getUserInZone, getUserCanInvest, getMeInPool } from '../../../smart/initialSmartMain'
 import { approveSum, investSum } from '../../../smart/initialSmartMain'
-import setIsClaim from '../../../utils/setIsClaim'
 import addProjectToUser from '../../../services/addProjectToUser'
 import CustomAlert from '../CustomAlert/CustomAlert'
 import LoadingModal from '../LoadingModal/LoadingModal'
@@ -41,7 +40,7 @@ export default function PurchaseData({project,participate,approve,dates}) {
         },
         yellow:{
             start:`${getTime(project.yellowTime)} ${project.yellowTimeStart}`,
-            end:`${getTime(dates.end)} ${project.timeEnd}`
+            end:`${getTime(dates.end)} ${dates.timeEnd}`
         },
     } 
 
@@ -91,7 +90,9 @@ export default function PurchaseData({project,participate,approve,dates}) {
     const confimApprove = async () => {
         setIsTransactionLoading(true)
 
-        const comission = (value * project.comission) / 100
+        let comission = (value * project.comission) / 100
+
+        comission = comission > 0 ? comission : 0
 
         const {res,success} = await approveSum(Number(value) + comission)
        
@@ -106,7 +107,11 @@ export default function PurchaseData({project,participate,approve,dates}) {
     const confimInvest = async () => {
         setIsTransactionLoading(true)
 
-        const {success} = await investSum(Number(value),project.poolId)
+        let comission = (value * project.comission) / 100
+
+        comission = comission > 0 ? comission : 0
+
+        const {success} = await investSum(Number(value),project.poolId,comission)
 
         if(success){
             await addProjectToUser(window.ethereum.selectedAddress,project._id)
@@ -217,7 +222,7 @@ export default function PurchaseData({project,participate,approve,dates}) {
         <SquareBtn 
         disabled={isDisabled || !isValidValue || !isUserCanInvest}
         handler={
-            isInvestStep
+            true
             ?
             confimInvest
             :

@@ -1,7 +1,10 @@
 import { useState, useCallback, useLayoutEffect, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal,openModal } from "../store/slices/modalsSlice";
-import { getPoolInfo } from "../smart/initialSmartMain";
+import { getPoolInfo, getUserClaimValue } from "../smart/initialSmartMain";
+import checkIsClaim from '../utils/checkIsClaim'
+import getUserData from "../utils/getUserData";
+import getUserById from "../services/getUserById";
 import addDateAndTime from '../utils/addDateAndTime'
 import parseDate from '../utils/parseDate'
 import blockScroll from '../utils/blockScroll'
@@ -156,29 +159,11 @@ const useParticipate = ({type = '' ,id='',project}) => {
       if(!isAuth){
         return
       }
-      const checkClaim = () => {
-        
-        const isAlreadyClaimProjects = localStorage.getItem('isClaimed')
-
-        const isAlreadyClaim = 
-        isAlreadyClaimProjects 
-        && 
-        JSON.parse(isAlreadyClaimProjects).find((pr) => {
-          return (
-            pr.project === project._id
-            &&
-            String(pr.poolId) === String(project.poolId)
-          )
-
-        } )
-
-        return isAlreadyClaim
-      }
 
       const cardsStateHandler = async () => {
         setLoading(true)
 
-        const isAlreadyClaim = checkClaim()
+        const isAlreadyClaim = await checkIsClaim(project?._id)
         
         if(isAlreadyClaim?.isAlreadyClaim){
           resetCard()
@@ -187,10 +172,17 @@ const useParticipate = ({type = '' ,id='',project}) => {
         }
 
         const {response} = await getPoolInfo(project.poolId)
+        
+        const userId = getUserData()?._id
 
-        if(response.isClaim){
+        const {user} = await getUserById(userId)
+
+        const isUserInvest = !!user?.projects?.find((prId) => String(prId) === String(project?._id))
+
+        if(response.isClaim && isUserInvest){
+          const {claimValue} = await getUserClaimValue(project.poolId,window.ethereum.selectedAddress,project._id)
           claim()
-          setClaimValue(response.claimed)
+          setClaimValue(claimValue)
           setLoading(false)
           return
         }

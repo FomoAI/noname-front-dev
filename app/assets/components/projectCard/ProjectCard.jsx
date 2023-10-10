@@ -59,15 +59,16 @@ export default function ProjectCard({myInvest,isClaimed,isClaim,modalHandler,pro
 
     useEffect(() => {
         getAllPartnersFromPool(project.poolId).then(({sumInvest}) => {
-            if(sumInvest){
-                const currentFund =                     
-                project.status.toLowerCase() === 'ended'
-                ?
-                parseGoal(project.totalRaise)
-                :
-                parseGoal(project.goal)
+            const currentFund =                     
+            project.status.toLowerCase() === 'ended'
+            ?
+            parseGoal(project.totalRaise)
+            :
+            parseGoal(project.goal)
 
-                setCurrentGoal(currentFund)
+            setCurrentGoal(currentFund)
+            
+            if(sumInvest){
                 setProgressValue(parseFunded(sumInvest,currentFund))
                 setFundedValue(`$${sumInvest} (${parseFunded(sumInvest,currentFund)}%)`)
                 setMyInvestValue(`$${myInvest} (${parseFunded(myInvest,currentFund)}%)`)
@@ -270,7 +271,7 @@ export default function ProjectCard({myInvest,isClaimed,isClaim,modalHandler,pro
     </div>    
     <div className={styles.funded}>
         <span className={styles.key}>My investments:</span>                    
-        <span className={styles.textBlue}>{myInvestValue}</span>                    
+        <span className={styles.textBlue}>{myInvestValue === 0 ? `${myInvestValue}%` : myInvestValue}</span>                    
     </div>
 
     <hr className={styles.line}/>

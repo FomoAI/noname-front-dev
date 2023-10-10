@@ -5,6 +5,7 @@ import { Contract } from "ethers";
 import { useDispatch,useSelector } from 'react-redux'
 import { toggleModal ,closeModal} from '../../store/slices/modalsSlice'
 import { getPoolInfo, getMeInPool} from "../../smart/initialSmartMain";
+import { chainIdValue } from "../../config/provider";
 import checkIsClaim from "../../utils/checkIsClaim";
 import ProjectCard from '../../assets/components/projectCard/ProjectCard'
 import ProjectInfoBlock from '../../assets/components/projectInfoBlock/ProjectInfoBlock'
@@ -98,8 +99,6 @@ async function changeNetwork(){
     //    blockExplorerUrls: ["https://testnet.bscscan.com/"]
     //}]
 });
-console.log('Chain',result)
-
 }
 
 async function get_allowance() {
@@ -122,7 +121,7 @@ async function getStatus() {
  try{
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const chainId = await provider.getNetwork()
-  if (chainId.chainId!=97){
+  if (chainId.chainId!=chainIdValue){
     return true
   }
  } catch (err) {
@@ -215,8 +214,6 @@ export default function ProjectPage({project}) {
   const [errorAlert, setAlert] = useState(false)
   const [errorAlert2, setAlert2] = useState(false)
   const [isSuccessAlert2, setSuccessAlert2] = useState(false)
-  const [config,setConfig] = useState({})    
-  const [error_text,set_error_text] = useState('text')  
   const [isClaim,setIsClaim] = useState(false)
   const [isClaimed,setIsClaimed] = useState(false)
   const [myInvest,setMyInvest] = useState(0)
@@ -252,16 +249,6 @@ export default function ProjectPage({project}) {
             }
             dispatch(toggleModal('offers'))
             sleep(3000).then(result => setAlert2(false))
-            // после успешной покупки реферала в список рефералов пригласителя в базу данных
-            const inviter = getInviterInfo()
-            const referral = getUserData()
-      
-            await addReferral(inviter?.user?.address,referral.address)
-
-            // добавляем пользователю проект в его список проектов
-
-            await addProjectToUser(referral.address,project._id)
-
           })
         })
         return
@@ -317,7 +304,9 @@ export default function ProjectPage({project}) {
 
       const {response} = await getPoolInfo(project?.poolId)
 
-      setIsClaimed(!!checkIsClaim(project._id))
+      const claimData = await checkIsClaim(project._id)
+
+      setIsClaimed(claimData?.isAlreadyClaim)
 
       if(window.ethereum.selectedAddress){
         const {data} = await getMeInPool(project?.poolId,window.ethereum.selectedAddress)

@@ -17,7 +17,7 @@ const bannerInitialState = {
     href:'https://no-name.io'
 }
 
-const Header = ({headerData}) => {
+const Header = ({headerData,investments}) => {
     const [banner,setBanner] = useState(true)
     const {userData} = useSelector((state) => state.auth)
     const dispatch = useDispatch()
@@ -92,7 +92,7 @@ const Header = ({headerData}) => {
                 <div className={styles.row}>
                         <div className={styles.rowItem}>
                             <span className={styles.textLight}>Total Investment:</span>  
-                            <span className={styles.textWhite}>1.98 T USD</span>  
+                            <span className={styles.textWhite}>{investments} USD</span>  
                         </div>
                         <div className={styles.rowItem}>
                             <a href={headerData.link} className={styles.textWhite}>{headerData.name}</a>  

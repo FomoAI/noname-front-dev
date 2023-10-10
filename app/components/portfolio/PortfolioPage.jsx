@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { getAllPartnersFromPool,getMeInPool,getPoolId,getPoolInfo } from '../../smart/initialSmartMain'
+import { getAllPartnersFromPool,getMeInPool,getPoolInfo,getUserClaimValue } from '../../smart/initialSmartMain'
 import useProjects from '../../hooks/useProjects'
 import getUserProjects from '../../services/getUserProjects'
 import getUserData from '../../utils/getUserData'
@@ -41,20 +41,19 @@ export default function PortfolioPage() {
       for (let i = 0; i < projects.length; i++) {
         const project = projects[i]
 
-        if(project.poolId){
+        if(project?.poolId && window.ethereum.selectedAddress){
           const {sumInvest,participants} = await getAllPartnersFromPool(project.poolId)
           
           const {data} = await getMeInPool(project.poolId,window.ethereum.selectedAddress)
 
-          // const res = await getUserInvestInfoEndedPool(project.poolId,window.ethereum.selectedAddress)
-          const {response} = await getPoolInfo(project.poolId)
+          const {isClaim,claimValue} = await getUserClaimValue(project.poolId,window.ethereum.selectedAddress,project._id)
   
           projectsWithInvestData.push({
             ...project,
             funded:sumInvest,
             investments:data.invest,
-            isClaim:response.isClaim,
-            claimed:response.claimed
+            isClaim:isClaim,
+            claimed:claimValue
           })
 
         }else{
@@ -67,7 +66,7 @@ export default function PortfolioPage() {
       }
 
       const currentProject = allProjects.find((pr) => pr.isMainProject)
-      const poolId = currentProject.poolId
+      const poolId = currentProject?.poolId
 
       setPoolId(poolId)
       setProject(currentProject)

@@ -3,7 +3,6 @@ import closeProject from '../../../services/closeProject'
 
 export default async (poolId,isReturn,projectId,type) => {
     try{
-        console.log(poolId,isReturn,projectId,type)
         const {success,error} = await endPoolByAdmin(poolId,isReturn)
 
         if(!success){

@@ -249,7 +249,7 @@ export default function CreateProject({type,status,id}) {
               handler={confirmEndPool} type='red' width={'200'} text={'End pool'}/>
               <div className={styles.endCheckBox}>
                 <div className={styles.subTitle}>
-                  Is this a refund?
+                  Refund?
                 </div>
                 <CustomCheckbox
                 handler={() => setIsReturn((prev) => !prev)}
@@ -257,7 +257,7 @@ export default function CreateProject({type,status,id}) {
                 />
               </div>
               <SquareBtn
-              disabled={!data?.isClosed}
+              disabled={!data?.isClosed || data.isClaimStart}
               text={'Start claim'}
               width='200'
               type='red'
@@ -496,6 +496,7 @@ export default function CreateProject({type,status,id}) {
       </div>
     </Modal>
     <ClaimModal
+    type={type}
     project={data}
     isVisible={isClaimModal}
     handler={startClaimModalHandler}

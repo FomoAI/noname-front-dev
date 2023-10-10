@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { getAllPartnersFromPool,changeEndedPoolToken } from '../../../smart/initialSmartMain'
 import { mainPoolAddress } from '../../../smart/initialSmartMain'
+import claimStart from '../../services/adminServices/claimStart'
+import createClaim from '../../services/adminServices/createClaim'
 import CustomAlert from '../../../assets/components/CustomAlert/CustomAlert'
 import Modal from '../../../assets/components/modal/Modal'
 import SquareBtn from '../../../components/UI/buttons/SquareLightBtn'
@@ -34,7 +36,7 @@ const inputs = [
     },
 ]
 
-export default function ClaimModal({handler,isVisible,project}) {
+export default function ClaimModal({handler,isVisible,project,type}) {
     const [data,setData]= useState({token:'',decimals:18,sumInvest:0,sumToken:0})
     const [isSuccess,setIsSuccess] = useState(false)
 
@@ -47,14 +49,30 @@ export default function ClaimModal({handler,isVisible,project}) {
     const confirmClaim = async () => {
         if(!data.token) return 
 
+        const types = {
+            'donate':'donates',
+            'startup':'startups',
+            'crypto':'crypto',
+            'realestate':'business',
+        }
+
+        const currentType = types[type]
+
         const {success} = await changeEndedPoolToken(
             data.token,project.poolId,
             data.sumToken,
             data.decimals,
             data.sumInvest
         )
+
+        if(success){
+            await claimStart(project._id,currentType)
+
+            await createClaim({...data,project:project._id})
+
+            setIsSuccess(success)
+        }
         
-        setIsSuccess(success)
     }
 
     useEffect(() => {

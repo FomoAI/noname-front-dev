@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Claim } from "../../../smart/initialSmartMain";
 import Modal from '../../../assets/components/modal/Modal'
 import updateUser from '../../../services/updateUser'
-import setIsClaim from "../../../utils/setIsClaim";
+import addClaimToUser from "../../../utils/addClaimToUser";
 import getTime from "../../../utils/getTime";
 import CustomAlert from '../../components/CustomAlert/CustomAlert'
 import LoadingModal from '../../components/LoadingModal/LoadingModal'
@@ -18,14 +18,17 @@ export default function ClaimData({ project,card,claimValue,resetCard}) {
 
     const {success} = await Claim(project.poolId,window.ethereum.selectedAddress)
 
-    setLoading(false)
+    if(!success){
+      setLoading(false)
+      return
+    }
 
-    if(!success) return
-
-    const claimData = setIsClaim(project)
-    resetCard()
-    setIsSuccess(success)
-    await updateUser({claims:claimData})
+    setTimeout( async () => {
+      setLoading(false)
+      resetCard()
+      setIsSuccess(success)
+      await addClaimToUser(project._id)
+    },8000)
   }
 
   return (
@@ -55,9 +58,6 @@ export default function ClaimData({ project,card,claimValue,resetCard}) {
     isVisible={isSuccess}
     handler={() => setIsSuccess(false)}
     />
-    {
-      loading
-      ?
       <Modal
       isVisible={loading}
       handler={() => setLoading(false)}
@@ -67,9 +67,6 @@ export default function ClaimData({ project,card,claimValue,resetCard}) {
       subTitle={'Confirming...'}
       />
       </Modal>
-      :
-      <></>
-    }
     </>
   );
 }

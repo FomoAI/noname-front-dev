@@ -61,7 +61,7 @@ export default function LeaderboardTable({list}) {
         </div>
         <div className={styles.body}>
             {list.map((item,index) => {
-                return <LeaderboardItem key={index} item={item}/>
+                return <LeaderboardItem index={index} key={index} item={item}/>
             })}
         </div>
     </div>

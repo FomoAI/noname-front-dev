@@ -16,7 +16,6 @@ export default function ParticipatePage({ project, type, id }) {
     resetCard
   } = useParticipate({ type, id, project });
 
-
   if(loading){
     return <LoaderCustom/>
   }

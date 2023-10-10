@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react'
-import { getPoolInfo, Claim } from '../../../smart/initialSmartMain'
-import updateUser from '../../../services/updateUser'
-import setIsClaim from '../../../utils/setIsClaim'
+import { Claim,getUserClaimValue } from '../../../smart/initialSmartMain'
+import addClaimToUser from '../../../utils/addClaimToUser'
 import checkIsClaim from '../../../utils/checkIsClaim'
 import SquareBtn from '../../../components/UI/buttons/SquareLightBtn'
-import Modal from '../modal/Modal'
-import ClaimModal from '../claimModal.jsx/ClaimModal'
-import blockScroll from '../../../utils/blockScroll'
 import styles from './rewards-card.module.scss'
 
 export default function RewardsCard({poolId,project}) {
@@ -16,22 +12,26 @@ export default function RewardsCard({poolId,project}) {
 
     const claimHandler = async () => {
       const {success} = await Claim(poolId,window.ethereum.selectedAddress)
+
       if(success){
         setIsClaimed(success)
-        const claimData = setIsClaim(project)
-        await updateUser(claimData)
+        await addClaimToUser(project._id)
       }
     }
     useEffect(() => {
       if(!poolId) return
 
       if(project?._id){
-        setIsClaimed(checkIsClaim(project._id)?.isAlreadyClaim)
+        checkIsClaim(project._id).then((value) => {
+          setIsClaimed(value?.isAlreadyClaim)
+        })
       }
 
-      getPoolInfo(poolId).then(({response}) => {
-        setIsClaimValue(response.isClaim)
-        setTokens(response.claimed)
+      getUserClaimValue(poolId,window.ethereum.selectedAddress,project._id).then(({isClaim,claimValue,success}) => {
+        if(success){
+          setIsClaimValue(isClaim)
+          setTokens(claimValue)
+        }
       })
     },[])
 

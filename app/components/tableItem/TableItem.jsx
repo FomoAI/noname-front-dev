@@ -1,6 +1,5 @@
-import { Claim } from '../../smart/initialSmartMain'
-import setIsClaim from '../../utils/setIsClaim'
-import updateUser from '../../services/updateUser'
+import { Claim} from '../../smart/initialSmartMain'
+import addClaimToUser from '../../utils/addClaimToUser'
 import checkIsClaim from '../../utils/checkIsClaim'
 import parseDate from '../../utils/parseDate'
 import changeDateType from '../../utils/changeDateType'
@@ -11,8 +10,7 @@ export default function TableItem({item}) {
   const confirmClaim = async () => {
     const {success} = await Claim(item.poolId,window.ethereum.selectedAddress)
     if(success){
-      const claimData = setIsClaim(item)
-      await updateUser(claimData)
+      await addClaimToUser(item._id)
     }
   } 
 

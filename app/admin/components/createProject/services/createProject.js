@@ -23,7 +23,6 @@ export const create = async (
     const yellowZone = Number(data.yellowZone)
     const nftStakeNeed = Number(data.nftStakeNeed)
     const maxInvest = parseFloat(data.goal.replace(/[$,]/g, ''))
-    const name = data.title
     const minInvestUser = Number(data.minInvest)
     const maxInvestUser = Number(data.maxInvest)
     const comission = Number(data.comission)
@@ -51,7 +50,6 @@ export const create = async (
         Yellow zone: ${yellowZone},
         Nft stake need: ${nftStakeNeed},
         Max invest: ${maxInvest},
-        Name: ${name},
         Min invest user: ${minInvestUser},
         Max invest user: ${maxInvestUser},
         Comission: ${comission},
@@ -68,7 +66,6 @@ export const create = async (
         yellowZone,
         nftStakeNeed,
         maxInvest,
-        name,
         minInvestUser,
         maxInvestUser,
         comission,
