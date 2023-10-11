@@ -308,7 +308,7 @@ export default function ProjectPage({project}) {
 
       setIsClaimed(claimData?.isAlreadyClaim)
 
-      if(window.ethereum.selectedAddress){
+      if(window?.ethereum?.selectedAddress){
         const {data} = await getMeInPool(project?.poolId,window.ethereum.selectedAddress)
         setMyInvest(data.invest)
       }

@@ -86,14 +86,14 @@ export default function Projects({type,allProjects}) {
                 return pr.status?.toLowerCase() === currentFilter.toLowerCase()
             })
 
+            const {projects} = await getProjectsSmartData(filteredProjects?.reverse() || [])
+
+            setProjects(projects)
+
             if(window?.ethereum?.selectedAddress){
                 const {sum} = await getNoNameNFTBalance(window.ethereum.selectedAddress)
-                const {projects} = await getProjectsSmartData(filteredProjects?.reverse() || [])
 
                 setIsNftAccess(Number(sum) > 0)
-                setProjects(projects)
-            }else{
-                setProjects(filteredProjects?.reverse())
             }
 
             setLoading(false)

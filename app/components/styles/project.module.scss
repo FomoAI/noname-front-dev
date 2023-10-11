@@ -18,11 +18,11 @@
     max-width: 90vw;
   }
   transition: all 0.3s ease;
-  &:hover{
+  &:hover {
     box-shadow: 6px 6px 12px #dadada;
   }
 }
-.project.loading{
+.project.loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@
   display: flex;
   width: 100%;
 }
-.rowLast{
+.rowLast {
   display: flex;
   justify-content: center;
 }
@@ -52,18 +52,17 @@
   gap: 8px;
   width: 100%;
 }
-.colum{
+.colum {
   position: relative;
   width: fit-content;
-  img{
+  img {
     border-radius: 15px;
     overflow: hidden;
   }
-  
 }
-.colum.infoColumn{
-  @media (max-width:780px) {
-    width: 100%; 
+.colum.infoColumn {
+  @media (max-width: 780px) {
+    width: 100%;
   }
 }
 .dates {
@@ -78,16 +77,15 @@
     color: rgba(7, 11, 53, 0.5);
   }
 }
-.titleBox{
-  position:relative;
+.titleBox {
+  position: relative;
   font-weight: 700;
   font-size: 24px;
   line-height: 28px;
   color: #0d0f2b;
   display: flex;
   align-items: flex-end;
-  @media (max-width:780px) {
-    
+  @media (max-width: 780px) {
   }
 }
 .title {
@@ -97,7 +95,7 @@
   max-height: 28px;
   overflow: hidden;
 }
-.dotes{
+.dotes {
   position: absolute;
   right: 10%;
 }
@@ -150,55 +148,68 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.investments{
+.investments {
   max-width: fit-content;
   margin: 0 auto;
 }
 
-.projectWrapper{
+.projectWrapper {
   position: relative;
   max-width: 289px;
   width: 100%;
+
+  @media (max-width: 720px) {
+    max-width: 70vw;
+  }
+  @media (max-width: 540px) {
+    max-width: 90vw;
+  }
 }
-.hidden{
+.hidden {
   max-width: 289px;
   width: 100%;
   filter: blur(3px);
+  @media (max-width: 720px) {
+    max-width: 70vw;
+  }
+  @media (max-width: 540px) {
+    max-width: 90vw;
+  }
 }
-.hiddenImg{
+.hiddenImg {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   z-index: 1;
 }
-.info{
+.info {
   display: flex;
   align-items: center;
   gap: 28px;
   width: 100%;
-  @media (max-width:780px) {
+  @media (max-width: 780px) {
     justify-content: space-between;
   }
 }
-.rating{
+.rating {
   display: flex;
   align-items: center;
   gap: 2px;
-  img{
+  img {
     width: 12px;
     height: auto;
   }
 }
 
-.waitingListBtn{
+.waitingListBtn {
   cursor: pointer;
   position: absolute;
   background: white;
   padding: 0px;
   top: 3px;
   right: 0;
-  img{
+  img {
     max-width: 21px;
   }
 }

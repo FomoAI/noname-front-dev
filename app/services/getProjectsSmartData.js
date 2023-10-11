@@ -7,12 +7,20 @@ export default async (projects) => {
 
         for (let i = 0; i < projects.length; i++) {
             const project = projects[i]
-            
+
+            const projectData = {...project}
+
             const {sumInvest} = await getAllPartnersFromPool(project.poolId)
-            const {data} = await getMeInPool(project.poolId,window.ethereum.selectedAddress)
 
+            if(window?.ethereum?.selectedAddress){
+                const {data} = await getMeInPool(project.poolId,window.ethereum.selectedAddress)
 
-            result.push({...project,funded:sumInvest,investments:data.invest})
+                projectData.investments = data.invest
+            }
+
+            projectData.funded = sumInvest
+
+            result.push(projectData)
         }
    
         return {success:true,projects:result}
