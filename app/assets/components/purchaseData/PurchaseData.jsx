@@ -222,7 +222,7 @@ export default function PurchaseData({project,participate,approve,dates}) {
         <SquareBtn 
         disabled={isDisabled || !isValidValue || !isUserCanInvest}
         handler={
-            true
+            isInvestStep
             ?
             confimInvest
             :
