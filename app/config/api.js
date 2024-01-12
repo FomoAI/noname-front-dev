@@ -1,4 +1,4 @@
-export const url = 'https://noname-front-dev.vercel.app/'
+export const url = 'https://noname.vc/'
 // export const url = 'https://no-name.io/'
 // export const url = 'http://localhost:5000/'
 

@@ -29,7 +29,7 @@ const pageInfo = {
   `
   <div class="center-text">
     <p> 
-    Noname is not limited only by web3 startups. We provide opportunities to invest in various projects such as real estate projects, services etc. Be sure to put all your eggs in the different baskets. 
+    Noname is not limited by the web3 startups. We provide opportunities in different spheres such as RWA, classic startups etc. Find what’s best for you with Noname. 
     </p>
   </div>
   `

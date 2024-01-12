@@ -25,7 +25,7 @@ const types = [
 
 export default function WaitingItem({type,remove,item}) {
     const collectionType = types.find((type) => type.value === item.type)
-  
+    console.log(item)
   return (
     <>    
     <div className={styles.body}>
@@ -35,7 +35,7 @@ export default function WaitingItem({type,remove,item}) {
                 loader={() => loader(item.img || item.project.img || item.image)} 
                 width={'32'} 
                 height={'32'} 
-                src={item.img || item.project.img || item.image} 
+                src={item.img || item.project?.img || item?.image} 
                 alt={'img'}/>
             </div>
             <div className={styles.projectInfo}>

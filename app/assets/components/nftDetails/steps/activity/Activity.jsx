@@ -1,58 +1,20 @@
+import { useState,useEffect } from 'react'
+import { timePassedFrom } from '../../../../../utils/timePassedFrom'
+import sliceAddress from '../../../../../utils/sliceAddress'
+import fetchNftActivity from '../../../../../services/fetchNftActivity'
 import styles from './activity.module.scss'
 
-const tableInitalState = [
-  {
-    event:'transfer',
-    price:'10.55 ETH',
-    from:'0x4545f...',
-    to:'0x4545f...',
-    date:'4 days ago',
-  },
-  {
-    event:'transfer',
-    price:'10.55 ETH',
-    from:'0x4545f...',
-    to:'0x4545f...',
-    date:'4 days ago',
-  },
-  {
-    event:'transfer',
-    price:'10.55 ETH',
-    from:'0x4545f...',
-    to:'0x4545f...',
-    date:'4 days ago',
-  },
-  {
-    event:'transfer',
-    price:'10.55 ETH',
-    from:'0x4545f...',
-    to:'0x4545f...',
-    date:'4 days ago',
-  },
-  {
-    event:'transfer',
-    price:'10.55 ETH',
-    from:'0x4545f...',
-    to:'0x4545f...',
-    date:'4 days ago',
-  },
-  {
-    event:'transfer',
-    price:'10.55 ETH',
-    from:'0x4545f...',
-    to:'0x4545f...',
-    date:'4 days ago',
-  },
-  {
-    event:'transfer',
-    price:'10.55 ETH',
-    from:'0x4545f...',
-    to:'0x4545f...',
-    date:'4 days ago',
-  },
-]
-
 export default function Activity({nft}) {
+  const [activity,setActivity] = useState([])
+
+  useEffect(() => {
+    fetchNftActivity(nft.smart,nft.nftSmartId).then(({success,histories}) => {
+      if(success){
+        setActivity(histories)
+      }
+    })
+  },[])
+
   return (
     <div className={styles.body}>
       <div className={styles.head}>
@@ -74,7 +36,9 @@ export default function Activity({nft}) {
       </div>
       <div className={styles.table}>
         {
-          tableInitalState.map((item,index) => {
+          activity?.length
+          ?
+          activity.reverse().map((item,index) => {
             return (
               <div 
               key={index}
@@ -82,25 +46,29 @@ export default function Activity({nft}) {
               <div 
               className={styles.tableItem}>
                 <div className={styles.tableValue}>
-                  {item.event}
+                  transfer
                 </div>
                 <div className={styles.tableValue}>
-                  {item.price}
+                  {item.price} {item.currency}
                 </div>
                 <div className={styles.tableValue}>
-                  {item.from}
+                  {sliceAddress(item.from)}
                 </div>
                 <div className={styles.tableValue}>
-                  {item.to}
+                  {sliceAddress(item.to)}
                 </div>
                 <div className={styles.tableValue}>
-                  {item.date}
+                  {timePassedFrom(new Date(item.date))} ago
                 </div>
               </div>
               <hr className='line' /> 
               </div>
             )
           })
+          :
+          <div className={styles.empty}>
+           Empty list...
+          </div>
         }
       </div>
     </div>

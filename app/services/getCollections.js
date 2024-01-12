@@ -5,7 +5,7 @@ export default async (startLimit = 0,endLimit = 16) => {
         const responce = await fetch(config.createUrl(`collections/${startLimit}/${endLimit}`))
         
         if(!responce.ok){
-            return {success:false,projects:[]}
+            return {success:false,collections:[]}
         }   
         const {success,collections} = await responce.json()
         

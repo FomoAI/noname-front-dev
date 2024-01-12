@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { setCurrency } from '../../store/slices/currencySlice'
 import { toggleModal } from '../../store/slices/modalsSlice'
+import CurrencyCheckbox from '../../assets/components/currencyCheckbox/CurrencyCheckbox'
 import Image from 'next/image'
 import Info from '../../assets/components/info/Info'
 import CollectionsFilter from '../../assets/components/collectionsFilter/CollectionsFilter'
@@ -12,6 +14,7 @@ import styles from '../styles/marketplace.module.scss'
 export default function Marketplace({collectionsData}) {
     const [collections,setCollection] = useState(collectionsData)
     const listForSaleVisible = useSelector((state) => state.modals.listForSale.state)
+    const currenyItems = useSelector((state) => state.currency.currencyArray)
     const dispatch = useDispatch() 
 
     const filterCollections = (filterValue) => {
@@ -26,6 +29,10 @@ export default function Marketplace({collectionsData}) {
         })
 
         setCollection(filteredCollections)
+    }
+
+    const changeCurrency = () => {
+        dispatch(setCurrency())
     }
 
     const modalHandler = (event) => {
@@ -59,6 +66,12 @@ export default function Marketplace({collectionsData}) {
                     <span>List for sale</span>
                     <Image src={listForSaleSvg} alt='list for sale'/>
                 </button>
+            </div>
+            <div className={styles.currencySelect}>
+                <CurrencyCheckbox
+                items={currenyItems}
+                hanlder={changeCurrency}
+                />
             </div>
             <div className={styles.collections}>
                 {

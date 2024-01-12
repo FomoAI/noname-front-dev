@@ -7,9 +7,9 @@ export default async (id,startLimit = 0,endLimit = 16) => {
         if(!responce.ok){
             return {success:false,projects:[]}
         }   
-        const {success,collection} = await responce.json()
+        const {success,collection,ethExchange} = await responce.json()
         
-        return {success,collection}
+        return {success,collection,ethExchange}
 
     }catch(error){
         console.log(error)

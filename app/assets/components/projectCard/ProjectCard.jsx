@@ -75,7 +75,7 @@ export default function ProjectCard({myInvest,isClaimed,isClaim,modalHandler,pro
             }
         })
     },[])
-
+    
   return (
     <div className={styles.container}>
     <div className={styles.body}>
@@ -256,7 +256,13 @@ export default function ProjectCard({myInvest,isClaimed,isClaim,modalHandler,pro
       <div className={styles.progressRow}>
         <div className={styles.rowItem}>
             <span className={styles.key}>Funded:</span>
-            <span className={styles.value}>{fundedValue || project.funded}</span>                    
+            <span className={styles.value}>{
+            project?.isRefunded
+            ?
+            `0$`
+            :
+            fundedValue || project.funded
+        }</span>                    
         </div>
         <div className={styles.rowItem}>
             <span className={styles.key}>Funding goal:</span>
@@ -264,16 +270,37 @@ export default function ProjectCard({myInvest,isClaimed,isClaim,modalHandler,pro
         </div>
       </div>
       <div className={styles.progressBar}>
-        <div style={{width:`${progressValue ? progressValue : 0}%`}} className={styles.progressBarBody}>
+        <div style={{width:`${
+            project?.isRefunded
+            ?
+            0
+            :
+            progressValue ? progressValue : 0}%`
+            }} className={styles.progressBarBody}>
 
         </div>
       </div>
     </div>    
-    <div className={styles.funded}>
-        <span className={styles.key}>My investments:</span>                    
-        <span className={styles.textBlue}>{myInvestValue === 0 ? `${myInvestValue}%` : myInvestValue}</span>                    
-    </div>
-
+    {
+        project?.isRefunded
+        ?
+        <div className={styles.isRefunded}>
+            REFUNDED
+        </div>
+        :
+        <div className={styles.funded}>
+            <span className={styles.key}>My investments:</span>                    
+            <span className={styles.textBlue}>
+                {
+                    project?.isRefunded
+                    ?
+                    `0$`
+                    :
+                    myInvestValue === 0 ? `${myInvestValue}%` : myInvestValue
+                }
+            </span>                    
+        </div>
+    }
     <hr className={styles.line}/>
 
     </div>

@@ -9,5 +9,5 @@ import medium from './medium.svg'
 export default {
     discord,facebook,instagram,
     telegram,tikTok,twitter,
-    medium,
+    medium,telegram2:telegram
 }

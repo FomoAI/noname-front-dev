@@ -1,24 +1,31 @@
 import { useMemo, useState } from 'react'
 import { useDispatch , useSelector} from 'react-redux'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
 import { closeModal, toggleModal } from '../../../store/slices/modalsSlice'
-import useCart from '../../../hooks/useCart'
+import {
+    getOrderByNftId,getOrderUsdByNftId, 
+    purchaseItem,purchaseItemUsd,approveUsd
+} from '../../../smart/initialSmartNftMarket'
+import createNftHistory from '../../../services/createNftHistory'
+import listNft from '../../../services/listNft'
 import SquareBtn from '../../../components/UI/buttons/SquareLightBtn'
 import CustomAlert from '../CustomAlert/CustomAlert'
 import Modal from '../modal/Modal'
-import deleteSvg from '../../icons/delete.svg'
-import { setCart } from '../../../store/slices/cartSlice'
-import nftImage from '../../img/nft-image.png'
+import loader from '../../../utils/loader'
+import useCart from '../../../hooks/useCart'
+import LoadingModal from '../LoadingModal/LoadingModal'
 import styles from './cart-modal.module.scss'
 
 export default function CartModal() {
+  const [loading,setLoading] = useState(false)
+  const [isApprove,setIsApprove] = useState(true)
   const [isCustomAlert,setIsCustomAlert] = useState(false)
   const [isSuccess,setIsSuccess] = useState(false)
   const isVisible = useSelector((state) => state.modals.cart.state)
+  const currency = useSelector((state) => state.currency.currencyArray)?.find((item) => item.isSelected)?.name
   const dispatch = useDispatch()
   const router = useRouter()    
-  const {cart,addToCart,removeFromCart,clearCart} = useCart()  
+  const {cart,removeFromCart,clearCart} = useCart()  
 
   const modalHandler = (event) => {
     if(event.target.id === 'toggle-modal'){
@@ -30,25 +37,114 @@ export default function CartModal() {
     dispatch(closeModal('cart'))
     router.push(`/nft/${id}`)
   }
+  
+  const confirmApprove = async () => {
+    if(currency === 'ETH'){
+        setIsApprove(false)
+        return
+    }
 
-  const buyNft = () => {
-    setIsCustomAlert(true)
+    setLoading(true)
+    let approveValue = 0
+    for (let i = 0; i < cart.length; i++) {
+        const nft = cart[i];
+        
+        const {currentOrder} = await getOrderUsdByNftId(nft.nftId,nft.tokenAddress)
+
+        approveValue = approveValue + currentOrder.orderPrice
+        
+    }
+    await approveUsd(approveValue)
     
-    setIsSuccess(true)
+    setIsApprove(false)
+    setLoading(false)
+  }
 
-    clearCart()
+  const buyByEth = async (nft) => {
+    const {currentOrder} = await getOrderByNftId(nft.nftId,nft.tokenAddress)
+
+    const {success} = await purchaseItem(currentOrder.orderId,currentOrder.orderPrice)
+    console.log(nft)
+    console.log(currentOrder)
+    if(success){
+        await listNft(nft.nftId,{priceEth:0,isListingEth:false,isListingUsdc:false,collectionAddress:nft.tokenAddress})
+
+        await createNftHistory({
+            currency,
+            nftSmartId:nft.nftId,
+            collectionAddress:nft.tokenAddress,
+            price:currentOrder.orderPrice,
+            from:currentOrder.orderSeller,
+            to:window.ethereum.selectedAddress
+        })
+
+        setIsCustomAlert(true)
+
+        setIsSuccess(true)
+    
+        clearCart()
+    }
+  }
+
+  const buyByUsdc = async (nft) => {
+    const {currentOrder} = await getOrderUsdByNftId(nft.nftId,nft.tokenAddress)
+
+    const {success} = await purchaseItemUsd(currentOrder.orderId)
+
+    if(success){
+        await listNft(nft.nftId,{priceUsdc:0,isListingEth:false,isListingUsdc:false,collectionAddress:nft.tokenAddress})
+         
+        await createNftHistory({
+            currency,
+            nftSmartId:nft.nftId,
+            collectionAddress:nft.tokenAddress,
+            price:currentOrder.orderPrice,
+            from:currentOrder.orderSeller,
+            to:window.ethereum.selectedAddress
+        })
+
+        setIsCustomAlert(true)
+
+        setIsSuccess(true)
+    
+        clearCart()
+    }
+  }
+
+  const buyNft = async () => {
+    setLoading(true)
+   
+    for (let i = 0; i < cart.length; i++) {
+        if(currency === 'ETH'){
+            await buyByEth(cart[i])
+        }else{
+            await buyByUsdc(cart[i])
+        }
+    }
+    setLoading(false)
   }
 
   const price = useMemo(() => {
-    const price = cart.reduce((prevValue, currValue) => {
-        const eth = prevValue.eth + currValue.eth_price 
-        const usd = prevValue.usd + currValue.price
+    let priceValueEth = 0
+    let priceValueUsdc = 0
+
+    for (let i = 0; i < cart.length; i++) {
+        const nft = cart[i];
         
-        return {eth,usd}
-    }, {eth:0,usd:0})
-    
-    return price
+        priceValueEth += Number(nft.priceEth)
+        priceValueUsdc += Number(nft.priceUsdc)
+    }
+
+    return {eth:priceValueEth,usdc:priceValueUsdc}
   },[cart])
+
+  const validationBuy = () => {
+    if(currency === 'USDC'){
+        return Number(price.usdc) === 0
+    }else{
+        return Number(price.eth) === 0
+    }
+  }
 
   return (
     <>
@@ -56,7 +152,21 @@ export default function CartModal() {
         handler={modalHandler}
         title={'My cart'}
         isVisible={isVisible}>
-            <div className={styles.body}>
+            {
+                loading
+                ?
+                <LoadingModal
+                title={
+                    isApprove
+                    ?
+                    'Confrim approve'
+                    :
+                    'Confrim buy'
+                }
+                subTitle={'NFT Marketplace'}
+                />
+                :
+                <div className={styles.body}>
                 <div className={styles.items}>
                     {
                     cart.length 
@@ -70,10 +180,10 @@ export default function CartModal() {
                             onClick={() => navigate(cartItem._id)}
                             tabIndex={0}
                             className={styles.item}>
-                                <Image
+                                <img
                                 className={styles.itemImg}
                                 loading='lazy' 
-                                src={nftImage   } 
+                                src={cartItem.image} 
                                 alt="nft image"/>
                                 <div className={styles.itemInfo}>
                                     <div className={styles.title}>
@@ -84,7 +194,7 @@ export default function CartModal() {
                                     </div>
                                 </div>
                                 <div className={styles.itemPrice}>
-                                    {cartItem?.eth_price || '-'} ETH
+                                    {currency === 'ETH' ? cartItem.priceEth : cartItem.priceUsdc} {currency}
                                 </div>
                              </div>
                              <button 
@@ -113,10 +223,10 @@ export default function CartModal() {
                         </div>
                         <div className={styles.payValue}>
                             <div className={styles.value}>
-                                {0} ETH
+                                {currency === 'ETH' ? price.eth : price.usdc} {currency}
                             </div>
                             <div className={styles.usdPay}>
-                                ${price.usd}
+                                ${currency === 'USDC' ? price.usdc : 0}
                             </div>
                         </div>
                     </div>
@@ -124,15 +234,30 @@ export default function CartModal() {
                 </div>
                 <div className={styles.btn}>
                 <SquareBtn
-                disabled={!cart.length}
-                handler={buyNft}
+                btnId='none'
+                disabled={!cart.length || validationBuy()}
+                handler={
+                    isApprove
+                    ?
+                    confirmApprove
+                    :
+                    buyNft
+                }
                 width='330'
                 height='48'
                 type='red'
-                text={'Buy now'}
+                text={
+                    isApprove
+                    ?
+                    'Approve'
+                    :
+                    'Buy now'
+                }
                 />
                 </div>
-            </div>
+                </div>
+            }
+
         </Modal>
         <CustomAlert
         handler={() => setIsCustomAlert(false)}
@@ -147,6 +272,7 @@ export default function CartModal() {
             `Error occuried. Try again or contact the support.`
         }
         />
+            
     </>
   )
 }

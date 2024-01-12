@@ -31,7 +31,7 @@
 
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
   transition: all 0.3s ease;
   @media (max-width: 541px) {
     gap: 24px;
@@ -76,6 +76,35 @@
 }
 
 .investsBtn{
+  position: relative;
+  button{
+    padding: 0;
+    position: relative;
+    display: flex;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: #0d0f2b;
+    text-align: right;
+    transition: all 0.3s ease;
+    @media (max-width: 541px) {
+      font-size: 18px;
+      line-height: 21px;
+    }
+    &:hover{
+      opacity: 0.7;
+    }
+    &::after{
+      content: url('../../../assets/icons/arrow-rotate.svg');
+      margin: 0px 0px 0px 5px;
+      position: absolute;
+      top: -5px;
+      right: -14px;
+    }
+  }
+}
+.rwaBtn{
+  position: relative;
   button{
     padding: 0;
     position: relative;

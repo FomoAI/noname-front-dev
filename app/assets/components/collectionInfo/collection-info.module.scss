@@ -111,7 +111,6 @@
   background: rgba(39, 122, 210, 0.1);
 }
 .progress {
-  width: 160px;
   height: 10px;
   position: absolute;
   top: 0;
@@ -305,4 +304,8 @@
   @media (max-width:810px) {
     justify-content: flex-start;
   }
+}
+.valueStatistic{
+  font-weight: 600;
+  font-size: 17px;
 }

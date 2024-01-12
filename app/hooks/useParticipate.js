@@ -156,6 +156,11 @@ const useParticipate = ({type = '' ,id='',project}) => {
     },[modals])
 
     useLayoutEffect(() => {
+      if(project?.isRefunded){
+        setIsActual(false)
+        return
+      }
+      
       if(!isAuth){
         return
       }
@@ -179,7 +184,7 @@ const useParticipate = ({type = '' ,id='',project}) => {
 
         const isUserInvest = !!user?.projects?.find((prId) => String(prId) === String(project?._id))
 
-        if(response.isClaim && isUserInvest){
+        if(response?.isClaim && isUserInvest){
           const {claimValue} = await getUserClaimValue(project.poolId,window.ethereum.selectedAddress,project._id)
           claim()
           setClaimValue(claimValue)

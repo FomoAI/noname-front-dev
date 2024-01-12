@@ -127,41 +127,6 @@ export const inputs = [
       placeholder:'1000.0'
     },
     {
-      label:'Listed:',
-      name:'listed',
-      placeholder:'400'
-    },
-    {
-      label:'Revenue:',
-      name:'revenue',
-      placeholder:'15%'
-    },
-    {
-      label:'Market Cap:',
-      name:'marketCap',
-      placeholder:'$1.38 M'
-    },
-    {
-      label:'Supply:',
-      name:'supply',
-      placeholder:'10000'
-    },
-    {
-      label:'Owners:',
-      name:'owners',
-      placeholder:'394'
-    },
-    {
-      label:'Total Volume:',
-      name:'totalVolume',
-      placeholder:'1000$'
-    },
-    {
-      label:'Royalty Fee:',
-      name:'royaltyFee',
-      placeholder:'0.5%'
-    },
-    {
       label:'Participants in the green zone: (*)',
       name:'greenZone',
       type:'number',

@@ -1,7 +1,17 @@
 import { useMemo, useState , useEffect} from 'react'
-import Image from 'next/image'
 import { useDispatch } from 'react-redux'
 import { closeModal } from '../../../store/slices/modalsSlice'
+import { 
+    getUserNfts, createOrder, getOrderByNftId, 
+    createOrderUsd,getOrderUsdByNftId,approveNFT,
+    getFloorPriceUsdc,getFloorPriceEth
+} from '../../../smart/initialSmartNftMarket'
+import { bigNumber_to_number, numberToBigNumber } from '../../../smart/initialSmartMain'
+import { getCurrentDecimal } from '../../../smart/initialSmartMain'
+import getFloorPrice from '../../../services/getFloorPrice'
+import addDateAndTime from '../../../utils/addDateAndTime'
+import parseDate from '.././../../utils/parseDate'
+import Image from 'next/image'
 import Modal from '../modal/Modal'
 import CustomCalendar from '../calendar/Calendar'
 import CustomAlert from '../CustomAlert/CustomAlert'
@@ -13,6 +23,8 @@ import arrowSvg from '../../../assets/icons/arrow-rotate.svg'
 import SearchList from '../searchList/SearchList'
 import getNftsByName from '../../../services/getNftsByName'
 import loader from '../../../utils/loader'
+import listNft from '../../../services/listNft'
+import getUserData from '../../../utils/getUserData'
 import styles from './list-for-sale.module.scss'
 
 const currencyList = [
@@ -35,14 +47,14 @@ export default function ListForSale({collections,isVisible,handler}) {
     const [selectedNft,setSelectedNft] = useState(null)
     const [collectionSearchValue,setCollectionSearchValue] = useState('')
     const [nftSearchValue,setNftSearchValue] = useState('')
-
+    
     const [date,setDate] = useState(new Date().toLocaleDateString())
     const [time,setTime] = useState({hours:'',minutes:''})
     const [duration,setDuration] = useState('7D')
     const [currency,setCurrency] = useState('ETH')
     const [floorPrice,setFloorPrice] = useState(false)
-    const [floorPriceValue,setFloorPriceValue] = useState(0.0016)
-    const [price,setPrice] = useState()
+    const [floorPriceValue,setFloorPriceValue] = useState(0)
+    const [price,setPrice] = useState(0)
 
     const [isCurrencyList,setIsCurrencyList] = useState(false)
     const [isSuccessApprove,setIsSuccessApprove] = useState(false)
@@ -57,11 +69,10 @@ export default function ListForSale({collections,isVisible,handler}) {
     }
 
     const floorPriceHandler = () => {
-        if(!floorPrice){
-            setPrice(floorPriceValue)    
-            setCurrency('ETH')
+        if(!floorPrice && selectedCollection){
+            setPrice(floorPriceValue)
         }else{
-            setPrice('')
+            setPrice(0)
         }
 
         setFloorPrice((prev) => !prev)
@@ -72,21 +83,50 @@ export default function ListForSale({collections,isVisible,handler}) {
         setIsCurrencyList(false)
     }
 
-    const changeDuration = (value) => {
-        setDuration(value)
-        setIsDurationList(false)
-    }
-
     const completeListing = () => {
         setIsApproveCollection(true)
     }
 
-    const approveCollectionHandler = () => {
+    const approveCollectionHandler = async () => {
+        const {currentNumber,currentDecimals} = getCurrentDecimal(price)
+
+        const timeEnd = addDateAndTime(parseDate(date),`${time.hours}:${time.minutes}`)
+        const nftId = selectedNft.nftId
+        const tokenAddress = selectedCollection.smart
+        const priceBigNumber = numberToBigNumber(currentNumber,currentDecimals)
+        const creatorId = getUserData()?._id
+        
+        if(currency === 'ETH'){
+            await approveNFT(tokenAddress,nftId)
+
+            const {success} = await createOrder(timeEnd,nftId,tokenAddress,priceBigNumber)
+
+            if(!success) return
+            
+            await listNft(nftId,{isListingEth:true,priceEth:Number(price),creatorId,collectionAddress:tokenAddress})
+        }
+
+        if(currency === 'USDC'){
+            await approveNFT(tokenAddress,nftId)
+
+            const {success} = await createOrderUsd(timeEnd,nftId,tokenAddress,priceBigNumber)
+            
+            if(!success) return
+            
+            await listNft(nftId,{isListingUsdc:true,priceUsdc:Number(price),creatorId,collectionAddress:tokenAddress})
+        }
+
         dispatch(closeModal('listForSale'))
         setIsSuccessApprove(true)
         setIsCustomAlert(true)
+        setTime({hours:'',minutes:''})
+        setDate(new Date().toLocaleDateString())
+        setAllNfts([])
+        setSelectedCollection(null)
+        setPrice(0)
         
         setTimeout(() => {
+            setSelectedNft(null)
             setIsApproveCollection(false)
         },[1000])
     }
@@ -106,20 +146,6 @@ export default function ListForSale({collections,isVisible,handler}) {
         setSelectedNft(nft)
     }
 
-    const performSearch = async () => {
-        try {
-            setLoading(true)  
-
-            const {nfts} = await getNftsByName(selectedCollection._id,nftSearchValue)
-
-            setAllNfts(nfts)
-
-            setLoading(false)  
-        } catch (error) {
-            console.error('Search error: ', error);
-        }
-    };
-
     const filteredCollections = useMemo(() => {
         return collections.filter((collection) => {
             return collection.title.toLowerCase().includes(collectionSearchValue.toLowerCase())
@@ -127,14 +153,23 @@ export default function ListForSale({collections,isVisible,handler}) {
     },[collectionSearchValue])
 
     useEffect(() => {
-        const delayTimer = setTimeout(() => {
-          if (nftSearchValue !== '') {
-            performSearch();
-          }
-        }, 1000);
-    
-        return () => clearTimeout(delayTimer);
-    }, [nftSearchValue]);
+        if(!selectedCollection || !window.ethereum.selectedAddress) return
+
+        getUserNfts(selectedCollection.smart,window.ethereum.selectedAddress).then(({success,nftsData}) => {
+            setAllNfts(nftsData)
+        })
+        
+    },[selectedCollection])
+
+    useMemo(() => {
+        if(!selectedCollection || !selectedNft || !window.ethereum.selectedAddress) return
+        
+        getFloorPrice(selectedCollection.smart,selectedNft.nftId,currency).then(({floorPrice}) => {
+            setFloorPriceValue(floorPrice)
+            setPrice(floorPrice)
+        })
+
+    },[currency,selectedCollection,selectedNft])
 
   return (
     <>
@@ -174,6 +209,7 @@ export default function ListForSale({collections,isVisible,handler}) {
                 selectedCollection
                 ?
                 <SearchList 
+                type='nfts'
                 loading={loading}
                 label={'Nft:'}
                 inputLabel={'Nft name'}
@@ -194,7 +230,17 @@ export default function ListForSale({collections,isVisible,handler}) {
             </div>
             <div className={styles.floorPrice}>
                 <div className={styles.floorPriceLabel}>
-                Floor price: 0,0016 ETH
+                Floor price: {
+                selectedCollection
+                ?
+                    currency === 'ETH'
+                    ? 
+                    `${floorPriceValue} ETH` 
+                    : 
+                    `${floorPriceValue} USDC`
+                :
+                    0
+                }
                 </div>
             <CheckBox
             id='none'
@@ -275,48 +321,11 @@ export default function ListForSale({collections,isVisible,handler}) {
                 <TimeInput
                 handler={(value) => setTime(value)}
                 />
-                <div className={styles.durationWrapper}>
-                    <button 
-                    onClick={() => setIsDurationList((prev) => !prev)}
-                    className={styles.selectedCurrency + ' ' + styles.timeBtn}>
-                        {
-                            isDurationList
-                            ?
-                            <Image 
-                            className={styles.rotate}
-                            src={arrowSvg} alt='arrow'/>
-                            :
-                            <Image src={arrowSvg} alt='arrow'/>
-                        }
-                        {duration}
-                    </button> 
-                    <div className={
-                        isDurationList
-                        ?
-                        styles.durationList + ' ' + styles.visible
-                        :
-                        styles.durationList
-                    }>
-                        {
-                            timeList.map((item) => {
-                                return (
-                                    <button 
-                                    key={item}
-                                    onClick={() => changeDuration(item)}
-                                    className={styles.currencyBtn}>
-                                        {item}
-                                    </button>
-                                )
-                            })
-                        }
-                    </div>
-                </div>
-
             </div>
         </div>
         <div className={styles.results}>
             <div>
-              Noname fee: 0%
+              Noname fee: {selectedCollection?.royalty || 0}%
             </div>
         </div>
         </div>

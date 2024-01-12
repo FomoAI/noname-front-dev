@@ -1,0 +1,133 @@
+.body {
+  max-width: 371px;
+  width: 100%;
+  padding: 25px 28px;
+  border-radius: 16px;
+  border: 2px solid #f5f9fd;
+  background: #fff;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+
+  @media (max-width:450px) {
+    padding: 15px;
+  }
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+}
+.headColumn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+  }
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #070b35;
+  font-size: 22px;
+  font-weight: 600;
+}
+.changeValue {
+  font-size: 18px;
+  font-weight: 600;
+}
+.green {
+  color: #05c9a1;
+}
+.red {
+  color: #ff507d;
+}
+.address {
+  color: #0d0f2b;
+  font-size: 14px;
+  font-weight: 400;
+}
+.btn {
+  max-width: 330px;
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #ff507d;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #d43059;
+  }
+  &:active {
+    background: #ad2648;
+  }
+}
+.closed {
+  background: #738094;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+
+  transition: all 0.3s ease;
+  cursor: not-allowed;
+  &:hover {
+    background: #738094;
+  }
+  &:active {
+    background: #738094;
+  }
+}
+.headDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+.status {
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: #2082ea;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.type {
+  color: #738094;
+  font-size: 16px;
+  font-weight: 600;
+}
+.infoItems {
+  margin-top: 18px;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+}
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.key {
+  font-family: "Raleway", "sans-serif";
+  color: #738094;
+  font-size: 14px;
+  font-weight: 400;
+}
+.value {
+  color: #070b35;
+  font-size: 14px;
+  font-weight: 600;
+}

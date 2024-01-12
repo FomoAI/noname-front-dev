@@ -26,6 +26,12 @@
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
+  img{
+    min-width: 25px;
+    max-width: 25px;
+    max-height: 25px;
+    border-radius: 50%;
+  }
 }
 .items {
   margin-top: 12px;

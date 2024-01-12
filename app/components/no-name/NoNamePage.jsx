@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
+import { toggleModalWithoutBlock,openModal } from '../../store/slices/modalsSlice'
 import Image from 'next/image'
 import Link from 'next/link'
 import Lottie from 'lottie-react'
 import menuCloseLottie from '../../assets/lotties-animations/menu.json'
-import { toggleModalWithoutBlock,openModal } from '../../store/slices/modalsSlice'
 import Logo from '../../assets/img/logo-beta.svg'
 import nonameGif from '../../assets/video/noname.gif'
 import socialmediaicons from '../../assets/icons/no-name-socialmedia/socialmedia'
@@ -59,12 +59,30 @@ export default function NoNamePage({socialMedia,whitepaper,shillClub}) {
       href:'/marketplace'
     },
     {
+      name:'RWA & Credit',
+      isList:true,
+      items:[
+        {
+          name:'RWA Market',
+          href:'/rwa'
+        },
+        {
+          name:'Credit',
+          href:'/credit'
+        },
+      ]
+    },
+    {
       name:'Leaderboard',
       href:'/leaderboard'
     },
     {
       name:'Dashboard',
       href:'/dashboard'
+    },
+    {
+      name:'Vote',
+      href:'/vote'
     },
     {
       name:'Shill Club',
@@ -144,8 +162,8 @@ export default function NoNamePage({socialMedia,whitepaper,shillClub}) {
           src={Logo} 
           alt='Noname'/>
           <h1 className={styles.title}>NONAME</h1>
-          <p className={styles.text}>Noname is a multipurpose platform 
-            designed to open the world of investments for you.</p>
+          <p className={styles.text}>Noname is a new zkSync-powered investing platform designed to open the door of opportunities for you. Invest only in the best projects. 
+            Crypto. NFT. RWA. ZkSync. </p>
           <div className={styles.socialmedia}>
             {
               socialMedia?.map((socialItem,index) => {
@@ -233,6 +251,29 @@ export default function NoNamePage({socialMedia,whitepaper,shillClub}) {
           <div id='toggle-modal' className={styles.chapters}>
               {
                 links.map((link,index) => {
+                  if(link.isList){
+                    return (
+                      <div id='toggle-modal' className={styles.menuСhapter}>
+                      <div id='toggle-modal' className={styles.chapterTitle}>
+                        {link.name}
+                      </div>
+                      <div id='toggle-modal' className={styles.list}>
+                        {
+                          link.items.map((link,index) => {
+                            return (
+                              <Link 
+                              key={index}
+                              className={styles.link} 
+                              href={link.href}>
+                                {link.name}
+                              </Link>
+                            )
+                          })
+                        }
+                      </div>
+                      </div>
+                    )
+                  }
                   if(link.type === 'a'){
                     return (
                       <a

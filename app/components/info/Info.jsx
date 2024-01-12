@@ -83,14 +83,7 @@ export default function Info({data}) {
                 <Image src={ventures} alt='ventures'/>
             </div>
             <div className={styles.text}>
-            Noname is a multipurpose investments platform which 
-            enables the possibility to invest in various assets. 
-            Noname plays at both sides: allows you to set up your
-            own startup or find an attractive asset/project to
-            invest in. We are aiming at building our ecosystem 
-            in zkSync. All projects that are represented on our 
-            platform will use zkSync too. Building a safe and 
-            fast ecosystem is our top priority. 
+            Noname is a universal platform which enables our users to invest into different types of assets including crypto projects, NFT projects, RWA and more. We are building our investing environment using zkSync technology to ensure safety and comfort of users. We believe that zkSync is the most efficient solution for Layer 2 that is why we are aiming at expanding the zkSync ecosystem. For that we have our special tools: NFT Launchpad, NFT Marketplace which supports zkSync-based projects.
             </div>
             <MainBtn text={'Join us'} handler={modalHandler}/>
             <Form handler={modalHandler} isVisible={state}/>
@@ -118,6 +111,7 @@ export default function Info({data}) {
                     That is why Noname offers you various assets to invest in, such as:
                 </b>
                 <ul>
+                    <li>RWA</li>
                     <li>Business</li>
                     <li>NFT Launch</li>
                     <li>Crypto.</li>

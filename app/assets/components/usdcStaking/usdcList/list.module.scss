@@ -1,0 +1,196 @@
+.title {
+  color: #0d0f2b;
+  font-size: 18px;
+  font-weight: 600;
+}
+.subTitle {
+  margin-top: 12px;
+  color: #0d0f2b;
+  font-size: 18px;
+  font-weight: 400;
+}
+.amountAnim {
+  max-width: 22px;
+  height: auto;
+
+  svg {
+    width: 22px;
+  }
+}
+.apyIcon {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 32px;
+  width: 100%;
+  gap: 2px;
+}
+.apyIconItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 14px;
+  height: 14px;
+  background: #c3ddf9;
+  border-radius: 4px;
+  svg {
+    width: 8px;
+    height: auto;
+  }
+}
+
+.btn {
+  border-radius: 99px;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+
+  text-align: center;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 20px;
+  max-width: 108px;
+  width: 100%;
+
+  transition: all 0.3s ease;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.active {
+  background: #ffe5ec;
+  color: #ff507d;
+}
+.ended {
+  color: #fff;
+  background: #738094;
+}
+.deposit {
+  border-radius: 99px;
+  background: #ff507d;
+  color: white;
+}
+.items {
+  width: 100%;
+  margin-top: 20px;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  &::-webkit-scrollbar {
+    width: 18px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #eaf2fb;
+    border-radius: 99px;
+    border: 7px solid transparent;
+    background-clip: content-box;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #d9e9fc;
+    border-radius: 99px;
+    border: 7px solid transparent;
+    background-clip: content-box;
+  }
+  @media (max-width: 530px) {
+    max-width: 95vw;
+    overflow: auto;
+  }
+}
+.item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 11px 22px;
+  border-radius: 16px;
+  border: 2px solid rgba(83, 98, 124, 0.14);
+  background: #fff;
+  box-shadow: 4px 4px 10px 0px #eee;
+
+  @media (max-width: 720px) {
+    padding: 12px 5px;
+  }
+  @media (max-width: 530px) {
+    min-width: 530px;
+  }
+}
+.vault {
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+}
+.amount {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.amountInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.amountLabel {
+  color: #738094;
+  font-size: 12px;
+  font-weight: 500;
+}
+.amountValue {
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+}
+.apy {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0px 70px;
+  @media (max-width: 720px) {
+    margin: 0px 30px;
+  }
+}
+
+.apyLable {
+  font-size: 12px;
+  font-weight: 500;
+  color: #738094;
+}
+.apyValue {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(0, 91, 188, 0.84);
+}
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.durationInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.durationLabel {
+  color: #738094;
+  font-size: 13px;
+  font-weight: 500;
+}
+.durationValue {
+  color: #000;
+  font-size: 13px;
+  font-weight: 600;
+}
+.itemWrapper {
+  margin: 0px 62px 0px 6px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  @media (max-width: 720px) {
+    margin: 0px 32px 0px 2px;
+  }
+  @media (max-width: 560px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

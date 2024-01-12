@@ -26,5 +26,19 @@ export default (date, type)  => {
         return String(`${currentDate.toDateString().split(' ')[1]} ${day}, ${currentDate.getFullYear()}, ${time}`)
     }
 
+    if(type === 5){
+        const year = new Date().getFullYear()
+  
+        const currentDate = new Date(`${date.split('.')[1]}.${date.split('.')[0]}.${year}`)
+
+        const month = String(currentDate).split(' ')[1]
+        const day = String(currentDate.getDay())
+        
+        return `${month} ${day > 10 ? day : `0${day}`}, ${year}`
+
+
+        return 
+    }
+
     return String(`${new Date(date).toDateString().split(' ')[1]} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`)
 }

@@ -26,7 +26,7 @@ export default function Project({type,project,index,filter,inDashboard,isNftAcce
 
     const navigation = (event) => {
         if(event.target.id === 'btn' || inDashboard) return
-
+        
         router.push(`/${project.path}/${project._id}`)
     }
 
@@ -261,7 +261,13 @@ export default function Project({type,project,index,filter,inDashboard,isNftAcce
                 <>
                 <div className={styles.row}>
                     <div className={styles.progressBar}>
-                        <div style={{width:`${progress || 0}%`}} className={styles.progressValue}></div>
+                        {
+                            project?.isRefunded
+                            ?
+                            <div style={{width:`${0}%`}} className={styles.progressValue}></div>
+                            :
+                            <div style={{width:`${progress || 0}%`}} className={styles.progressValue}></div>
+                        }
                     </div>
                 </div>
                 <div className={styles.rowLast}>
@@ -295,6 +301,15 @@ export default function Project({type,project,index,filter,inDashboard,isNftAcce
                     </span>
                 </div>
                 </>
+                :
+                <></>
+            }
+            {
+                project?.isRefunded 
+                ?
+                <div className={styles.refunded}>
+                    refunded
+                </div>
                 :
                 <></>
             }

@@ -1,7 +1,7 @@
-const API = 'https://noname-backend-dev-production.up.railway.app/api/static'
-// const API = 'https://noname-backend-production.up.railway.app/api/static'
 // const API = 'http://localhost:5000/api/static'
 
+import { api } from "../config/api"
+
 export default (src) => {
-    return `${API}${src}`
+    return `${api}/api/static${src}`
 }

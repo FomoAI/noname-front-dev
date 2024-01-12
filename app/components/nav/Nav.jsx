@@ -16,19 +16,24 @@ import useCart from '../../hooks/useCart';
 import {setUserData} from '../../store/slices/authSlice' 
 import useWallet from '../../hooks/useWallet';
 import useAuth from '../../hooks/useAuth';
-import { closeModal, openModal, toggleModal ,toggleModalWithoutBlock} from '../../store/slices/modalsSlice';
+import { closeModal, closeModalWithoutBlock, openModal, toggleModal ,toggleModalWithoutBlock} from '../../store/slices/modalsSlice';
 import SearchBar from '../../assets/components/searchBar/SearchBar';
 import NavModal from '../../assets/components/navModal/NavModal';
 import CartModal from '../../assets/components/cartModal/CartModal'
 import LoaderCustom from '../../assets/components/loader/Loader';
 import SuccessWalletConnect from '../../assets/components/SuccessWalletConnect/SuccessWalletConnect';
-import styles from '../layout/styles/nav.module.scss'
 import AccessToNonameDao from '../../assets/components/AccessNonameDao/AccessToNonameDao';
+import RwaCreditModal from '../../assets/components/rwaCreditNavModal/RwaCreditModal'
+import styles from '../layout/styles/nav.module.scss'
 
 const links = [
     {
-        title:'NFT Marketplace',
+        title:'NFT Market',
         href:'/marketplace'
+    },
+    {
+        title:'RWA & Credit',
+        isBtn:true,
     },
     {
         title:'Leaderboard',
@@ -43,12 +48,16 @@ const links = [
         href:'/blog'
     },
     {
+        title:'Vote',
+        href:'/vote'
+    },
+    {
         title:'Calendar',
         href:'/calendar'
     },
 
     {
-        title:'Waiting list',
+        title:'Waitlist',
         href:'/waitinglist'
     },
 ]
@@ -59,6 +68,10 @@ const mobileLinks = [
         href:'/marketplace'
     },
     {
+        title:'RWA & Credit',
+        isBtn:true,
+    },
+    {
         title:'Leaderboard',
         href:'/leaderboard'
     },
@@ -69,6 +82,10 @@ const mobileLinks = [
     {
         title:'Blog',
         href:'/blog'
+    },
+    {
+        title:'Vote',
+        href:'/vote'
     },
     {
         title:'Calendar',
@@ -87,6 +104,7 @@ const mobileLinks = [
 const Nav = ({userData}) => {
     const walletState = useSelector((state) => state.modals.wallet.state)
     const navModalState = useSelector((state) => state.modals.nav.state)
+    const rwaModalState = useSelector((state) => state.modals.rwa.state)
     const [modal,setModal] = useState(false)
     const [config,setConfig] = useState({})
     const {loading,connectWallet} = useWallet()
@@ -167,6 +185,15 @@ const Nav = ({userData}) => {
         }
     }
 
+    const rwaModalHandler = () => {
+        dispatch(closeModalWithoutBlock('nav'))
+        dispatch(toggleModalWithoutBlock('rwa'))
+    }
+    const navModalHandler = () => {
+        dispatch(closeModalWithoutBlock('rwa'))
+        dispatch(toggleModalWithoutBlock('nav'))
+    }
+
     useEffect(() => {
         if(isConnected){
             walletsHandler(false)
@@ -206,11 +233,25 @@ const Nav = ({userData}) => {
                 <li className={styles.investsBtn}>
                     <button 
                     className={navModalState ? styles.rotate : 'none'}
-                    onClick={() => dispatch(toggleModalWithoutBlock('nav'))}>
+                    onClick={navModalHandler}>
                         Invest
                     </button>
+                    <NavModal isVisible={navModalState}/>
                 </li>
                 {links.map((link,index) => {
+                    if(link?.isBtn){
+                        return (
+                            <li className={styles.secondBtn} key={index}>
+                               <button 
+                               onClick={rwaModalHandler}   
+                                className={rwaModalState ? styles.rotate : 'none'}
+                                >
+                                    {link.title}
+                                </button>
+                                <RwaCreditModal isVisible={rwaModalState} handler={rwaModalHandler}/>
+                            </li>
+                        )
+                    }
                     if(link.href === '/waitinglist' && userData._id){
                         return (
                             <li key={index}>
@@ -266,7 +307,10 @@ const Nav = ({userData}) => {
             />
             <Burger/>
             <MobileNav 
+            navModalHandler={navModalHandler}
+            rwaModalHandler={rwaModalHandler}
             navModalState={navModalState}
+            rwaModalState={rwaModalState}
             disconnect={disconnectHandler} 
             user={userData} 
             isAuth={userData.isAuth} 
@@ -275,7 +319,6 @@ const Nav = ({userData}) => {
             modalHandler={modalHandler} 
             links={mobileLinks}
             />
-            <NavModal isVisible={navModalState}/>
             <SuccessWalletConnect userData={userData}/>
             <CartModal/>
         </div>

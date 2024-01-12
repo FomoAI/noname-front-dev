@@ -15,7 +15,7 @@
   align-items: center;
   grid-template-columns: 0.4fr 0.35fr 0.3fr 0.3fr 0.23fr 0.4fr 0.4fr 0.35fr;
 
-  @media (max-width:880px) {
+  @media (max-width: 880px) {
     grid-template-columns: 0.35fr 0.2fr 0.3fr 0.3fr 0.35fr 0.35fr 0.35fr 0.35fr;
     span {
       font-size: 13px;
@@ -46,7 +46,7 @@
     background: rgba(2, 166, 133, 0.548);
     color: white;
   }
-  @media (max-width:880px) {
+  @media (max-width: 880px) {
     right: -14px;
   }
 }
@@ -69,10 +69,10 @@
     background: rgba(2, 166, 133, 0.548);
     color: white;
   }
-  &:disabled{
+  &:disabled {
     cursor: not-allowed;
   }
-  &:disabled:hover{
+  &:disabled:hover {
     background: rgba(5, 201, 161, 0.1);
     color: #05c9a1;
   }
@@ -93,16 +93,15 @@
   font-weight: 600;
   color: #05c9a1;
 }
-.locked{
+.locked {
   font-weight: 600;
-  color: #FF3A4A;
+  color: #ff3a4a;
 }
-.claimed{
+.claimed {
   background: rgba(128, 128, 128, 0.066);
   color: rgba(0, 0, 0, 0.356);
-
 }
-.btn.claimed:hover{
-    background: rgba(128, 128, 128, 0.228);
-    color: rgba(0, 0, 0, 0.221);
+.btn.claimed:hover {
+  background: rgba(128, 128, 128, 0.228);
+  color: rgba(0, 0, 0, 0.221);
 }

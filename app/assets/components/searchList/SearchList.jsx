@@ -5,6 +5,7 @@ import styles from './search-list.module.scss'
 
 export default function SearchList(
     {
+        type,
         loading,
         label,
         inputLabel,
@@ -25,6 +26,32 @@ export default function SearchList(
             htmlFor='collection-name'>
             {label}
             </label>
+        {
+        type === 'nfts'
+        ?
+        <div className={styles.selectedCollection}>
+            <img
+            className={styles.searchItemImg} 
+            src={selected.image} 
+            alt='nft img'/>
+            <div className={styles.searchItemBody}>
+                <div className={styles.searchItemTitle}>
+                    {selected.name}
+                </div>
+                <div className={styles.searchItemDesc}>
+                    {selected.description}
+                </div>
+            </div>
+            <div className={styles.removeCollection}>
+                <SquareBtn 
+                handler={btnHandler}
+                btnId='none'
+                fontSize='14px' 
+                height='55' 
+                text={'Remove'}/>
+            </div>
+        </div>
+        :
         <div className={styles.selectedCollection}>
             <img
             className={styles.searchItemImg} 
@@ -47,6 +74,7 @@ export default function SearchList(
                 text={'Remove'}/>
             </div>
         </div>
+        }
         </div>
         :
         <div className={styles.searchWrapper}>
@@ -80,11 +108,38 @@ export default function SearchList(
                 :
                 <div className={styles.searchResult}>
                 {
+                    type === 'nfts'
+                    ?
+                    items.map((nft,index) => {
+                        return (
+                            <div key={index} className={styles.resultWrapper}>
+                                <button 
+                                onClick={() => selectHandler(nft)}
+                                className={styles.searchItem}>
+                                    <img
+                                    className={styles.searchItemImg} 
+                                    src={nft.image} 
+                                    alt='nft img'/>
+                                    <div className={styles.searchItemBody}>
+                                        <div className={styles.searchItemTitle}>
+                                            {nft.title || nft.name}
+                                        </div>
+                                        <div className={styles.searchItemDesc}>
+                                            {nft?.project?.description || nft.description}
+                                        </div>
+                                    </div>
+                                </button>
+                                <hr className='line'/>
+                            </div>
+                        )
+                    })
+                    :
                     items.map((collection) => {
                         return (
-                            <div className={styles.resultWrapper}>
+                            <div 
+                            key={collection._id}
+                            className={styles.resultWrapper}>
                                 <button 
-                                key={collection._id}
                                 onClick={() => selectHandler(collection)}
                                 className={styles.searchItem}>
                                     <img

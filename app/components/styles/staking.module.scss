@@ -1,16 +1,51 @@
-.body{
-    max-width: 900px;
-    margin: 80px auto 0
+.body {
+  max-width: 1240px;
+  margin: 80px auto 0;
+
+  @media (max-width: 1280px) {
+    padding: 0px 15px;
+  }
 }
-.cards{
-    display: flex;
-    align-items: center;
+.nftsTitle {
+  margin-top: 25px;
+  color: #0d0f2b;
+  font-size: 18px;
+  font-weight: 500;
+  @media (max-width: 450px) {
+    max-width: 80vw;
+  }
+}
+.nftsStaking {
+  max-width: 895px;
+}
+.loansInfo {
+  max-width: 720px;
+  margin: 50px auto;
+}
+.cards {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+
+  @media (max-width: 600px) {
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 24px;
+  }
 }
-.table{
-    margin-top: 24px;
-    margin-bottom: 34px;
+.table {
+  margin-top: 24px;
+  margin-bottom: 34px;
+}
+.loanItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 45px;
+  margin-bottom: 100px;
+
+  @media (max-width: 450px) {
+    margin-bottom: 60px;
+    gap: 20px;
+  }
 }

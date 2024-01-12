@@ -1,0 +1,180 @@
+.search {
+  max-width: 400px;
+  margin: 0 auto 30px;
+}
+.wrapper {
+  @media (max-width: 1300px) {
+    padding: 0px 15px;
+  }
+}
+.head {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.headItems {
+  display: flex;
+  gap: 56px;
+  margin-bottom: 26px;
+
+  @media (max-width: 450px) {
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.headItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+}
+.title {
+  color: #0d0f2b;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 19px;
+
+  @media (max-width: 450px) {
+    text-align: center;
+  }
+}
+.headItemValue {
+  color: #0d0f2b;
+  font-size: 26px;
+  font-weight: 700;
+  @media (max-width: 450px) {
+    font-size: 22px;
+  }
+}
+.headItemKey {
+  color: #738094;
+  font-size: 16px;
+  font-weight: 400;
+  @media (max-width: 450px) {
+    font-size: 15px;
+  }
+}
+.options {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 880px) {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.filter {
+  display: flex;
+  gap: 45px;
+  align-items: flex-end;
+  @media (max-width: 730px) {
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+}
+.filterBody {
+  display: flex;
+  margin-bottom: 14px;
+  gap: 19px;
+}
+.filterInput {
+  display: flex;
+  gap: 6px;
+}
+.filterLabel {
+  color: #070b35;
+  font-family: "Gilroy Regular";
+  font-size: 14px;
+  font-weight: 400;
+}
+.filterTitle {
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.filterDescription {
+  margin-bottom: 6px;
+  color: #000;
+  font-size: 20px;
+  font-weight: 400;
+  @media (max-width: 450px) {
+    font-size: 16px;
+    margin-bottom: 0px;
+  }
+}
+.selectedLabel {
+  color: #070b35;
+  font-family: "Gilroy Semibold";
+}
+
+.sort {
+  position: relative;
+  display: flex;
+}
+.sortList {
+  position: absolute;
+  top: 42px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid rgba(83, 98, 124, 0.07);
+  background: #fff;
+  padding: 13px 17px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-items: flex-start;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+
+  @media (max-width: 880px) {
+    top: 20px;
+  }
+}
+.sortOpen {
+  visibility: visible;
+  opacity: 1;
+}
+.sortItemBtn {
+  color: #0d0f2b;
+  font-size: 14px;
+  font-weight: 500;
+}
+.sortBtn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.arrow {
+  display: flex;
+  height: 4px;
+  svg {
+    width: 6px;
+    height: 3px;
+  }
+}
+.openSort {
+  transform: rotate(180deg);
+}
+.sortValue {
+  color: #070b35;
+  font-size: 14px;
+  font-weight: 600;
+}
+.body {
+  max-width: 1200px;
+  width: 100%;
+  margin: 34px auto 100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 38px;
+  @media (max-width: 1050px) {
+    gap: 20px;
+    justify-content: center;
+  }
+}

@@ -12,7 +12,7 @@ export default function WaitingPage({favouritesData}) {
   const [items,setItems] = useState(() => favouritesData)
   const user = useSelector((state) => state.auth.userData)
   const dispatch = useDispatch()
-
+  console.log(favouritesData)
   const removeFromWaitingList = useCallback((item,type) => {
     if(!user.isAuth) return 
     const filteredFavourites = user.favourites.filter((id) => String(id) !== String(item._id))

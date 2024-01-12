@@ -8,6 +8,7 @@ export default function RangeInput() {
     <div className={styles.body}>
       <div style={{width:`${progress}%`}} className={styles.fakeBar}></div>
       <input 
+      className={styles.rangeInput}
       value={progress} 
       onChange={(e) => setProgress(e.target.value)} 
       type={'range'} />

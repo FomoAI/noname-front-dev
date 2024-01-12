@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getPoolInfo, getMeInPool, getAllPartnersFromPool} from '../../../smart/initialSmartMain'
+import { RefundInfo } from '../refundInfo/RefundInfo'
 import LoaderCustom from '../loader/Loader'
 import Image from 'next/image'
 import loader from '../../../utils/loader'
@@ -54,23 +55,30 @@ export default function EndedProject({project}) {
           Participation in this project is closed. Stay tuned! Once the tokens are available, the claiming period begins.
         </div>
       </div>
-      <div className={styles.card}>
-        <div className={styles.cardTitle}>
-        Sale completed successfully
+      {
+        project?.isRefunded 
+        ?
+        <RefundInfo/>
+        :
+        <div className={styles.card}>
+          <div className={styles.cardTitle}>
+          Sale completed successfully
+          </div>
+          <div className={styles.cardItem}>
+              <span className={styles.cardKey}>Your investment</span>
+              <span className={styles.cardTitle}>{investValue} USDC</span>
+          </div>
+          <div className={styles.cardItem}>
+              <span className={styles.cardKey}>Participants</span>
+              <span className={styles.cardTitle}>{participants}</span>
+          </div>
+          <div className={styles.cardItem}>
+              <span className={styles.cardKey}>Total Sales</span>
+              <span className={styles.cardTitle}>{sumInvestValue} USDC</span>
+          </div>
         </div>
-        <div className={styles.cardItem}>
-            <span className={styles.cardKey}>Your investment</span>
-            <span className={styles.cardTitle}>{investValue} USDC</span>
-        </div>
-        <div className={styles.cardItem}>
-            <span className={styles.cardKey}>Participants</span>
-            <span className={styles.cardTitle}>{participants}</span>
-        </div>
-        <div className={styles.cardItem}>
-            <span className={styles.cardKey}>Total Sales</span>
-            <span className={styles.cardTitle}>{sumInvestValue} USDC</span>
-        </div>
-      </div>
+      }
+
     </div>
   )
 }

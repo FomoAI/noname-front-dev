@@ -1,7 +1,7 @@
-import styles from './stake-modal.module.scss'
+import { useState } from 'react'
 import SquareBtn from '../../../components/UI/buttons/SquareLightBtn'
 import RangeInput from '../customRangeInput/RangeInput'
-import { useState } from 'react'
+import styles from './stake-modal.module.scss'
 
 export default function StakeModal() {
     const [stakeValue,setStakeValue] = useState('')

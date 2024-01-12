@@ -1,9 +1,10 @@
 import { useRef,useState, useLayoutEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
+import {useSelector,useDispatch} from 'react-redux'
+import { toggleModal } from '../../store/slices/modalsSlice'
 import Image from 'next/image'
 import useWindowDimensions from '../../hooks/useWindow'
 import Nft from '../nft/Nft'
-import CustomLoader from '../../assets/components/loader/Loader'
 import getNftsByCollectionId from '../../services/getNftsByCollectionId'
 import pinnedSvg from '../../assets/icons/pin.svg'
 import styles from '../styles/collections.module.scss'
@@ -16,10 +17,13 @@ import 'swiper/css/navigation';
 export default function Collection({collection}) {
     const [nfts,setNfts] = useState(collection.nfts)
     const [currentNftsValue,setCurrentNftsValue] = useState(16)
+    const [isNftsEmpty,setIsNftsEmpty] = useState(false)
     const currentCollection = useRef(null)
     const swiperRef = useRef(null)
     const prevArrow = useRef(null)
     const currentTranform = useRef(0)
+    const isAuth = useSelector((state) => state.auth.userData.isAuth)
+    const dispatch = useDispatch()
     
     const [swipeValue,setSwipeValue] = useState(307)
     const [slides,setSlides] = useState(4)
@@ -29,7 +33,11 @@ export default function Collection({collection}) {
     const router = useRouter()
 
     const navigateToCollection = () => {
-        router.push(`/marketplace/collection/${collection._id}`)
+        if(isAuth){
+            router.push(`/marketplace/collection/${collection._id}`)
+        }else{
+            dispatch(toggleModal('wallet'))
+        }
     }
 
     const toggleShowAllBtn = (action) => {
@@ -122,14 +130,17 @@ export default function Collection({collection}) {
     }
 
     const getNfts = async () => {
-
         const {nftsData} = await getNftsByCollectionId(
             collection._id,
             currentNftsValue,
             currentNftsValue + 16
         )
-
         const isMobile = width < 450
+     
+        const isEmpty = nftsData?.length < 5
+        setIsNftsEmpty(isEmpty)
+
+        if(isEmpty) return
 
         if(!nftsData.length && !isMobile){
             transformToCollectionStart()
@@ -224,7 +235,7 @@ export default function Collection({collection}) {
             <div className={styles.nfts}>
             <Swiper
             ref={swiperRef}
-            onReachEnd={() => getNfts()}
+            onReachEnd={isNftsEmpty ? () => {} : () => getNfts()}
             className='nfts-swiper'
             onSlideChange={onSwipe}
             modules={[Scrollbar, A11y]}
@@ -237,7 +248,7 @@ export default function Collection({collection}) {
                             <SwiperSlide className='nft-slide' key={nft._id + index}>
                                 <Nft 
                                 toggleShowAllBtn={toggleShowAllBtn} 
-                                nft={nft}/>
+                                nft={{...nft,tokenAddress:collection.smart}}/>
                             </SwiperSlide>
                         )
                     })  

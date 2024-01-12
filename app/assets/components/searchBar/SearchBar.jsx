@@ -1,10 +1,10 @@
-import styles from "./search-bar.module.scss";
+import useProjects from "../../../hooks/useProjects";
 import TextField from "../../../components/UI/inputs/TextField";
 import { useState, useMemo ,useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import useProjects from "../../../hooks/useProjects";
 import { openModalWithoutBlock, closeModal } from "../../../store/slices/modalsSlice";
 import SearchProject from "../searchProject/SearchProject";
+import styles from "./search-bar.module.scss";
 
 const isFinded = (searchValue,result) => {
   return (

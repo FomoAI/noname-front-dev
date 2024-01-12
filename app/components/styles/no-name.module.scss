@@ -4,7 +4,7 @@
   background: linear-gradient(
     102.93deg,
     rgba(39, 122, 210, 0.35) -5%,
-    #FDFDFD 53.47%,
+    #fdfdfd 53.47%
   );
   @media (max-width: 1340px) {
     background: linear-gradient(
@@ -15,9 +15,8 @@
   }
 
   @media (max-height: 680px) {
-    height: 101.5vh;
+    height: 100vh;
   }
-
   @media (max-width: 1280px) {
     height: 101.8vh;
   }
@@ -32,7 +31,7 @@
     );
     height: 100vh;
   }
-  @media (max-height:600px) {
+  @media (max-height: 600px) {
     height: 115vh;
   }
 }
@@ -55,7 +54,7 @@
   z-index: 2;
   background: white;
   width: 360px;
-  height: 630px;
+  height: 100%;
   flex-shrink: 0;
   box-shadow: -4px 0px 25px 0px #0000001a;
   padding: 20px;
@@ -69,6 +68,36 @@
 
   transition: all 0.2s ease;
 
+  &::-webkit-scrollbar {
+    width: 18px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #eaf2fb;
+    border-radius: 99px;
+    border: 7px solid transparent;
+    background-clip: content-box;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #d9e9fc;
+    border-radius: 99px;
+    border: 7px solid transparent;
+    background-clip: content-box;
+  }
+
+  @media (max-width:1720px) {
+    height: 630px;
+    overflow-y: auto;
+  }
+  @media (max-width:1400px) {
+    height: 580px;
+    overflow-y: auto;
+  }
+  @media (max-height:590px) {
+    height: 500px;
+  }
   @media (max-width: 450px) {
     top: -25px;
     right: 0px;
@@ -78,9 +107,7 @@
     height: 100vh;
     border-radius: 0px;
   }
-  @media (max-height:600px) {
-    height: 115vh;
-  }
+
 }
 .container {
   position: relative;

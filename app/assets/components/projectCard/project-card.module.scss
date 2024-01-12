@@ -214,17 +214,15 @@
 .startDate {
   display: flex;
   gap: 4px;
-  @media (max-width:420px) {
+  @media (max-width: 420px) {
     gap: 3px;
-    
   }
 }
 .endDate {
   display: flex;
   gap: 4px;
-  @media (max-width:420px) {
+  @media (max-width: 420px) {
     gap: 3px;
-    
   }
 }
 .banner {
@@ -321,7 +319,7 @@
   margin: 10px 0 30px;
   display: flex;
   gap: 22px;
-  @media (max-width:450px) {
+  @media (max-width: 450px) {
     flex-direction: column;
     gap: 25px;
   }
@@ -330,7 +328,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  @media (max-width:450px) {
+  @media (max-width: 450px) {
     gap: 12px;
   }
 }
@@ -352,7 +350,7 @@
 
   color: rgba(115, 128, 148, 0.5);
 
-  @media (max-width:450px) {
+  @media (max-width: 450px) {
     min-width: 40px;
     min-height: 40px;
   }
@@ -374,12 +372,18 @@
   line-height: 16px;
   color: #738094;
 }
-.stepNumber.active{
-  background: #05C9A1;
+.stepNumber.active {
+  background: #05c9a1;
   color: white;
 }
-.blocked{
+.blocked {
   width: 28px;
   height: auto;
   cursor: not-allowed;
+}
+.isRefunded {
+  color: #ff507d;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
 }

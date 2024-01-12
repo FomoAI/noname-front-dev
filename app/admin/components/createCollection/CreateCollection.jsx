@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { addressNft, addCollectionToSmart } from '../../../smart/initialSmartNftMarket'
 import useProjects from '../../../hooks/useProjects'
 import ProjectsList from '../projectsList/ProjectsList'
 import Image from 'next/image'
@@ -34,6 +35,60 @@ const inputsInitialState = [
         placeholder:'0x0bB8f9686368A12eD34332E50A7b3bE0e25e3a14',
         type:'text',
     },
+    {
+        label:'Royalty %',
+        name:'royalty',
+        placeholder:'10',
+        type:'number',
+    },
+    {
+        label:'Floor price (ETH)',
+        name:'floorPriceEth',
+        placeholder:'0.01',
+        type:'number',
+    },
+    {
+        label:'Floor price (USDC)',
+        name:'floorPriceUsdc',
+        placeholder:'1',
+        type:'number',
+    },
+    {
+        label:'Creator address',
+        name:'creator',
+        placeholder:'0x0bB8f9686368A12eD34332E50A7b3bE0e25e3a14',
+        type:'string',
+    },
+    {
+        label:'Creator fee %',
+        name:'creatorFee',
+        placeholder:'2',
+        type:'number',
+    },
+    {
+        label:'Revenue',
+        name:'revenue',
+        placeholder:'1000',
+        type:'number',
+    },
+    {
+        label:'Mint price',
+        name:'mintPrice',
+        placeholder:'20000',
+        type:'number',
+    },
+    {
+        label:'Last funding',
+        name:'lastFunding',
+        placeholder:'12.12.2023',
+        type:'string',
+    },
+    {
+        label:'Token standart',
+        name:'tokenStandart',
+        placeholder:'ERC-721',
+        type:'string',
+    },
 ]
 
 const types = [
@@ -65,8 +120,14 @@ export default function CreateCollection({addCollection}) {
     const [newCollectionData,setNewCollectionData] = useState({
         title:'',
         metadataLink:'',
-        smart:'',
+        smart:addressNft,
         quantity:0,
+        royalty:5,
+        creator:'',
+        creatorFee:0,
+        revenue:0,
+        mintPrice:0,
+        lastFunding:''
     })
 
     const [searchValue,setSearchValue] = useState('')
@@ -85,7 +146,9 @@ export default function CreateCollection({addCollection}) {
         setNewCollectionData({...newCollectionData,[name]:value})
     }
 
-    const confirmCreateCollection = () => {
+    const confirmCreateCollection = async () => {
+        await addCollectionToSmart(newCollectionData.smart,newCollectionData.royalty,newCollectionData.creator,newCollectionData.creatorFee)
+
         if(!newCollectionData.metadataLink || !newCollectionData.quantity || !newCollectionData.title){
             alert('Title, Metadata API and NFT Quantity must filled')
             return
@@ -95,7 +158,7 @@ export default function CreateCollection({addCollection}) {
             return
         }
 
-        addCollection({
+        await addCollection({
             ...newCollectionData,
             type:selectedType,
             project:selectedProject,

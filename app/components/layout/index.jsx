@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, createContext } from "react"
 import { useDispatch , useSelector} from "react-redux"
-import { useRouter } from "next/router"
 import Header from "./Header"
 import Footer from "./Footer"
 import CookieAlert from "../../assets/components/cookieAlert/CookieAlert"
@@ -10,8 +9,9 @@ import getTotalInvestments from '../../services/getTotalInvestments'
 import getHeader from '../../admin/services/headerServices/getHeader'
 import getFooter from '../../admin/services/footerServices/getFooter'
 import styles from './styles/index.module.scss'
-import blockScroll from "../../utils/blockScroll"
 import CookieTools from "../../utils/cookieTools"
+
+export const LayoutContext = createContext({})
 
 export default function index({children}) {
   const [data,setData] = useState({
@@ -52,6 +52,9 @@ export default function index({children}) {
     if(modals.waitingListFilter.state && id !== 'toggle-modal'){
       dispatch(closeModalWithoutBlock('waitingListFilter'))
     }
+    if(modals.rwa.state && id !== 'toggle-modal'){
+      dispatch(closeModalWithoutBlock('rwa'))
+    }
   }
 
   useEffect(() => {
@@ -87,13 +90,14 @@ export default function index({children}) {
     getData()
   },[])
 
-  
   return (
+    <LayoutContext.Provider value={data}>
     <div className={styles.body} onClick={modalsHandler}>
       <CookieAlert/>
       <Header investments={totalInvestments} headerData={data.header}/>
       {children}
       <Footer footerData={data.footer}/>
     </div>
+    </LayoutContext.Provider>
   )
 }

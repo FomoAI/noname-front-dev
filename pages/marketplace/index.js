@@ -10,9 +10,7 @@ export async function getServerSideProps() {
   return { props: { collections } }
 }
 
-
 export default function MarketplacePage({collections}) {
-  console.log(collections)
   return (
     <>
     <HeadBlock title={'NFT Marketplace'}/>

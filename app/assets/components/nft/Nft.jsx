@@ -1,5 +1,6 @@
 import { useEffect,useState } from "react";
 import { getNoNameNFTBalance, getNoNameNFTStakedBalance,stackeNFTprePool,getTotalStakeInPool} from '../../../smart/initialSmartMain'
+import addDateAndTime from "../../../utils/addDateAndTime";
 import LoadingModal from "../LoadingModal/LoadingModal";
 import CustomAlert from "../CustomAlert/CustomAlert";
 import Modal from "../modal/Modal";
@@ -7,6 +8,7 @@ import SquareBtn from "../../../components/UI/buttons/SquareLightBtn";
 import Loader from '../../components/loader/Loader'
 import getTime from "../../../utils/getTime";
 import styles from "./nft.module.scss";
+import parseDate from "../../../utils/parseDate";
 
 export default function Nft({ card, dates , project}) {
   const [nftsValue,setNftsValue] = useState(0)
@@ -17,6 +19,7 @@ export default function Nft({ card, dates , project}) {
   const [loadingStake,setLoadingStake] = useState(false)
   const [loadingPage,setLoadingPage] = useState(false)
   const [isSuccess,setIsSuccess] = useState(false)
+  const [isStakeStart,setIsStakeStart] = useState(true)
   
   const confirmNftStake = async () => {
     setLoadingStake(true)
@@ -27,6 +30,7 @@ export default function Nft({ card, dates , project}) {
       setIsSuccess(true)
       setIsStake(true)
       setStakedNfts(nftsValue)
+      setTotalStaked((prev) => Number(prev) + Number(nftsValue))
     }
 
     setLoadingStake(false)
@@ -52,7 +56,7 @@ export default function Nft({ card, dates , project}) {
       const address = window.ethereum.selectedAddress
   
       const {isStake,stakeCount} = await getUserNftsStake(address)
-
+ 
       if(isStake){
         setIsStake(isStake)
         setStakedNfts(stakeCount)
@@ -65,10 +69,12 @@ export default function Nft({ card, dates , project}) {
       setAvailableNfts(sum)
       setNftsValue(sum)
       setLoadingPage(false)
-
+     
       const {totalStaked} = await getTotalStakeInPool(project.poolId)
       setTotalStaked(totalStaked)
     }
+    const isStakeStart = new Date().getTime() > addDateAndTime(parseDate(dates.start),dates.timeStart)
+    setIsStakeStart(isStakeStart)
     getNftsInfo()
   },[])
 
@@ -121,6 +127,7 @@ export default function Nft({ card, dates , project}) {
       </div>
     </div>
       <SquareBtn 
+      disabled={!isStakeStart}
       handler={confirmNftStake} text={'Stake'} width={'548'}/>
       <Modal
       handler={() => setLoadingStake(false)}
@@ -133,6 +140,7 @@ export default function Nft({ card, dates , project}) {
       />
       </Modal>
       <CustomAlert
+      position="left"
       type="success"
       title={'Success!'}
       text={`You stake ${nftsValue} nfts`}

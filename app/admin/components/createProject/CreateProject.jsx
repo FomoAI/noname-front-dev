@@ -1,7 +1,7 @@
 import { useState , useCallback, useEffect , useRef} from 'react'
 import { useRouter } from 'next/router'
 import { selectItems,socialItems,participantsItemsInitial,inputs,getInitialData } from './data'
-import { changeComission } from '../../../smart/initialSmartMain'
+import { changeComission, changeMediaCommission,changeYellowTime } from '../../../smart/initialSmartMain'
 import SquareBtn from '../../../components/UI/buttons/SquareLightBtn'
 import Input from '../../UI/Input'
 import Select from '../../UI/Select'
@@ -28,6 +28,7 @@ import Media from '../media/Media'
 import ProjectNews from '../projectNews/ProjectNews'
 import useModal from '../../../hooks/useModal'
 import getNews from '../../services/newsServices/getNews'
+import refund from '../../services/adminServices/refund'
 
 import { create } from './services/createProject'
 import endProjectPool from './services/endProjectPool'
@@ -63,6 +64,8 @@ export default function CreateProject({type,status,id}) {
   const [isReturn,setIsReturn] = useState(false)
   const [modalText,setModalText] = useState(``)
   const [isClaimModal,setIsClaimModal] = useState(false)
+  const [isYellowTimeModal,setIsYellowTimeModal] = useState(false)
+  const [yellowTime,setYellowTime] = useState(300)
 
   const participantsTmp = useRef(participants)
   const linksTmp = useRef(participants)
@@ -70,6 +73,25 @@ export default function CreateProject({type,status,id}) {
   const companyTmp = useRef(data.company)
   const mediaTmp = useRef(data.media)
   const oldComission = useRef()
+  const oldMediaComission = useRef()
+
+  const yellowTimeModalHandler = (event) => {
+    if(event.target.id === 'toggle-modal' || event.target.tagName === 'path'){
+      setIsYellowTimeModal(false)
+    }
+  }
+
+  const confirmChangeYellowTime = async () => {
+    if(!poolId && poolId !== 0) return
+
+    const {success} = await changeYellowTime(poolId,yellowTime)
+
+    if(success){
+      setIsYellowTimeModal(false)
+    }else{
+      alert('Change yellow time - error')
+    }
+  }
 
   const changedParticipantsHandler = (name) => {
     setChangedParticipants((state) => ({...state,[name]:true}))
@@ -156,6 +178,10 @@ export default function CreateProject({type,status,id}) {
     if(Number(oldComission.current) !== Number(data.comission)){
       await changeComission(data.poolId,data.comission)
     }
+    if(Number(oldMediaComission.current !== Number(data.mediaComission))){
+      await changeMediaCommission(data.poolId,data.mediaComission)
+    }
+
     setLoading(false)
     if(success){
       router.reload()
@@ -163,17 +189,36 @@ export default function CreateProject({type,status,id}) {
       alert('Uploading error')
     }
   }
+  const types = {
+    'donate':'donates',
+    'startup':'startups',
+    'crypto':'crypto',
+    'realestate':'business',
+  }
 
   const confirmEndPool = async () => {
     try{
-      if(!poolId) return
-
       const {success} = await endProjectPool(poolId,isReturn,id,type)
   
+      const types = {
+        'donate':'donates',
+        'startup':'startups',
+        'crypto':'crypto',
+        'realestate':'business',
+      }
+
+      const currentType = types[type]
+
+      if(isReturn && success){
+        await refund(data._id,currentType)
+      }
+
       if(success){
         modalHandler(null,true)
         setModalText('Pool ended!')
       }
+
+
     }catch(error){
       alert(error)
     }
@@ -205,6 +250,7 @@ export default function CreateProject({type,status,id}) {
         companyTmp.current = project.company
         mediaTmp.current = project.media
         oldComission.current = project.comission 
+        oldMediaComission.current = project.mediaComission
 
         setPoolId(project.poolId)
         setData(project)
@@ -243,6 +289,9 @@ export default function CreateProject({type,status,id}) {
             isEdit
             ?
             <div className={styles.editBtns}>
+              <SquareBtn handler={
+                () => setIsYellowTimeModal(true)
+              } type='red' width={'200'} text={'Yellow time'}/>
               <SquareBtn handler={edit} type='red' width={'200'} text={'Save'}/>
               <SquareBtn 
               disabled={data?.isClosed}
@@ -494,6 +543,25 @@ export default function CreateProject({type,status,id}) {
         text={'Go to home page'} 
         handler={() => router.push('/admin')}/>
       </div>
+    </Modal>
+    <Modal
+    width='400'
+    handler={yellowTimeModalHandler} isVisible={isYellowTimeModal}>
+        <div className={styles.yellowTimeModal}>
+          <Input
+          value={yellowTime}
+          handler={(name,value) => setYellowTime(value)}
+          type='number'
+          placeholder='300'
+          label={'Time between participants in yellow zone (seconds)'}
+          />
+          <SquareBtn
+          btnId='none'
+          handler={confirmChangeYellowTime}
+          width='400'
+          text={'Confrim'}
+          />
+        </div>
     </Modal>
     <ClaimModal
     type={type}

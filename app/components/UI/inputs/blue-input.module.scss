@@ -9,5 +9,12 @@
   line-height: 16px;
 
   color: #0d0f2b;
- 
+
+  &::placeholder {
+    font-family: 'Raleway','sans-serif';
+
+    color: rgba(115, 128, 148, 0.5);
+    font-size: 14px;
+    font-weight: 400;
+  }
 }

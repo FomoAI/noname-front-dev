@@ -1,0 +1,18 @@
+.body {
+  max-width: fit-content;
+  margin: 20px auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+.anim {
+    max-width: 150px;
+  }
+.text {
+  color: #ff507d;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+}

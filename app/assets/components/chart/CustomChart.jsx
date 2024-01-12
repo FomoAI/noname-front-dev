@@ -1,29 +1,47 @@
-import {ResponsiveContainer, LineChart,Line,Tooltip,XAxis,YAxis} from 'recharts'
+import {ResponsiveContainer, LineChart,Line,Tooltip,XAxis,YAxis,Legend} from 'recharts'
 import changeDateType from '../../../utils/changeDateType'
 import styles from './custom-chart.module.scss'
 
-const data = [
-    {date:'18.04','':20},
-    {date:'19.04','':15},
-    {date:'20.04','':15},
-    {date:'21.04','':30},
-    {date:'22.04','':16},
-    {date:'23.04','':25},
-    {date:'23.04','':25},
-    {date:'23.04','':45},
-    {date:'23.04','':55},
-]
   
-export default function CustomChart() {
-
+export default function CustomChart({data}) {
+  console.log(data)
   return (
     <div className={styles.body}>
+       <div className={styles.priceInfo}>
+        <div className={styles.infoItem}>
+          <div className={styles.infoElipse + ' ' + styles.green}>
+
+          </div>
+          <div className={styles.infoItemName}>
+            - Sales
+          </div>
+        </div>
+        <div className={styles.infoItem}>
+          <div className={styles.infoElipse + ' ' + styles.red}>
+
+          </div>
+          <div className={styles.infoDetails}>
+            10%
+          </div>
+          <div className={styles.infoItemName}>
+            - Activity
+          </div>
+        </div>
+      </div>
+              <ResponsiveContainer 
+        className={'custom-chart-container-second'}
+        width={520} height={325}>
+        <LineChart width={580} height={325} data={data}>
+            <Line dataKey={'bid'} stroke={'#FF507D'} strokeWidth={2}/>
+        </LineChart>
+        </ResponsiveContainer>
         <ResponsiveContainer 
         className={'custom-chart-container'}
         width={580} height={325}>
         <LineChart width={580} height={325} data={data}>
-            <Line type={'monotone'} dataKey={''} stroke={'#FF507D'} strokeWidth={2}/>
+
             <XAxis 
+            tickCount={7}
             className='custom-chart-xasis'
             dataKey={'date'}/>
             <YAxis
@@ -32,15 +50,16 @@ export default function CustomChart() {
             />
             <Tooltip 
             labelFormatter={(label) => {
-                return changeDateType(label,4)
+                return changeDateType(label,5)
             }}
             formatter={(value) => {
-                return `${value} ETH`
+                return `${value}$`
             }}
             wrapperClassName={"custom-chart-tooltip"}
             cursor={'pointer'} 
             separator={''}
             />
+            <Line dataKey={''} stroke={'#05C9A1'} strokeWidth={2}/>
         </LineChart>
         </ResponsiveContainer>
     </div>

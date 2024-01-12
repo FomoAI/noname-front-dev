@@ -25,8 +25,8 @@ export const create = async (
     const maxInvest = parseFloat(data.goal.replace(/[$,]/g, ''))
     const minInvestUser = Number(data.minInvest)
     const maxInvestUser = Number(data.maxInvest)
-    const comission = Number(data.comission)
-    const mediaComission = Number(data.mediaComission)
+    const comission = Number(data.comission) * 10
+    const mediaComission = Number(data.mediaComission) * 10 - 15
     const media = data.media
 
     if(
@@ -42,7 +42,7 @@ export const create = async (
 
     const {poolId} = await getPoolId()
 
-    console.log(`
+    console.info(`
         Start time: ${startTime},
         Green time: ${greenTime},
         Yellow time: ${yellowTime},
@@ -56,7 +56,7 @@ export const create = async (
         Media comission: ${mediaComission},
         Media: ${media},
     `)
-
+   
     const {createSuccess,err} = await createPool(
         poolId,
         startTime,

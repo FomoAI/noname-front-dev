@@ -80,7 +80,10 @@ export const {wagmiClient , ethereumClient} = auth()
 
 
 export const decimals = 6
+// export const decimals = 18
 
 export const adminAddress = '0xD128f1E3b2938eB005Bc5c750A66b82173f62857'
+// export const adminAddress = '0xD28e844A6dC6a89BaC7b46c54bC7C7F40033Aa79'
 
 export const chainIdValue = 324
+// export const chainIdValue = 97

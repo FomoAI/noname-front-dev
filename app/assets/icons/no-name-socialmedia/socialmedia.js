@@ -11,6 +11,6 @@ import mail from './mail.svg'
 
 export default {
     discord,facebook,instagram,
-    telegram,tikTok,twitter,
+    telegram,telegram2:telegram,tikTok,twitter,
     medium,web,linkedin,mail
 }

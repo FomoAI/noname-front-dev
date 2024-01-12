@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { deleteCollectionFromSmart, changeFee} from '../../../smart/initialSmartNftMarket'
 import pinCollection from '../../services/collectionsServices/pinCollection'
 import deleteCollection from '../../services/collectionsServices/deleteCollection'
 import updateCollection from '../../services/collectionsServices/updateCollection'
@@ -13,6 +14,13 @@ export default function CollectionsList({collections}) {
     const {allProjects} = useProjects({})
 
     const removeCollection = async (collectionToRemove) => {
+        const {success} = await deleteCollectionFromSmart(collectionToRemove.smart)
+
+        if(!success){
+            alert('Smart contract error')
+            return
+        }
+
         setCollectionsData((prev) => {
             return (
                 prev.filter((collection) => {
@@ -56,7 +64,6 @@ export default function CollectionsList({collections}) {
 
     const filteredCollections = useMemo(() => {
         return colletionsData.filter((collection) => {
-            console.log(collection.title.toLowerCase().includes(searchValue.toLowerCase()))
             return collection.title.toLowerCase().includes(searchValue.toLowerCase())
         })
     },[searchValue,colletionsData])

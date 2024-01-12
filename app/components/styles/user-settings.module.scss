@@ -66,13 +66,12 @@
   z-index: 10000;
   max-width: 360px;
   height: 100%;
-  overflow-y: auto;
   width: 100%;
   transition: all 0.3s ease;
   background: #ffffff;
   border: 1px solid #f5f9fd;
   box-shadow: -4px 0px 25px rgba(0, 0, 0, 0.1);
-  padding: 16px 16px 16px 14px;
+  padding: 8px 16px 8px 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -82,6 +81,7 @@
   }
 
   @media (max-width: 541px) {
+    overflow-y: auto;
     top: -2px;
   }
   @media (max-height: 630px) {
@@ -113,13 +113,13 @@
 .btns {
   display: flex;
   flex-direction: column;
-  gap: 21px;
+  gap: 17px;
   margin: 7px 0 10px;
   @media (max-width: 1500px) {
-    gap: 16px;
+    gap: 12px;
   }
   @media (max-height: 580px) {
-    gap: 16px;
+    gap: 13px;
   }
 }
 .btn {
@@ -207,7 +207,7 @@
 }
 .nftError {
   max-width: 220px;
-  margin-top: 10px;
+  margin-top: 2px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -217,6 +217,9 @@
   line-height: 19px;
 
   color: #e42736;
+  span{
+    text-align:left;
+  }
 }
 .academy{
   margin-left: 3px;

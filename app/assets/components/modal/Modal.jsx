@@ -1,7 +1,7 @@
 import { useRef} from 'react'
+import { Transition } from 'react-transition-group'
 import Image from 'next/image'
 import Lottie from 'lottie-react'
-import { Transition } from 'react-transition-group'
 import closeLottie from '../../lotties-animations/NN Закрыть модальное .json'
 import closeSvg from '../../icons/close.svg'
 import styles from './modal.module.scss'

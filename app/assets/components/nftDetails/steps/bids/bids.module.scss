@@ -7,7 +7,7 @@
   border: 1px solid rgba(83, 98, 124, 0.07);
   background: #fff;
   box-shadow: 4px 4px 0px 0px #eee;
-  @media (max-width:920px) {
+  @media (max-width: 920px) {
     max-width: 95vw;
     width: 100%;
   }
@@ -23,6 +23,76 @@
   padding: 15px 14px;
 
   background: #f8f8f9;
+  position: relative;
+}
+.sortModal {
+  position: absolute;
+  top: 40px;
+  background: white;
+  padding: 8px 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(83, 98, 124, 0.07);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.032);
+
+  transition: all 0.3s ease;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+
+}
+.openModal{
+  visibility: visible;
+  opacity: 1;
+}
+.sortItem {
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  align-items: center;
+  gap: 8px;
+  span {
+    color: #070b35;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  label{
+    font-family: 'Raleway','sans-serif';
+    color: #070b35;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  input{
+    margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+  
+    border: 2px solid #999;
+    transition: 0.2s all linear;
+    outline: none;
+  
+    &:checked {
+      border: 2px solid #99999900;
+      background: #fd2f66;
+    }
+  }
+}
+.sortCheckBox{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.sortInputs {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 .sortBtn {
   font-size: 15px;
@@ -61,19 +131,43 @@
   }
 }
 .item {
+  position: relative;
   padding: 14px 16px 0px;
 
   display: flex;
   flex-direction: column;
   gap: 4px;
-  hr{
+  hr {
     margin-top: 12px;
+    @media (max-width: 470px) {
+      margin-top: 48px;
+    }
+  }
+}
+.confirmBtn {
+  position: absolute;
+  top: 24px;
+  right: 18px;
+  border: 1px solid #fe1b53;
+  color: #fe1b53;
+  padding: 5px 8px;
+  font-size: 15px;
+  border-radius: 4px;
+  @media (max-width: 470px) {
+    top: 65px;
+    right: unset;
+    left: 18px;
+  }
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
   }
 }
 .itemRow {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .value {
   color: #0d0f2b;
@@ -94,4 +188,8 @@
     font-weight: 700;
     margin-left: 4px;
   }
+}
+.empty {
+  margin: 12px 15px;
+  font-weight: 600;
 }

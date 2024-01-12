@@ -3,12 +3,13 @@ import { Contract } from "ethers";
 import {decimals,adminAddress} from '../config/provider'
 import getUserStatusByIndex from "../utils/getUserStatusByIndex";
 import getInviterInfo from "../utils/getInviterInfo";
+import formatSmartDate from '../utils/formatSmartDate'
 import getUserById from '../services/getUserById'
 import getClaimData from '../services/getClaimData'
 import addRewardsToUser from '../services/addRewardsToUser'
 import getUserData from '../utils/getUserData'
 
-export const mainPoolAddress = '0x35176bB91Ad50AD7d56282A844eFF32fd86aC133'
+export const mainPoolAddress = '0xA69e77f2E7Be6c3e39715c14c46888A022C8AB56'
 
 export function bigNumber_to_number(bign,decimals){
     return ethers.utils.formatUnits(bign,decimals)
@@ -28,11 +29,12 @@ export function numberToBigNumber(bign,decimals){
     for (let i = 0; i < decimals; i++) {
       sum_last += "0";
     }	
-    return ethers.BigNumber.from(Number(sum_last))
+
+    return ethers.BigNumber.from(sum_last)
 }
 
 
-function getCurrentDecimal(number){
+export function getCurrentDecimal(number){
 	const numberStr = String(number)
 	let multi = '1'
 	let currentDecimals = 0
@@ -55,495 +57,8 @@ function getCurrentDecimal(number){
 const getNftContract = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner()
-    const address_nft = '0x048CD475dA2A18cFC2f74Ab5a474FF13959970e9';
-	const abi_nft = [
-		{
-			"inputs": [],
-			"stateMutability": "nonpayable",
-			"type": "constructor"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
-				},
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "approved",
-					"type": "address"
-				},
-				{
-					"indexed": true,
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "Approval",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
-				},
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "operator",
-					"type": "address"
-				},
-				{
-					"indexed": false,
-					"internalType": "bool",
-					"name": "approved",
-					"type": "bool"
-				}
-			],
-			"name": "ApprovalForAll",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "from",
-					"type": "address"
-				},
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"indexed": true,
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "Transfer",
-			"type": "event"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "approve",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
-				}
-			],
-			"name": "balanceOf",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"name": "blocked",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "amount",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "pool",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "burn",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "getApproved",
-			"outputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
-				},
-				{
-					"internalType": "address",
-					"name": "operator",
-					"type": "address"
-				}
-			],
-			"name": "isApprovedForAll",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "",
-					"type": "bool"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "main_contract",
-			"outputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				}
-			],
-			"name": "main_contract_set",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "name",
-			"outputs": [
-				{
-					"internalType": "string",
-					"name": "",
-					"type": "string"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "owner",
-			"outputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "ownerOf",
-			"outputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "safeMint",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "from",
-					"type": "address"
-				},
-				{
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				},
-				{
-					"internalType": "bytes",
-					"name": "data",
-					"type": "bytes"
-				}
-			],
-			"name": "safeTransferFrom",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "operator",
-					"type": "address"
-				},
-				{
-					"internalType": "bool",
-					"name": "approved",
-					"type": "bool"
-				}
-			],
-			"name": "setApprovalForAll",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "",
-					"type": "address"
-				}
-			],
-			"name": "stacked",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "bytes4",
-					"name": "interfaceId",
-					"type": "bytes4"
-				}
-			],
-			"name": "supportsInterface",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "",
-					"type": "bool"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "symbol",
-			"outputs": [
-				{
-					"internalType": "string",
-					"name": "",
-					"type": "string"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "index",
-					"type": "uint256"
-				}
-			],
-			"name": "tokenByIndex",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "index",
-					"type": "uint256"
-				}
-			],
-			"name": "tokenOfOwnerByIndex",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "tokenURI",
-			"outputs": [
-				{
-					"internalType": "string",
-					"name": "",
-					"type": "string"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "totalSupply",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "from",
-					"type": "address"
-				},
-				{
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "transferFrom",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		}
-	];
+    const address_nft = '0xa55A9dc6a011D02cd5f7893110c261158d2bFC57';
+	const abi_nft = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"blocked","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"pool","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"burn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"main_contract","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"}],"name":"main_contract_set","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeMint","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"stacked","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"}]
     const contract_nft = new Contract(address_nft, abi_nft, provider); 
     const daiContractWithSigner_nft = contract_nft.connect(signer);
 
@@ -591,6 +106,25 @@ const getMainPoolContract = () => {
 			],
 			"name": "Sold",
 			"type": "event"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "Awards",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
 		},
 		{
 			"inputs": [
@@ -720,6 +254,24 @@ const getMainPoolContract = () => {
 		{
 			"inputs": [
 				{
+					"internalType": "uint256",
+					"name": "_poolId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_commission",
+					"type": "uint256"
+				}
+			],
+			"name": "change_media_commission",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
 					"internalType": "address",
 					"name": "user",
 					"type": "address"
@@ -731,6 +283,24 @@ const getMainPoolContract = () => {
 				}
 			],
 			"name": "change_reffather",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_poolId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_yellowTime",
+					"type": "uint256"
+				}
+			],
+			"name": "change_yellowTime",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
@@ -899,9 +469,14 @@ const getMainPoolContract = () => {
 							"internalType": "uint256",
 							"name": "NFT_count",
 							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "commission",
+							"type": "uint256"
 						}
 					],
-					"internalType": "struct MShop.Partner[]",
+					"internalType": "struct Partner[]",
 					"name": "",
 					"type": "tuple[]"
 				}
@@ -974,9 +549,14 @@ const getMainPoolContract = () => {
 							"internalType": "uint256",
 							"name": "NFT_count",
 							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "commission",
+							"type": "uint256"
 						}
 					],
-					"internalType": "struct MShop.Partner",
+					"internalType": "struct Partner",
 					"name": "",
 					"type": "tuple"
 				}
@@ -1390,7 +970,7 @@ const getMainPoolContract = () => {
 			"stateMutability": "view",
 			"type": "function"
 		}
-	];
+	]
     const contract_pool = new Contract(address_pool, abi_pool, provider); 
     const daiContractWithSigner_pool = contract_pool.connect(signer);
 
@@ -1400,638 +980,639 @@ const getMainPoolContract = () => {
 const getNoNameNftContract = () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner()
-  const address_nft= '0x9473d96867f06382b35c6e1b787Abf8AC03ffE5F';
+  const address_nft= '0xc093BB57dCA08E6c9eb7F7f9E3700DE52F638a2A';
   const abi_nft = [
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "approved",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "Approval",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "bool",
-				"name": "approved",
-				"type": "bool"
-			}
-		],
-		"name": "ApprovalForAll",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "Transfer",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "Claimers",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_pool",
-				"type": "uint256"
-			}
-		],
-		"name": "addBlockedTokens",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "approve",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "blockProvider",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "blocked",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "pool",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "burn",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "getApproved",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			}
-		],
-		"name": "getBlockedNow",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			}
-		],
-		"name": "getStacked",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			}
-		],
-		"name": "isApprovedForAll",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "ownerOf",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_pool",
-				"type": "uint256"
-			}
-		],
-		"name": "removeBlockedTokens",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_pool",
-				"type": "uint256"
-			}
-		],
-		"name": "removeBlockedTokens_return",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "returned_pools",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "tokenId",
-				"type": "string"
-			}
-		],
-		"name": "safeMint",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "approved",
-				"type": "bool"
-			}
-		],
-		"name": "setApprovalForAll",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			}
-		],
-		"name": "setBlockProvider",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "stacked",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenN",
-				"type": "uint256"
-			}
-		],
-		"name": "stakeToken",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes4",
-				"name": "interfaceId",
-				"type": "bytes4"
-			}
-		],
-		"name": "supportsInterface",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenByIndex",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenOfOwnerByIndex",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenURI",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "transferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
-]
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "to",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "uint256",
+				  "name": "amount",
+				  "type": "uint256"
+			  },
+			  {
+				  "internalType": "uint256",
+				  "name": "_pool",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "addBlockedTokens",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "constructor"
+	  },
+	  {
+		  "anonymous": false,
+		  "inputs": [
+			  {
+				  "indexed": true,
+				  "internalType": "address",
+				  "name": "owner",
+				  "type": "address"
+			  },
+			  {
+				  "indexed": true,
+				  "internalType": "address",
+				  "name": "approved",
+				  "type": "address"
+			  },
+			  {
+				  "indexed": true,
+				  "internalType": "uint256",
+				  "name": "tokenId",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "Approval",
+		  "type": "event"
+	  },
+	  {
+		  "anonymous": false,
+		  "inputs": [
+			  {
+				  "indexed": true,
+				  "internalType": "address",
+				  "name": "owner",
+				  "type": "address"
+			  },
+			  {
+				  "indexed": true,
+				  "internalType": "address",
+				  "name": "operator",
+				  "type": "address"
+			  },
+			  {
+				  "indexed": false,
+				  "internalType": "bool",
+				  "name": "approved",
+				  "type": "bool"
+			  }
+		  ],
+		  "name": "ApprovalForAll",
+		  "type": "event"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "to",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "uint256",
+				  "name": "tokenId",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "approve",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "tokenId",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "burn",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "to",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "uint256",
+				  "name": "_pool",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "removeBlockedTokens",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "_pool",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "removeBlockedTokens_return",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "to",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "string",
+				  "name": "tokenId",
+				  "type": "string"
+			  }
+		  ],
+		  "name": "safeMint",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "from",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "address",
+				  "name": "to",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "uint256",
+				  "name": "tokenId",
+				  "type": "uint256"
+			  },
+			  {
+				  "internalType": "bytes",
+				  "name": "data",
+				  "type": "bytes"
+			  }
+		  ],
+		  "name": "safeTransferFrom",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "operator",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "bool",
+				  "name": "approved",
+				  "type": "bool"
+			  }
+		  ],
+		  "name": "setApprovalForAll",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "to",
+				  "type": "address"
+			  }
+		  ],
+		  "name": "setBlockProvider",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "tokenN",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "stakeToken",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "anonymous": false,
+		  "inputs": [
+			  {
+				  "indexed": true,
+				  "internalType": "address",
+				  "name": "from",
+				  "type": "address"
+			  },
+			  {
+				  "indexed": true,
+				  "internalType": "address",
+				  "name": "to",
+				  "type": "address"
+			  },
+			  {
+				  "indexed": true,
+				  "internalType": "uint256",
+				  "name": "tokenId",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "Transfer",
+		  "type": "event"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "from",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "address",
+				  "name": "to",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "uint256",
+				  "name": "tokenId",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "transferFrom",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "owner",
+				  "type": "address"
+			  }
+		  ],
+		  "name": "balanceOf",
+		  "outputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "",
+				  "type": "uint256"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "uint256",
+				  "name": "",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "blocked",
+		  "outputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "amount",
+				  "type": "uint256"
+			  },
+			  {
+				  "internalType": "uint256",
+				  "name": "pool",
+				  "type": "uint256"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [],
+		  "name": "blockProvider",
+		  "outputs": [
+			  {
+				  "internalType": "address",
+				  "name": "",
+				  "type": "address"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "",
+				  "type": "address"
+			  }
+		  ],
+		  "name": "Claimers",
+		  "outputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "",
+				  "type": "uint256"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "tokenId",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "getApproved",
+		  "outputs": [
+			  {
+				  "internalType": "address",
+				  "name": "",
+				  "type": "address"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "_user",
+				  "type": "address"
+			  }
+		  ],
+		  "name": "getBlockedNow",
+		  "outputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "",
+				  "type": "uint256"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "_user",
+				  "type": "address"
+			  }
+		  ],
+		  "name": "getStacked",
+		  "outputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "",
+				  "type": "uint256"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "owner",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "address",
+				  "name": "operator",
+				  "type": "address"
+			  }
+		  ],
+		  "name": "isApprovedForAll",
+		  "outputs": [
+			  {
+				  "internalType": "bool",
+				  "name": "",
+				  "type": "bool"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [],
+		  "name": "name",
+		  "outputs": [
+			  {
+				  "internalType": "string",
+				  "name": "",
+				  "type": "string"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [],
+		  "name": "owner",
+		  "outputs": [
+			  {
+				  "internalType": "address",
+				  "name": "",
+				  "type": "address"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "tokenId",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "ownerOf",
+		  "outputs": [
+			  {
+				  "internalType": "address",
+				  "name": "",
+				  "type": "address"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "returned_pools",
+		  "outputs": [
+			  {
+				  "internalType": "bool",
+				  "name": "",
+				  "type": "bool"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "",
+				  "type": "address"
+			  }
+		  ],
+		  "name": "stacked",
+		  "outputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "",
+				  "type": "uint256"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "bytes4",
+				  "name": "interfaceId",
+				  "type": "bytes4"
+			  }
+		  ],
+		  "name": "supportsInterface",
+		  "outputs": [
+			  {
+				  "internalType": "bool",
+				  "name": "",
+				  "type": "bool"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [],
+		  "name": "symbol",
+		  "outputs": [
+			  {
+				  "internalType": "string",
+				  "name": "",
+				  "type": "string"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "index",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "tokenByIndex",
+		  "outputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "",
+				  "type": "uint256"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "address",
+				  "name": "owner",
+				  "type": "address"
+			  },
+			  {
+				  "internalType": "uint256",
+				  "name": "index",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "tokenOfOwnerByIndex",
+		  "outputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "",
+				  "type": "uint256"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "tokenId",
+				  "type": "uint256"
+			  }
+		  ],
+		  "name": "tokenURI",
+		  "outputs": [
+			  {
+				  "internalType": "string",
+				  "name": "",
+				  "type": "string"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  },
+	  {
+		  "inputs": [],
+		  "name": "totalSupply",
+		  "outputs": [
+			  {
+				  "internalType": "uint256",
+				  "name": "",
+				  "type": "uint256"
+			  }
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+	  }
+  ]
+  
   const contract_nft_nn = new Contract(address_nft, abi_nft, provider); 
   const daiContractWithSigner_nft_nn = contract_nft_nn.connect(signer);
 
@@ -2178,7 +1759,7 @@ export async function createPool(
     return {createSuccess:true,err:''}
 }
   
-export async function getPoolInfo(poolID,decimals) {
+export async function getPoolInfo(poolID,decimals) { 
     try{
       const {contract_pool} = getMainPoolContract()
 
@@ -2221,11 +1802,11 @@ export async function stackeNFTprePool(poolID,quantity) {
 
 		const {currentDecimals,currentNumber} = getCurrentDecimal(sum)
 	
-		let sum_last = numberToBigNumber(currentNumber,currentDecimals)
+		const sumLast = numberToBigNumber(currentNumber,currentDecimals)
 
 		const {daiContractWithSigner_usd} = getUSDContract()
 
-        const res = await daiContractWithSigner_usd.approve(address_pool,sum_last);
+        const res = await daiContractWithSigner_usd.approve(address_pool,sumLast);
 
 		return {res,success:true}
       } catch (err) {
@@ -2280,7 +1861,7 @@ export async function getUserCanInvest(poolID,user_adr) {
 		const {contract_pool} = getMainPoolContract()
 
 		const isCanInvest = await contract_pool.get_user_can_invest(poolID,user_adr);
-		
+
 		return {isCanInvest,success:true}
 	}
 	catch (err) {
@@ -2308,19 +1889,19 @@ export async function getUserBoard(poolID) {
 export async function getTotalStakeInPool(poolID) {
 	try{
 		const {boards} = await getUserBoard(poolID)
-		
+
 		if(!boards?.length){
 			throw new Error('User list is empty')
 		}
 
 		const usersList = boards[0]
 		let totalStaked = 0
-
+	
 		for (let i = 0; i < usersList.length; i++) {
 			const userAddress = usersList[i];
 
 			const {success,sum} = await getNoNameNFTStakedBalance(userAddress)
-
+	
 			if(success){
 				totalStaked = totalStaked + Number(sum)
 			}
@@ -2494,10 +2075,9 @@ async function approveNft(nftId) {
 
 export async function Claim(poolId,address) {  
 	try {
+		const {data} = await getMeInPool(poolId,address)
 		const {daiContractWithSigner_pool} = getMainPoolContract()
 
-		const {data} = await getMeInPool(poolId,address)
-		
 		if(!data.nftId){
 			throw new Error("No nft id")
 		}
@@ -2508,10 +2088,33 @@ export async function Claim(poolId,address) {
 		if(!success){
 			throw new Error("Approve nft error")
 		}
+
+        return new Promise((resolve, reject) => {
+            setTimeout(async () => {
+                try {
+                    await daiContractWithSigner_pool.Claim(nftId);
+                    resolve({ success: true });
+                } catch (claimErr) {
+                    reject({ success: false, error: claimErr });
+                }
+            }, 8000);
+        });
 	
-		setTimeout(async () => {
-			await daiContractWithSigner_pool.Claim(nftId)
-		},4500)
+	  } catch (err) {
+		console.info('err in transaction', err.message);
+		return {success:false}
+	}
+}
+  
+export async function confirmClaim(poolId,address) {  
+	try {
+		const {daiContractWithSigner_pool} = getMainPoolContract()
+
+		const {data} = await getMeInPool(poolId,address)
+
+		const nftId = Number(data.nftId)
+
+		await daiContractWithSigner_pool.Claim(nftId)
 
 		return {success:true}
 	  } catch (err) {
@@ -2519,7 +2122,7 @@ export async function Claim(poolId,address) {
 		return {success:false}
 	}
 }
-  
+
 /////////////////////////// Функции основного смарта
 /////////////////////////////////Изменение комиссии (poolID(int) - ID пула, quantity(int) - % новой комиссии)  
 export async function changeComission(poolID,quantity) {  
@@ -2534,12 +2137,24 @@ export async function changeComission(poolID,quantity) {
 
 		return {success:true}
 	}
-  }
+}
+/////////////////////////////////Изменение медиа комиссии (poolID(int) - ID пула, quantity(int) - % новой комиссии в двузначном виде, при указании 25 комиссия будет 2.5%)  
+export async function changeMediaCommission(poolID,quantity) {  
+	try {
+		const {daiContractWithSigner_pool} = getMainPoolContract()
+
+		await daiContractWithSigner_pool.change_media_commission(poolID,quantity);
   
+		return {success:true}
+	} catch (err) {
+		console.info('err in transaction', err.message);
+  
+		return {success:false}
+	}
+}
 
 export async function getUserClaimValue(poolID,userAddress,projectId) {  
 	try {
-
 		const {claim} = await getClaimData(projectId)
 		
 		const decimals = claim?.decimals
@@ -2561,3 +2176,54 @@ export async function getUserClaimValue(poolID,userAddress,projectId) {
 	}
 }
   
+//// Сколько Awards у юзера (user_adr(str) - адрес юзера)
+//// response (int)
+export async function awardsAmount(user_adr) {
+ try{
+	const {contract_pool} = getMainPoolContract()
+
+	const response = await contract_pool.Awards(user_adr);
+	
+	return {success:true,awards:bigNumber_to_number(response,decimals)}
+ }
+ catch (err) {
+	console.info('err', err.message);	
+
+	return {success:false,awards:0}
+ }
+}
+
+/////////////////////////////////Изменение времени 1го юзера в желтой зоне (poolID(int) - ID пула, quantity(int) - время юзера в зоне) 
+export async function changeYellowTime(poolID,quantity) {  
+  try {
+		const {daiContractWithSigner_pool} = getMainPoolContract()
+
+    	await daiContractWithSigner_pool.change_yellowTime(poolID,quantity);
+
+		return {success:true}
+    } catch (err) {
+    	console.info('err in transaction', err.message);	
+
+		return {success:false}
+  }
+}
+
+export async function getUserCanInvestTime(poolID,user_adr) {
+	try{
+		const {contract_pool} = getMainPoolContract()
+
+		const response = await contract_pool.get_user_can_invest_time(poolID,user_adr);
+
+		const startTime = 
+		formatSmartDate(new Date(Number(bigNumber_to_number(response[0],0)) * 1000))
+		const endTime = 
+		formatSmartDate(new Date(Number(bigNumber_to_number(response[1],0)) * 1000))
+	
+		return {success:true,dates:{startTime,endTime}}
+	}
+	catch (err) {
+	 	console.info('err', err.message);
+	 	return {success:false,dates:{startTime:null,endTime:null}}
+	}
+}
+   

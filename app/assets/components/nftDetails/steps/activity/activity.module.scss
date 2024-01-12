@@ -50,4 +50,9 @@
 .tableItem {
   display: grid;
   grid-template-columns: 1fr 1.1fr 1.2fr 1.2fr 1.2fr;
+  font-size: 14px;
+}
+.empty{
+  margin: 12px 15px;
+  font-weight: 600;
 }

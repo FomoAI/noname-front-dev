@@ -204,3 +204,15 @@
   flex-direction: column;
   gap: 4px;
 }
+.yellowTimeModal{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  input{
+    width: 100%;
+  }
+  div{
+    max-width: 400px;
+  }
+}

@@ -5,25 +5,25 @@ import CollectionNftsPage from '../../../app/components/collectionPage/Collectio
 
 export async function getServerSideProps(context) {
     try{
-        const {nft} = await getNft(context.params.id)
-        
+        const {nft,ethExchange} = await getNft(context.params.id)
+
       if(!nft){
         return { props: { nft :{}} }
       }
-      return { props: { nft} }
+      return { props: { nft,ethExchange} }
       
     }catch(error){
       return { props: { nft:{} } }
     }
 }
 
-export default function NftPage({nft}) {
+export default function NftPage({nft,ethExchange}) {
 
   return (
     <>
     <HeadBlock title={'NFT Marketplace - Nft'}/>
     <Layout>
-      <CollectionNftsPage isNftPage={true} data={nft}/>
+      <CollectionNftsPage isNftPage={true} data={nft} ethExchange={ethExchange || 0}/>
     </Layout>
     </>
   )

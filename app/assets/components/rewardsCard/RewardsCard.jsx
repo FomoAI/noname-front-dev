@@ -11,6 +11,7 @@ export default function RewardsCard({poolId,project}) {
     const [tokens,setTokens] = useState('0')
 
     const claimHandler = async () => {
+      console.log(poolId,window.ethereum.selectedAddress)
       const {success} = await Claim(poolId,window.ethereum.selectedAddress)
 
       if(success){

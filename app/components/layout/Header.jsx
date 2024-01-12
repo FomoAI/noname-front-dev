@@ -1,11 +1,10 @@
-import { useState , useRef,} from 'react';
+import { useState , useRef} from 'react';
 import { useRouter } from 'next/router';
 import { useSelector , useDispatch} from 'react-redux';
 import Image from 'next/image';
 import styles from './styles/header.module.scss'
 import Nav from '../nav/Nav';
 import useTimer from '../../hooks/useTimer'
-import AccessToNonameDao from '../../assets/components/AccessNonameDao/AccessToNonameDao';
 import closeSvg from '../../assets/icons/close-gray.svg'
 import { toggleModal } from '../../store/slices/modalsSlice';
 
@@ -99,7 +98,7 @@ const Header = ({headerData,investments}) => {
                         </div>
                 </div>
             </div>
-            <Nav userData={userData}/>
+            <Nav userData={userData} headerData={headerData}/>
         </header>
     );
 }

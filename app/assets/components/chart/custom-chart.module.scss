@@ -6,17 +6,50 @@
   border: 1px solid rgba(83, 98, 124, 0.07);
   background: #fff;
   box-shadow: 4px 4px 0px 0px #eee;
-  @media (max-width:920px) {
+  @media (max-width: 920px) {
     max-width: 100%;
-    overflow: hidden;;
+    overflow: hidden;
   }
-  @media (max-width:520px) {
+  @media (max-width: 520px) {
     height: 300px;
   }
-  @media (max-width:450px) {
+  @media (max-width: 450px) {
     height: 250px;
   }
-  @media (max-width:420px) {
+  @media (max-width: 420px) {
     height: 220px;
   }
+}
+.priceInfo {
+  background: white;
+  position: absolute;
+  padding: 6px;
+  z-index: 10;
+  top: 12px;
+  right: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.infoElipse {
+  min-width: 8px;
+  min-height: 8px;
+  max-width: 8px;
+  max-height: 8px;
+  border-radius: 50%;
+}
+.green {
+  background: #05c9a1;
+}
+.red {
+  background: #ff507d;
+}
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #738094;
+  font-size: 12px;
+  font-weight: 500;
 }

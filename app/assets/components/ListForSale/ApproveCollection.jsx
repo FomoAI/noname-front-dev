@@ -5,12 +5,13 @@ import styles from './list-for-sale.module.scss'
 
 
 export default function ApproveCollection({nft,handler}) {
+
   return (
     <div className={styles.approveNft}>
     <div className={styles.approveNftWrapper}>
         <img 
         className={styles.approveNftImg}
-        src={loader(nft.image)} 
+        src={nft.image} 
         alt='nft-img'
         />
         <div className={styles.approveNftInfo}>

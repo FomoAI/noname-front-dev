@@ -11,5 +11,5 @@ import linkedin from './linkedin.svg'
 export default {
     discord,facebook,instagram,
     telegram,tikTok,twitter,
-    medium,web,linkedin
+    medium,web,linkedin,telegram2:telegram
 }

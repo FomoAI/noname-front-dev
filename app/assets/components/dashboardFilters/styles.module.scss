@@ -1,0 +1,67 @@
+.body {
+  max-width: 895px;
+}
+.items {
+  display: flex;
+}
+.line {
+  border: none;
+  background: rgba(192, 192, 213, 0.5);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25) inset;
+  height: 2px;
+  width: 100%;
+  margin: 0;
+}
+.filterBtn {
+  padding: 0px 0px 15px 0px;
+  color: rgba(115, 128, 148, 0.5);
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 24px;
+  transition: all 0.3s ease;
+  &:hover {
+    opacity: 0.7;
+  }
+  &:active {
+    color: rgba(83, 84, 84, 0.669);
+  }
+  @media (max-width: 450px) {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32vw;
+    margin-right: 0px;
+  }
+}
+.selected {
+  color: #070b35;
+  box-shadow: 0px 3px 1px -1.5px #d82956;
+  &:hover {
+    opacity: 1;
+  }
+  &:active {
+    color: #070b35;
+  }
+}
+.btnWrapper {
+  position: relative;
+}
+.btnLabel {
+  position: absolute;
+  top: -14px;
+  right: -5px;
+  color: rgba(255, 80, 125, 0.5);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+.disabled {
+  cursor: not-allowed;
+  &:hover {
+    opacity: 1;
+  }
+  &:active {
+    color: rgba(115, 128, 148, 0.5);
+  }
+}

@@ -7,6 +7,7 @@ import modalsSlice from './slices/modalsSlice'
 import allProjects from './slices/allProjects'
 import communitySlice from './slices/communitySlice'
 import cartSlice from './slices/cartSlice'
+import currencySlice from './slices/currencySlice'
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
     modals:modalsSlice,
     allProjects:allProjects,
     community:communitySlice,
-    cart:cartSlice
+    cart:cartSlice,
+    currency:currencySlice
   } 
 })

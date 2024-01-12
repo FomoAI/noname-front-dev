@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
+import { getOrderByNftId,getOrderUsdByNftId } from '../smart/initialSmartNftMarket'
 import { setCart } from '../store/slices/cartSlice'
 
 export default function useCart() {
@@ -14,16 +15,18 @@ export default function useCart() {
         localStorage.setItem('nonameCart',JSON.stringify(cart))
     }
 
-    const addToCart = useCallback((item) => {
+    const addToCart = useCallback( async (item) => {
+        const {currentOrder} = await getOrderUsdByNftId(item.nftId)
+      
         const cartData = getCartFromLocalStorage()
 
         const isAdded = cartData.find((cartItem) => cartItem._id === item._id)
 
         if(isAdded) return
         
-        addCartToLocalStorage([...cartData,item])
+        addCartToLocalStorage([...cartData,{...item,...currentOrder}])
         
-        dispatch(setCart([...cartData,item]))
+        dispatch(setCart([...cartData,{...item,...currentOrder}]))
     },[cart])
 
     const removeFromCart = useCallback((item) => {

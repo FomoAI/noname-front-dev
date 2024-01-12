@@ -1,0 +1,143 @@
+.wrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 1140px) {
+    max-width: 95vw;
+    width: 100%;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 18px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #eaf2fb;
+      border-radius: 99px;
+      border: 7px solid transparent;
+      background-clip: content-box;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #d9e9fc;
+      border-radius: 99px;
+      border: 7px solid transparent;
+      background-clip: content-box;
+    }
+  }
+}
+.head {
+  padding: 12px 0px 12px 16px;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 1.1fr 0.7fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr;
+  @media (max-width: 1140px) {
+    min-width: 1110px;
+  }
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  @media (max-width: 1140px) {
+    min-width: 1110px;
+  }
+
+}
+.tableItem {
+  padding: 16px 0px 16px 16px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 0.2fr 1fr 1.1fr 0.7fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr;
+  border-radius: 8px;
+  border: 1px solid rgba(83, 98, 124, 0.07);
+  background: #fff;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+
+}
+.headItem {
+  color: #738094;
+  font-size: 12px;
+  font-weight: 500;
+}
+.project {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 99px;
+  }
+}
+.project {
+  display: flex;
+  align-items: center;
+}
+.itemIndex {
+  color: #070b35;
+  font-size: 14px;
+  font-weight: 600;
+}
+.itemValue {
+  color: #070b35;
+  font-size: 14px;
+  font-weight: 600;
+}
+.capacity {
+  padding: 4px 8px;
+  max-width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #2082ea;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.projectName {
+  color: #070b35;
+  font-size: 14px;
+  font-weight: 600;
+}
+.paginationBtns {
+  margin-top: 23px;
+  display: flex;
+}
+.pageBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #070b35;
+  font-family: "Gilroy Semibold";
+  font-size: 14px;
+  font-weight: 400;
+  padding: 8px;
+  width: 25px;
+  height: 25px;
+  border-radius: 6px;
+
+  @media (max-width:500px) {
+    width: 35px;
+    height: 35px;
+  }
+}
+.currentPage {
+  border: 1px solid #ff507d80;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.paginationInfo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #070b35;
+  font-family: "Gilroy Semibold";
+  font-size: 14px;
+  font-weight: 400;
+}

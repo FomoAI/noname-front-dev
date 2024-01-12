@@ -1,4 +1,5 @@
 import { useState , useMemo } from 'react'
+import { changeFee, changeCreator,changeCreatorFee } from '../../../smart/initialSmartNftMarket'
 import Image from 'next/image'
 import loader from '../../../utils/loader'
 import NftsList from '../nftsList/NftsList'
@@ -9,8 +10,8 @@ import ProjectsList from '../projectsList/ProjectsList'
 import arrowSvg from '../../../assets/icons/arrow-rotate.svg'
 import {AiOutlineEdit} from 'react-icons/ai'
 import {AiOutlineDelete} from 'react-icons/ai'
-import styles from "../../styles/collection.module.scss";
 import Input from '../../UI/Input'
+import styles from "../../styles/collection.module.scss";
 
 const types = [
     {
@@ -64,11 +65,39 @@ export default function Collection(
     }
 
     const confrimEditCollection = async () => {
+        let success;
+
+        if(Number(collection.royalty) !== Number(collectionData.royalty)){
+          const res = await changeFee(collectionData.smart,collectionData.royalty)
+          
+          success = res.success
+        }
+
+        
+        if(Number(collection.creatorFee) !== Number(collectionData.creatorFee)){
+          const res = await changeCreatorFee(collectionData.smart,collectionData.creatorFee)
+
+          success = res.success
+        }
+
+        
+        if(collection.creator !== collectionData.creator){
+          const res = await changeCreator(collectionData.smart,collectionData.creator)
+
+          success = res.success
+        }
+
+        if(!success){
+          alert('Smart contract error')
+          return
+        }
+
         const collectionToEdit = {
             title:collectionData.title,
             smart:collectionData.smart,
             type:selectedType,
             project:selectedProject,
+            royalty:collectionData.royalty,
         }   
       
         setIsEdit(false)
@@ -119,6 +148,7 @@ export default function Collection(
               label={'Title:'}
               />
             </div>
+
             <div className={styles.typeSelect + ' ' + styles.editItem}>
                     <div className={styles.label}>
                         Type:
@@ -161,13 +191,80 @@ export default function Collection(
                             <></>
                         }
                     </div>
-                  </div>
+            </div>
+
             <div className={styles.infoItem + ' ' + styles.editItem}>
                 <Input
                 handler={inputHandler}
                 value={collectionData.smart}
                 name={'smart'}
                 label={'Smart contract:'}
+                />
+            </div>
+
+            <div className={styles.infoItem + ' ' + styles.editItem}>
+                <Input
+                type='number'
+                handler={inputHandler}
+                value={collectionData.royalty}
+                name={'royalty'}
+                label={'Royalty:'}
+                />
+            </div>
+
+            <div className={styles.infoItem + ' ' + styles.editItem}>
+                <Input
+                type='string'
+                handler={inputHandler}
+                value={collectionData?.creator || ''}
+                name={'creator'}
+                label={'Creator address:'}
+                />
+            </div>
+            
+            <div className={styles.infoItem + ' ' + styles.editItem}>
+                <Input
+                type='string'
+                handler={inputHandler}
+                value={collectionData?.creatorFee || ''}
+                name={'creatorFee'}
+                label={'Creator fee:'}
+                />
+            </div>
+            <div className={styles.infoItem + ' ' + styles.editItem}>
+                <Input
+                type='string'
+                handler={inputHandler}
+                value={collectionData?.revenue || ''}
+                name={'revenue'}
+                label={'Revenue:'}
+                />
+            </div>
+            <div className={styles.infoItem + ' ' + styles.editItem}>
+                <Input
+                type='string'
+                handler={inputHandler}
+                value={collectionData?.mintPrice || ''}
+                name={'mintPrice'}
+                label={'Mint price:'}
+                />
+            </div>
+            <div className={styles.infoItem + ' ' + styles.editItem}>
+                <Input
+                type='string'
+                handler={inputHandler}
+                value={collectionData?.lastFunding   || ''}
+                name={'lastFunding'}
+                label={'Last funding:'}
+                />
+            </div>
+            <div className={styles.infoItem + ' ' + styles.editItem}>
+                <Input
+                type='string'
+                handler={inputHandler}
+                value={collectionData?.tokenStandart   || ''}
+                name={'tokenStandart'}
+                label={'Token standart:'}
                 />
             </div>
           </div>
@@ -268,6 +365,12 @@ export default function Collection(
               <span className={styles.key}>Smart contract:</span>
               <span className={styles.value}>
                 {sliceAddress(collection.smart)}
+              </span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.key}>Royalty:</span>
+              <span className={styles.value}>
+                {collection.royalty}
               </span>
             </div>
           </div>

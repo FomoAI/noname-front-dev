@@ -1,5 +1,5 @@
-import styles from '../styles/staking-table.module.scss'
 import TableItem from '../tableItem/TableItem'
+import styles from '../styles/staking-table.module.scss'
 
 export default function StakingTable({items,height='343',boxShadow = '4px 4px 10px #eeeeee'}) {
   return (

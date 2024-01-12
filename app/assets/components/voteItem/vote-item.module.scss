@@ -1,0 +1,153 @@
+.wrapper {
+  cursor: pointer;
+  @media (max-width: 450px) {
+  }
+}
+.body {
+  padding: 0px 8px;
+  max-height: 0px;
+  visibility: hidden;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+}
+.open {
+  max-height: 500px;
+  visibility: visible;
+  transition: all 0.3s ease;
+}
+.head {
+  width: 100%;
+  padding: 18px 8px 18px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+  &:hover {
+    background: rgba(128, 128, 128, 0.112);
+  }
+  &:active {
+    background: rgba(128, 128, 128, 0.205);
+  }
+  @media (max-width: 450px) {
+  }
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  @media (max-width: 1100px) {
+    text-align: start;
+  }
+  @media (max-width: 450px) {
+    max-width: 250px;
+  }
+  @media (max-width: 390px) {
+    max-width: 210px;
+  }
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.status {
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+}
+.votes {
+  color: #ff507d;
+  font-size: 14px;
+  font-weight: 400;
+  @media (max-width: 450px) {
+    font-size: 13px;
+  }
+}
+.title {
+  color: #000;
+  font-size: 18px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  svg{
+    width: 25px !important;
+    height: 25px !important;
+  }
+  @media (max-width: 720px) {
+    font-size: 16px;
+  }
+  @media (max-width: 450px) {
+    font-size: 14px;
+    gap: 0px;
+    svg{
+      transform: translateX(-8px) !important;
+    }
+  }
+}
+.posted {
+  color: #738094;
+  font-size: 14px;
+  font-weight: 400;
+  @media (max-width: 450px) {
+    font-size: 13px;
+  }
+}
+.line {
+  margin: 0px;
+}
+.bodyText {
+  max-width: 830px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+  @media (max-width: 450px) {
+    font-size: 14px;
+  }
+}
+.dates {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+  @media (max-width: 450px) {
+    gap: 10px;
+    font-size: 14px;
+  }
+}
+.action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 160px;
+  margin: 0 auto 25px;
+}
+.actionLabel {
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  @media (max-width: 450px) {
+    font-size: 16px;
+  }
+}
+.actionBtn {
+  border-radius: 99px;
+  background: #ff507d;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+
+  padding: 8px 12px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  &:hover {
+    background: #d8355e;
+  }
+}

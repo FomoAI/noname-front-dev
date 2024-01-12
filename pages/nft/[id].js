@@ -6,12 +6,12 @@ import icons from '../../app/assets/icons/socialmedia/socialmedia'
 
 export async function getServerSideProps(context) {
     try{
-        const {nft} = await getNft(context.params.id)
+        const {nft,ethExchange} = await getNft(context.params.id)
         
       if(!nft){
         return { props: { nft :{}} }
       }
-      return { props: { nft} }
+      return { props: { nft:{...nft,ethExchange}} }
       
     }catch(error){
       return { props: { nft:{} } }

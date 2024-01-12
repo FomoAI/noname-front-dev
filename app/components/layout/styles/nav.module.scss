@@ -42,6 +42,10 @@
   img {
     border-radius: 10px;
     overflow: hidden;
+    @media (max-width:1466px) {
+      max-width: 130px;
+    }
+
     @media (max-width: 540px) {
       max-width: 120px;
       height: auto;
@@ -52,16 +56,10 @@
 .input {
   display: flex;
   align-items: center;
-  max-width: 320px;
+  max-width: 210px;
   width: 100%;
-  margin: 0px 22px 0px 19px;
+  margin: 0px 15px 0px 15px;
 
-  @media (max-width: 1460px) {
-    max-width: 280px;
-  }
-  @media (max-width: 1410px) {
-    max-width: 265px;
-  }
   @media (max-width: 1320px) {
     max-width: 200px;
     margin: 0px 14px 0px 10px;
@@ -81,7 +79,7 @@
   gap: 18px;
   font-weight: 400;
   @media (max-width: 1500px) {
-    gap: 18px;
+    gap: 17px;
   }
   @media (max-width: 1400px) {
     gap: 14px;
@@ -186,4 +184,30 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+.secondBtn {
+  button {
+    padding-left: 0px;
+    position: relative;
+    display: flex;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    color: #0d0f2b;
+    transition: all 0.3s ease;
+    &:hover {
+      opacity: 0.7;
+    }
+    &::after {
+      content: url("../../../assets/icons/arrow-rotate.svg");
+      margin: 0px 0px 0px 5px;
+      position: absolute;
+      top: -1.4px;
+      right: -7px;
+    }
+    @media (max-width: 1400px) {
+      font-size: 14px;
+    }
+  }
 }

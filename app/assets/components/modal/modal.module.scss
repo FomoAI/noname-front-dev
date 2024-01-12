@@ -159,3 +159,19 @@
     margin: 0;
   }
 }
+.borrowModal{
+  border-radius: 8px;
+  @media (max-width:1700px) {
+    margin-top: 80px;
+  }
+  @media (max-width:1450px) {
+    margin-top: 140px;
+  }
+  @media (max-width:1250px) {
+    margin-top: 250px;
+  }
+  @media (max-width:450px) {
+    margin-top: 180px;
+    transform: translate(4px,0)!important;
+  }
+}

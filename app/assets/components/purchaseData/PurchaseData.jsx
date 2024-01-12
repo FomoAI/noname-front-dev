@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
-import { getUserInZone, getUserCanInvest, getMeInPool } from '../../../smart/initialSmartMain'
+import { getUserInZone, getUserCanInvest, getMeInPool,getUserCanInvestTime } from '../../../smart/initialSmartMain'
 import { approveSum, investSum } from '../../../smart/initialSmartMain'
 import addProjectToUser from '../../../services/addProjectToUser'
 import CustomAlert from '../CustomAlert/CustomAlert'
@@ -25,6 +25,7 @@ export default function PurchaseData({project,participate,approve,dates}) {
     const [isInvestStep,setIsInvestStep] = useState(false)
     const [isUserCanInvest,setIsUserCanInvest] = useState(true)
     const [isCanInvestAlert,setIsCanInvestAlert] = useState(false)
+    const [userInvestTime,setUserInvestTime] = useState({startTime:0,endTime:0})
 
     const [isAlreadyInvested,setIsAlreadyInvested] = useState(false)
     const [alreadyInvestedValue,setAlreadyInvestedValue] = useState(0)
@@ -137,10 +138,18 @@ export default function PurchaseData({project,participate,approve,dates}) {
             =
             await getMeInPool(project.poolId,window.ethereum.selectedAddress)
 
+            const {dates}
+            =
+            await getUserCanInvestTime(project.poolId,window.ethereum.selectedAddress)
+      
+            if(dates.startTime && dates.endTime){
+                setUserInvestTime({startTime:dates.startTime,endTime:dates.endTime})
+            }
+            
             const isInvest = data.invest > 0 && success
             setIsAlreadyInvested(isInvest)
             setAlreadyInvestedValue(data.invest)
-
+            
             const {isCanInvest}
             =
             await getUserCanInvest(project.poolId,window.ethereum.selectedAddress)
@@ -183,11 +192,11 @@ export default function PurchaseData({project,participate,approve,dates}) {
         <div className={styles.dates}>
             <div className={styles.date}>
                 <span>Starts: </span>
-                <span>{date.start}</span>
+                <span>{userInvestTime.startTime || date.start}</span>
             </div>
             <div className={styles.date}>
                 <span>Ends: </span>
-                <span>{date.end}</span>
+                <span>{userInvestTime.endTime || date.end}</span>
             </div>
         </div>
         <div className={styles.dates}>
@@ -257,6 +266,7 @@ export default function PurchaseData({project,participate,approve,dates}) {
     }
     {
         <CustomAlert
+        position='left'
         type='success'
         isVisible={isSuccessApprove}
         title={'Approved!'}
@@ -266,6 +276,7 @@ export default function PurchaseData({project,participate,approve,dates}) {
     }
     {
         <CustomAlert
+        position='left'
         type='success'
         isVisible={isSuccessInvest}
         title={'Invested!'}
@@ -275,6 +286,7 @@ export default function PurchaseData({project,participate,approve,dates}) {
     }
     {
         <CustomAlert
+        position='left'
         type='error'
         isVisible={isCanInvestAlert}
         handler={() => setIsCanInvestAlert(false)}

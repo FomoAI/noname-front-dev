@@ -1,0 +1,60 @@
+.headItem {
+  color: #738094;
+  font-size: 16px;
+  font-weight: 500;
+}
+.head {
+  margin: 12px 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.inputWrapper {
+  margin-top: 16px;
+  position: relative;
+  input {
+    width: 100%;
+  }
+}
+.maxBtn {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  color: #ff507d;
+  font-size: 14px;
+  font-weight: 600;
+}
+.votes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+
+  margin-bottom: 15px;
+}
+.votesNumber {
+  font-size: 14px;
+  color: #0d0f2b;
+  font-size: 14px;
+  font-weight: 600;
+}
+.headValue {
+  color: #0d0f2b;
+  font-size: 14px;
+  font-weight: 600;
+}
+.votesLabel {
+  display: flex;
+  align-items: center;
+  color: #738094;
+  font-size: 14px;
+  font-weight: 400;
+}
+.walletValue {
+  margin-top: 8px;
+  width: 100%;
+  text-align: right;
+  color: #738094;
+  font-size: 14px;
+  font-weight: 400;
+}

@@ -64,8 +64,8 @@ export default function PortfolioPage() {
       if(success){
         setProjects(projectsWithInvestData)
       }
-
       const currentProject = allProjects.find((pr) => pr.isMainProject)
+      
       const poolId = currentProject?.poolId
 
       setPoolId(poolId)

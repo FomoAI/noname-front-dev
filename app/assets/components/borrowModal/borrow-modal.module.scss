@@ -1,0 +1,123 @@
+.head {
+  margin-top: 4px;
+  color: #738094;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  label {
+    color: #0d0f2b;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+.nft {
+  max-width: fit-content;
+  margin: 16px 0px 4px auto;
+}
+.nftTitle {
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+}
+.nftDetails {
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+}
+.inputsLine {
+  border: 0px;
+  width: 100%;
+  height: 0.3px;
+  background: #7380947c;
+}
+.loanWrapper {
+  position: relative;
+  margin: 18px 0px 50px;
+}
+.loanTitle {
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+}
+.loanRecommended {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  color: #738094;
+  font-size: 12px;
+  font-weight: 400;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  svg {
+    transform: translateX(14px);
+  }
+}
+.loanLiquidation {
+  position: absolute;
+  top: 40px;
+  left: 130px;
+  color: #738094;
+  font-size: 12px;
+  font-weight: 400;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  svg {
+    transform: translateX(-25px);
+  }
+}
+.loanMax {
+  position: absolute;
+  bottom: -34px;
+  left: 90px;
+  color: #738094;
+  font-size: 12px;
+  font-weight: 400;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.arrowRotate {
+  transform: rotate(180deg);
+}
+.customRangeInput {
+  margin: 50px 0px;
+}
+.statistics{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+.statisticsItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.statisticsKey {
+  color: #738094;
+  font-size: 14px;
+  font-weight: 500;
+}
+.statisticsValue {
+  color: #070b35;
+  font-size: 14px;
+  font-weight: 600;
+}

@@ -25,6 +25,9 @@ const modalsSlice = createSlice({
         collectionsFilter:{state:false},
         nonameNavigation:{state:false},
         waitingListFilter:{state:false},
+        buyNft:{state:false},
+        isBuyNft:{state:false},
+        rwa:{state:false},
     },
     reducers:{
         closeModal(state,action){

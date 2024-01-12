@@ -7,9 +7,9 @@ export default async (id) => {
         if(!responce.ok){
             return {success:false,nft:{}}
         }   
-        const {success,nft} = await responce.json()
+        const {success,nft,ethExchange} = await responce.json()
         
-        return {success,nft}
+        return {success,nft,ethExchange}
 
     }catch(error){
         console.log(error)

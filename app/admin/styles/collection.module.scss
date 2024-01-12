@@ -248,7 +248,7 @@
   }
 }
 .editRow {
-  margin-top: 25px;
+  margin-top: 45px;
 
   @media (max-width: 740px) {
     margin-top: 45px;
@@ -259,6 +259,7 @@
 }
 
 .editDetails {
+  flex-wrap: wrap;
   @media (max-width: 740px) {
     max-width: 100%;
     width: 100%;

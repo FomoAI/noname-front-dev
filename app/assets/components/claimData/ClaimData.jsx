@@ -17,18 +17,15 @@ export default function ClaimData({ project,card,claimValue,resetCard}) {
     setLoading(true)
 
     const {success} = await Claim(project.poolId,window.ethereum.selectedAddress)
-
-    if(!success){
-      setLoading(false)
-      return
+    if(success){
+      setTimeout( async () => {
+        resetCard()
+        setIsSuccess(success)
+        await addClaimToUser(project._id)
+      },1000)
     }
+    setLoading(false)
 
-    setTimeout( async () => {
-      setLoading(false)
-      resetCard()
-      setIsSuccess(success)
-      await addClaimToUser(project._id)
-    },8000)
   }
 
   return (
@@ -49,9 +46,16 @@ export default function ClaimData({ project,card,claimValue,resetCard}) {
           {claimValue} {project.title} token
         </div>
       </div>
-      <SquareBtn handler={confirmClaim} text={card.btnName} width={'548'}/>
+      <SquareBtn handler={
+        confirmClaim
+        } 
+        text={
+          'Claim'
+          } 
+        width={'548'}/>
     </div>
     <CustomAlert
+    position="left"
     type={'success'}
     title={'Claimed!'} 
     text={`You have successfully claim your tokens`}
