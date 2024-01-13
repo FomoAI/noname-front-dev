@@ -1903,9 +1903,9 @@ export const getUserNfts = async (address,user) => {
 			const {nftId} = await getNftId(address,user,i)
 
 			const {nftData} = await getNftMetaData(address,nftId)
-
-			const currentNftId = nftId + 1
-			
+	
+			const currentNftId = nftId 
+			console.log(`${parseMetaDataLink(nftData)}/${currentNftId}`)
 			nftsDataMetaData.push({link:`${parseMetaDataLink(nftData)}/${currentNftId}`,nftId:currentNftId,nftIndex:i})
 		}
 

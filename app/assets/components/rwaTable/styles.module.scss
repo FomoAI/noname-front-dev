@@ -26,6 +26,9 @@
       background-clip: content-box;
     }
   }
+  @media (max-width:450px) {
+    padding-bottom: 8px;
+  }
 }
 .head {
   padding: 12px 0px 12px 16px;

@@ -10,7 +10,7 @@ export default function NftsList({nfts}) {
                     <div key={nft._id} className={styles.nft}>
                         <img
                         className={styles.nftImage} 
-                        src={loader(nft.image)}
+                        src={nft.image}
                         alt={nft.name} />
                         <div className={styles.nftInfo}>
                             <div className={styles.infoItem}>

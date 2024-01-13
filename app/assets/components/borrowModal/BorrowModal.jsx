@@ -79,13 +79,13 @@ const BorrowModal = ({isVisible,modalHandler}) => {
             <div className={styles.loanRecommended}>
               <span>Recommended</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
-              <path d="M4.2 8L7.8373 0.5L0.562693 0.5L4.2 8Z" fill="#738094" fill-opacity="0.5"/>
+              <path d="M4.2 8L7.8373 0.5L0.562693 0.5L4.2 8Z" fill="#738094" fillOpacity="0.5"/>
               </svg>
             </div>
             <div className={styles.loanLiquidation}>
               <span>Liquidation</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
-              <path d="M4.2 8L7.8373 0.5L0.562693 0.5L4.2 8Z" fill="#738094" fill-opacity="0.5"/>
+              <path d="M4.2 8L7.8373 0.5L0.562693 0.5L4.2 8Z" fill="#738094" fillOpacity="0.5"/>
               </svg>
             </div>
             <div className={styles.customRangeInput}>
@@ -94,7 +94,7 @@ const BorrowModal = ({isVisible,modalHandler}) => {
             <div className={styles.loanMax}>
               <div className={styles.arrowRotate}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
-                <path d="M4.2 8L7.8373 0.5L0.562693 0.5L4.2 8Z" fill="#738094" fill-opacity="0.5"/>
+                <path d="M4.2 8L7.8373 0.5L0.562693 0.5L4.2 8Z" fill="#738094" fillOpacity="0.5"/>
                 </svg>
               </div>
               <span>Max</span>

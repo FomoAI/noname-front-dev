@@ -10,7 +10,7 @@ const RewardsHistory = ({rewHistory}) => {
     <div className={styles.body}>
         <div className={styles.head}>
             <div className={styles.headItem}>
-            Amount of tokens
+            Amount of NFT
             </div>
             <div className={styles.headItem}>
             Stake Date

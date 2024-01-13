@@ -23,7 +23,7 @@ const data = [
   },
   {
     name: '28.05',
-    uv: 500,
+    uv: 700,
   },
   {
     name: '28.05',
@@ -114,7 +114,7 @@ const StakingChart = () => {
                 </div>
                 </div>
             </div>
-            <ResponsiveContainer className={'staking-chart'} width="106%" height="80%">
+            <ResponsiveContainer className={'staking-chart'} width="106%" height="85%">
               <AreaChart
                 width={500}
                 height={400}

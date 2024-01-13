@@ -176,7 +176,7 @@ const BorrowBody = () => {
                 <TextField/>
             </div>
             <div className={styles.title}>
-            zkSync Market
+            NN Market on the zkSync ERA
             </div>
             <div className={styles.headItems}>
                 <div className={styles.headItem}>

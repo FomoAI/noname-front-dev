@@ -1,3 +1,4 @@
+import Info from '../../assets/components/info/Info'
 import VotesList from "../votesList/VotesList";
 import TextField from "../UI/inputs/TextField";
 import TotalVotes from "../../assets/components/totalVotes/TotalVotes";
@@ -277,6 +278,12 @@ const VotePage = ({isOpen}) => {
         isOpen
         ?
         <div className={styles.body}>
+          <div className={styles.info}>
+            <Info
+            title={`VOTE`}
+            text={`The voice of the NONAME community`}
+            />
+          </div>
           <div className={styles.search}>
             <TextField/>
           </div>

@@ -18,17 +18,7 @@ const VoteItem = ({item,openVoteModal}) => {
             <div className={styles.info}>
                 <div className={styles.title}>
                     <span>{item.title}</span>
-                    {
-                        item.status !== 'Open'
-                        ?
                         <Lottie animationData={voteAnim}/>
-                        // <Image
-                        // src={triangleIcon}
-                        // alt={item.title}
-                        // /> 
-                        :
-                        <></>
-                    }
                 </div>
                 <div className={styles.posted}>
                     {item.posted}

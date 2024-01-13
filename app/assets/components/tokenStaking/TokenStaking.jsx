@@ -70,7 +70,7 @@ const TokenStaking = () => {
     <>
     <div className={styles.body}>
         <div className={styles.title}>
-            Stake your NAME tokens to get the highest APY!
+            Stake your NONAME NFT to get more NAME tokens!
         </div>
         <div className={styles.cards}>
             <div className={styles.card}>
@@ -80,12 +80,12 @@ const TokenStaking = () => {
                                 You staked
                             </div>
                             <div className={styles.description}>
-                                Enter the desired quantity of NAME tokens
+                            Enter the desired quantity of NFT
                             </div>
                         </div>
                         <div className={styles.cardColumn}>
                             <div className={styles.stakeValue}>
-                                0.00 NAME
+                                0.00 NFT
                             </div> 
                             <div className={styles.apyLabel}>
                                 APY  25%

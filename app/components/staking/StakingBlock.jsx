@@ -200,7 +200,14 @@ export default function StakingBlock({
               <StakingTable items={projects} />
             </div>
             </div>
-            <div className={styles.loansWrapper}>
+          </div>
+          :
+          <></>
+        }
+        {
+          getCurrentSection()
+        }
+                    <div className={styles.loansWrapper}>
             <div className={styles.loansInfo}>
               <Info
                 text={
@@ -215,13 +222,6 @@ export default function StakingBlock({
               })}
             </div>
             </div>
-          </div>
-          :
-          <></>
-        }
-        {
-          getCurrentSection()
-        }
       </div>
     </>
   );
