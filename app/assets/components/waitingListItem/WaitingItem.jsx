@@ -25,7 +25,7 @@ const types = [
 
 export default function WaitingItem({type,remove,item}) {
     const collectionType = types.find((type) => type.value === item.type)
-    console.log(item)
+
   return (
     <>    
     <div className={styles.body}>

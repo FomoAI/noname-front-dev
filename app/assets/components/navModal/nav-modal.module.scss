@@ -20,11 +20,12 @@
   }
 }
 .link {
+  position: relative;
   width: 240px;
   padding: 14.5px;
   display: flex;
   gap: 10px;
-  background: transparent;
+  background: white;
   transition: background 0.3s ease;
   &:hover{
     background: #73809424;

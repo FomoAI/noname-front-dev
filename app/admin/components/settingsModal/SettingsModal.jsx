@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import styles from '../../styles/settings-modal.module.scss'
+import { useId } from 'react'
 import Input from '../../UI/Input'
 import Modal from '../../../assets/components/modal/Modal'
 import SquareBtn from '../../../components/UI/buttons/SquareLightBtn'
 import editAdmin from '../../services/adminServices/editAdmin'
 import Loader from '../../../assets/components/loader/Loader'
-import { useId } from 'react'
+import styles from '../../styles/settings-modal.module.scss'
 
 const SettingsModal = ({state,modalHandler}) => {
     const id = useId()

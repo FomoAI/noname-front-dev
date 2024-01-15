@@ -1,5 +1,5 @@
-import styles from './leader-item.module.scss'
 import sliceAddress from '../../../utils/sliceAddress'
+import styles from './leader-item.module.scss'
 
 export default function LeaderboardItem({index,item}) {
 

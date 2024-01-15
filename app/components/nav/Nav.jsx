@@ -236,7 +236,6 @@ const Nav = ({userData}) => {
                     onClick={navModalHandler}>
                         Invest
                     </button>
-                    <NavModal isVisible={navModalState}/>
                 </li>
                 {links.map((link,index) => {
                     if(link?.isBtn){
@@ -275,6 +274,9 @@ const Nav = ({userData}) => {
                     )
                 })}
                 </ul>
+                <div className={styles.navModalWrapper}>
+                <NavModal isVisible={navModalState}/>
+                </div>
             </nav>
             <div className={styles.btn}>
                 {

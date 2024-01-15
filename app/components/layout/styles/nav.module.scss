@@ -211,3 +211,11 @@
     }
   }
 }
+.nav{
+  position: relative;
+}
+.navModalWrapper{
+  @media (max-width:1220px) {
+    display: none;
+  }
+}

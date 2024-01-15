@@ -4,10 +4,10 @@
   box-shadow: 4px 4px 10px #eeeeee;
   border-radius: 16px;
 }
-.message{
+.message {
   text-align: center;
   padding: 30px 0;
-  @media (max-width:440px) {
+  @media (max-width: 440px) {
     font-size: 14px;
     padding: 30px 10px;
   }
@@ -16,7 +16,7 @@
   max-width: 1206px;
   min-width: 100%;
   max-height: 700px;
-  @media (max-width:1800px) {
+  @media (max-width: 1800px) {
     max-height: 591px;
   }
   overflow-y: auto;
@@ -41,7 +41,7 @@
 }
 .head {
   display: grid;
-  grid-template-columns: 1.5fr 0.9fr 0.6fr 0.7fr 0.6fr 0.55fr 1.2fr;
+  grid-template-columns: 1.5fr 0.9fr 0.6fr 0.7fr 0.6fr 0.55fr 1.2fr 0.25fr;
   background: #f5f9fd;
   max-height: 36px;
   border-radius: 16px 16px 0px 0px;
@@ -55,7 +55,7 @@
   @media (max-width: 1000px) {
     grid-template-columns: 2.05fr 1.1fr 1fr 1fr 1fr 1fr 1.2fr;
   }
-    @media (max-width: 869px) {
+  @media (max-width: 869px) {
     grid-template-columns: 2.05fr 1.1fr 1fr 1fr 1fr 1fr 1.5fr;
   }
   @media (max-width: 769px) {
@@ -76,7 +76,7 @@
     display: none;
   }
 }
-.mobileModal{
+.mobileModal {
   display: none;
   @media (max-width: 440px) {
     display: block;

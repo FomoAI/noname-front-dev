@@ -1,13 +1,12 @@
 .body {
-  position: relative;
   padding: 12px 15px 0;
   display: grid;
   align-items: center;
-  grid-template-columns: 1.5fr 0.9fr 0.6fr 0.7fr 0.6fr 0.55fr 1.2fr;
+  grid-template-columns: 1.5fr 0.9fr 0.6fr 0.7fr 0.6fr 0.55fr 1.2fr 0.25fr;
 
   color: #070b35;
   @media (max-width: 1000px) {
-    grid-template-columns: 2.05fr 1.1fr 1fr 1fr 1fr 1fr 1.2fr;
+    grid-template-columns: 2.05fr 1.1fr 1fr 1fr 1fr 1fr 1.2fr 0.25fr;
   }
   @media (max-width: 869px) {
     grid-template-columns: 2.05fr 1.1fr 1fr 1fr 1fr 1fr 1.6fr;
@@ -92,8 +91,6 @@
 .remove {
   margin-top: 10px;
   border: 1px solid #ea2045;
-  position: absolute;
-  right: 40px;
   width: 35px;
   height: 35px;
   display: flex;
@@ -112,10 +109,7 @@
       animation: rotate 0.3s;
     }
   }
-  @media (max-width: 1000px) {
-    right: 20px;
-  }
-  @media (max-width: 440px) {
+  @media (max-width: 869px) {
     display: none;
   }
 }
