@@ -9,7 +9,7 @@ export default function Credit() {
         <Layout>
             <Borrow
             isCreditLine={true}
-            isOpen={true}
+            isOpen={false}
             />
         </Layout>
         </>

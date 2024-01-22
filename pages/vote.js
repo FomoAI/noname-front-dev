@@ -8,7 +8,7 @@ export default function Vote() {
         <HeadBlock title={'Vote'}/>
         <Layout>
             <VotePage
-            isOpen={true}
+            isOpen={false}
             />
         </Layout>
         </>

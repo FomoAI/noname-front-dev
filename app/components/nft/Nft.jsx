@@ -16,7 +16,7 @@ import styles from '../styles/nft.module.scss'
 export default function Nft({collectionIndex,toggleShowAllBtn,nft}) {
     const [isApprove,setIsApprove] = useState(true)
     const [nftFloorPrice,setNftFloorPrice] = useState(0)
-    const [name,id] = nft.name  ?.split('#') 
+    const [name,id] = nft.name?.split('#') 
     const isAuth = useSelector((state) => state.auth.userData.isAuth)
     const currency = useSelector((state) => state.currency.currencyArray)?.find((item) => item.isSelected)?.name
     const dispatch = useDispatch()
@@ -56,7 +56,7 @@ export default function Nft({collectionIndex,toggleShowAllBtn,nft}) {
 
     const buyByEth = async () => {
         const {currentOrder} = await getOrderByNftId(nft.nftId,nft.tokenAddress)
-
+        console.log(currentOrder)
         const {success} = await purchaseItem(currentOrder.orderId,currentOrder.orderPrice)
     
         if(success){

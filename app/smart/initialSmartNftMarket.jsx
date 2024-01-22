@@ -5,9 +5,9 @@ import { decimals } from "../config/provider";
 import getDatesFromToday from '../utils/getDatesFromToday'
 import getDateInterval from '../utils/getDateInterval'
 
-export const mainContractAddress = '0xafE5DFeBa7d4f83Fa56bA34EEcC373639c171468'
+export const mainContractAddress = '0xceB7eDf2AF9Ac364240226BAA2CE9c277CE972Ed'
 const usdContractAddress = '0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4'
-export const addressNft = '0xc30Bd85661ECD001067235d92D35A5EBf20f8691';
+export const addressNft = '0x70EB7db470063c9f90c103C4526c3f91b82Bf535';
 
 const abi_nft = [
 	{
@@ -1901,12 +1901,10 @@ export const getUserNfts = async (address,user) => {
 
 		for (let i = 0; i < nfts; i++) {
 			const {nftId} = await getNftId(address,user,i)
-
+			
 			const {nftData} = await getNftMetaData(address,nftId)
-	
-			const currentNftId = nftId 
-			console.log(`${parseMetaDataLink(nftData)}/${currentNftId}`)
-			nftsDataMetaData.push({link:`${parseMetaDataLink(nftData)}/${currentNftId}`,nftId:currentNftId,nftIndex:i})
+
+			nftsDataMetaData.push({link:nftData,nftId,nftIndex:i})
 		}
 
 		for (let i = 0; i < nftsDataMetaData.length; i++) {

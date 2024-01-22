@@ -7,7 +7,7 @@ export default function Rwa() {
         <>
         <HeadBlock title={'Rwa market'}/>
         <Layout>
-            <RwaMarket isOpen={true}/>
+            <RwaMarket isOpen={false}/>
         </Layout>
         </>
     )

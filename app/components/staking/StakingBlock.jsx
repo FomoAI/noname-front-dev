@@ -13,6 +13,7 @@ import RewardsCard from "../../assets/components/rewardsCard/RewardsCard";
 import StakingTable from "../stakingTable/StakingTable";
 import DashboardFilters from "../../assets/components/dashboardFilters/DashboardFilters";
 import BorrowItem from "../../assets/components/borrowItem/BorrowItem";
+import ClosedPageLabel from '../../assets/components/closedPageLabel/ClosedPageLabel'
 import styles from "../styles/staking.module.scss";
 
 const borrowItems = [
@@ -76,12 +77,12 @@ const filters = [
   {
     name: "Token staking",
     value: "tokenStaking",
-    isOpen: true,
+    isOpen: false,
   },
   {
     name: "USDC staking",
     value: "usdcStaking",
-    isOpen: true,
+    isOpen: false,
   },
 ];
 
@@ -207,21 +208,31 @@ export default function StakingBlock({
         {
           getCurrentSection()
         }
-                    <div className={styles.loansWrapper}>
-            <div className={styles.loansInfo}>
-              <Info
-                text={
-                  'Loan is a contractual agreement between NONAME and a borrower, set for a definite "duration" or "term". During this term, the borrower is obligated to make the scheduled payments until the loan is fully repaid.'
-                }
-                title={"My loans"}
-              />
-            </div>
-            <div className={styles.loanItems}>
-              {borrowItems.map((item, index) => {
-                return <BorrowItem key={index} item={item} isAuth={true} />;
-              })}
-            </div>
-            </div>
+        {
+          false
+          ?
+          <div className={styles.loansWrapper}>
+          <div className={styles.loansInfo}>
+            <Info
+              text={
+                'Loan is a contractual agreement between NONAME and a borrower, set for a definite "duration" or "term". During this term, the borrower is obligated to make the scheduled payments until the loan is fully repaid.'
+              }
+              title={"My loans"}
+            />
+          </div>
+          <div className={styles.loanItems}>
+            {borrowItems.map((item, index) => {
+              return <BorrowItem key={index} item={item} isAuth={true} />;
+            })}
+          </div>
+          </div>
+          :
+          <ClosedPageLabel 
+          className={'stakingLabel'} 
+          text={'My loans'} 
+          label={'Soon'} 
+          description={'Loan is a contractual agreement between NONAME and a borrower, set for a definite "duration" or "term". During this term, the borrower is obligated to make the scheduled payments until the loan is fully repaid.'}/>
+        }
       </div>
     </>
   );

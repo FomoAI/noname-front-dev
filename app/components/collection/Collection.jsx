@@ -15,6 +15,7 @@ import 'swiper/css/navigation';
 
 
 export default function Collection({collection}) {
+    console.log(collection)
     const [nfts,setNfts] = useState(collection.nfts)
     const [currentNftsValue,setCurrentNftsValue] = useState(16)
     const [isNftsEmpty,setIsNftsEmpty] = useState(false)
